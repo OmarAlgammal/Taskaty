@@ -1,8 +1,8 @@
 import 'package:taskaty/databases/auth_database.dart';
+import 'package:taskaty/models/group_lists_model.dart';
+import 'package:taskaty/models/task_model/task_model.dart';
+import 'package:taskaty/models/tasks_list_model.dart';
 
-import '../../models/group_lists_model.dart';
-import '../../models/task_model/task_model.dart';
-import '../../models/tasks_list_model.dart';
 import '../service_locator/sl.dart';
 import 'date_time_util.dart';
 
@@ -12,12 +12,15 @@ class TasksFiltration {
     return tasks.where((element) => condition(element)).toList();
   }
 
-  ///
   List<TasksListModel> _filterTasksInList(List<TaskModel> tasks,
       bool Function(TaskModel task, TaskModel comingTask) condition) {
     List<TasksListModel> lists = [];
     for (final task in tasks) {
-      final list = tasks.where((element) => lists.where((e) => e.name == element.listName).isEmpty && condition(task, element)).toList();
+      final list = tasks
+          .where((element) =>
+              lists.where((e) => e.name == element.listName).isEmpty &&
+              condition(task, element))
+          .toList();
       if (list.isNotEmpty) {
         lists.add(TasksListModel()
           ..name = list.first.listName
