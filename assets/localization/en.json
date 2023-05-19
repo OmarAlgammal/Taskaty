@@ -1,0 +1,80 @@
+{
+
+"@shared Texts": {},
+"newUser": "New User?",
+"createAccount": "Create Account",
+"verification": "Verification",
+"cancel": "Cancel",
+"newTask": "New Task",
+"repeatDaily": "Repeat daily",
+
+
+
+"@home page": {},
+"settings": "Settings",
+"singOut": "SingOut",
+
+
+
+"@sign in page": {},
+"signInWithEmail": "Sign In With Email",
+"signInWithGoogle": "Sign In With Google",
+"signInWithApple": "Sign In With Apple",
+
+"@sing in with email page": {},
+"welcomeBack": "Welcome Back",
+"manyTasksAwaitYouToAchieve": "Many Tasks Await You To Achieve",
+"account": "Account",
+"passwordHint": "password (+8 characters)",
+"forgetPassword": "Forget Password?",
+"completed": "Completed",
+
+
+"@sing Up Page": {},
+"singUpWithEmail": "Sign Up With Email",
+"singUpWithGoogle": "Sign Up With Google",
+"singUpWithApple": "Sign Up With Apple",
+
+"@sign up with email page": {},
+"name": "Name",
+"account": "account",
+"password": "password",
+"haveAnAccount": "Have An Account?",
+"singIn": "Sign In",
+
+
+"@my day page": {},
+"myDay": "My Day",
+
+
+"@my tasks page": {},
+"myTasks": "My Tasks",
+"newList": "New List",
+"createGroup": "Create Group",
+"groupName": "Group Name",
+"create": "Create",
+"addListToGroup": "Add List To Group",
+"select": "Select",
+"addition": "Addition",
+"additionOrRemovalLists": "Addition/Removal Lists",
+"renameGroup": "Rename Group",
+"ungroupLists": "Ungroup Lists",
+
+"@completed tasks page": {},
+"today": "Today",
+"yesterday": "Yesterday",
+"old": "Old",
+
+"@tasks page": {},
+"reorderTasks": "Reorder Tasks",
+"renameList": "Rename List",
+"sortBy": "Sort By",
+"deleteList": "Delete List",
+
+
+"@task page": {},
+"addToMyDay": "Add To My Day",
+"addFile": "Add File",
+"addANote": "Add A Note"
+
+}

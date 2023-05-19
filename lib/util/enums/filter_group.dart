@@ -1,0 +1,4 @@
+enum FilterGroup{
+  and,
+  or,
+}

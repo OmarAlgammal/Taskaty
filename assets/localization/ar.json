@@ -1,0 +1,79 @@
+{
+"@shared Texts": {},
+"newUser": "مستخدم جديد؟",
+"createAccount": "إنشاء حساب",
+"account": "الحساب",
+"verification": "التحقق",
+"cancel": "إلغاء",
+"newTask": "مهمة جديدة",
+"repeatDaily": "تكرار يومي",
+
+
+
+"@home page": {},
+"settings": "الإعدادات",
+"singOut": "تسجيل الخروج",
+
+
+
+"@sing in page": {},
+"signInWithEmail": "تسجيل الدخول باستخدام الحساب",
+"signInWithGoogle": "تسجيل الدخول باستخدام جوجل",
+"signInWithApple": "تسجيل الدخول باستخدام أبل",
+
+"@sing in with email page": {},
+"welcomeBack": "أهلا بعودتك",
+"manyTasksAwaitYouToAchieve": "بإنتظارك الكثير من المهام لتحقيقها",
+"account": "الحساب",
+"passwordHint": "كلمة السر (+8 أحرف)",
+"forgetPassword": "نسيت كلمة السر؟",
+"completed": "مكتمل",
+
+
+"@sing Up Page": {},
+"singUpWithEmail": "التسجيل باستخدام الحساب",
+"singUpWithGoogle": "التسجيل باستخدام جوجل",
+"singUpWithApple": "التسجيل باستخدام أبل",
+
+"@sign up with email page": {},
+"name": "الاسم",
+"password": "كلمة السر",
+"haveAnAccount": "لديك حساب؟",
+"singIn": "تسجيل الدخول",
+
+
+"@my day page": {},
+"myDay": "يومي",
+
+
+"@my tasks page": {},
+"myTasks": "مهامي",
+"newList": "قائمة جديدة",
+"createGroup": "إنشاء مجموعة",
+"groupName": "اسم المجموعة",
+"create": "إنشاء",
+"addListToGroup": "إضافة القائمة إلي المجموعة",
+"select": "اختر",
+"addition": "إضافة",
+"additionOrRemovalLists": "إضافة/إزالة القوائم" ,
+"renameGroup": "إعادة تسمية المجموعة" ,
+"ungroupLists": "إلغاء تجميع القوائم" ,
+
+"@completed tasks page": {},
+"today": "اليوم",
+"yesterday": "أمس",
+"old": "أقدم",
+
+"@tasks page": {},
+"reorderTasks": "إعادة ترتيب المهام",
+"renameList": "إعادة تسمية القائمة",
+"sortBy": "ترتيب حسب",
+"deleteList": "حذف القائمة",
+
+
+"@task page": {},
+"addToMyDay": "إضافة إلي يومي",
+"addFile": "إضافة ملف",
+"addANote": "إضافة ملاحظة"
+
+}
