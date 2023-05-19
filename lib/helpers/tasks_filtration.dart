@@ -12,6 +12,7 @@ class TasksFiltration {
     return tasks.where((element) => condition(element)).toList();
   }
 
+  ///
   List<TasksListModel> _filterTasksInList(List<TaskModel> tasks,
       bool Function(TaskModel task, TaskModel comingTask) condition) {
     List<TasksListModel> lists = [];
