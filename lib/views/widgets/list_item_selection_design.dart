@@ -3,36 +3,30 @@ import 'package:flutter/material.dart';
 import '../../util/constance/dimens.dart';
 import '../../util/constance/icons.dart';
 
-class ListItemSelectionDesign extends StatefulWidget {
-  const ListItemSelectionDesign({Key? key, required this.taskListName})
+class ListItemSelectionDesign extends StatelessWidget {
+  const ListItemSelectionDesign(
+      {Key? key, required this.taskListName, required this.onPressed, this.addListIconState,})
       : super(key: key);
 
   final String taskListName;
+  final VoidCallback onPressed;
+  final IconData? addListIconState;
 
-  @override
-  _ListItemSelectionDesignState createState() =>
-      _ListItemSelectionDesignState();
-}
-
-class _ListItemSelectionDesignState extends State<ListItemSelectionDesign> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      horizontalTitleGap: size0,
-      leading: const Icon(
-        listIcon,
-      ),
-      title: Text(
-        widget.taskListName,
-      ),
-      trailing: GestureDetector(
-        onTap: () {
-          // todo: on add icon tabbed action
-        },
-        child: const Icon(
-          addNewTaskIcon,
+        horizontalTitleGap: size0,
+        leading: const Icon(
+          listIcon,
         ),
-      ),
-    );
+        title: Text(
+          taskListName,
+        ),
+        trailing: IconButton(
+          onPressed: onPressed,
+          icon: Icon(
+            addListIconState ?? addNewTaskIcon,
+          ),
+        ));
   }
 }

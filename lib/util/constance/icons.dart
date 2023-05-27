@@ -13,6 +13,8 @@ const circleIcon = Icons.circle_outlined;
 const checkCircleIcon = Icons.check_circle_outline_outlined;
 
 const addNewTaskIcon  = Icons.add;
+const groupIcon  = Icons.folder;
+const checkIcon  = Icons.check_rounded;
 const sendIcon = Icons.send;
 const listIcon = Icons.list_outlined;
 const moreIcon = Icons.more_vert_outlined;

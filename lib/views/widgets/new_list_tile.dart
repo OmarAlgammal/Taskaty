@@ -93,8 +93,8 @@ class _NewListTileState extends State<NewListTile> {
         addNewTaskIcon,
         size: size28,
       ),
-      trailing: GestureDetector(
-        onTap: () {
+      trailing: IconButton(
+        onPressed: (){
           showDialog(
               context: context,
               builder: (context) {
@@ -109,7 +109,7 @@ class _NewListTileState extends State<NewListTile> {
                         setState(() {
                           setState(() {
                             _addGroupButtonEnabled =
-                                text.trim().isNotEmpty ? true : false;
+                            text.trim().isNotEmpty ? true : false;
                           });
                         });
                       },
@@ -154,31 +154,8 @@ class _NewListTileState extends State<NewListTile> {
                   );
                 });
               });
-          // showDialog(
-          //     context: context,
-          //     builder: (context){
-          //       return AlertDialog(
-          //           title: Text(
-          //             al.addListToGroup,
-          //           ),
-          //           content: SizedBox(
-          //             width: (context.width /6) *4,
-          //             height: (context.height /6) *4,
-          //             child: ListView.builder(
-          //               itemCount: 6,
-          //               itemBuilder: (context, index){
-          //                 return const ListItemSelectionDesign(taskListName: 'taskListName');
-          //               },
-          //             ),
-          //           )
-          //       );
-          //     }
-          // );
         },
-        child: SvgPicture.asset(
-          groupIconPath,
-          theme: SvgTheme(currentColor: Theme.of(context).colorScheme.primary),
-        ),
+        icon: Icon(groupIcon, color: Theme.of(context).colorScheme.primary,),
       ),
       title: Text(
         'newList'.tr(),

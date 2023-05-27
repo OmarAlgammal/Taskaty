@@ -399,6 +399,47 @@ class _$_TaskModel implements _TaskModel {
       this,
     );
   }
+
+  @override
+  bool isAddedToMyDay() {
+    return addedToMyDay && DateTimeUtil.sameDay(modificationDate) ||
+        repeatDaily;
+  }
+
+  @override
+  bool isCompleted() {
+    return completed;
+  }
+
+  @override
+  bool isListInGroup(String? groupName) {
+    return this.groupName == groupName && this.groupName != null && listName != null;
+  }
+
+  @override
+  bool isInList(String? listName) {
+    return this.listName == listName && listName != null && groupName == null;
+  }
+
+  @override
+  bool isInMyTasks() {
+    return listName == null && groupName == null;
+  }
+
+  @override
+  bool representAGroup() {
+    return listName == null && groupName != null;
+  }
+
+  @override
+  bool isInGroup(String? groupName) {
+    return this.groupName == groupName && this.groupName != null;
+  }
+
+  @override
+  bool representAListInGroup() {
+    return listName != null && groupName != null;
+  }
 }
 
 abstract class _TaskModel implements TaskModel {

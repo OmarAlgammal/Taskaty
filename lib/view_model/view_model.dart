@@ -1,9 +1,13 @@
-import 'package:taskaty/databases/local_databases/local_utils_database.dart';
 
-import '../databases/storage_database.dart';
-import '../databases/local_databases/local_tasks_database.dart';
-import '../databases/notion_database.dart';
-import '../models/task_model/task_model.dart';
+
+import 'package:flutter/material.dart';
+import 'package:taskaty/databases/local_databases/local_tasks_database.dart';
+import 'package:taskaty/databases/local_databases/local_utils_database.dart';
+import 'package:taskaty/databases/notion_database.dart';
+import 'package:taskaty/databases/storage_database.dart';
+import 'package:taskaty/models/task_model/task_model.dart';
+import 'package:taskaty/service_locator/sl.dart';
+import 'package:taskaty/view_model/use_cases/sync_tasks_use_case.dart';
 
 class ViewModel {
   final BaseNotionDataBase _notionDataBase;
@@ -16,36 +20,14 @@ class ViewModel {
   final BaseStorageDatabase _firebaseStorage;
 
   ViewModel(
-      this._notionDataBase,
-      this._localTasksDatabase,
-      this._firebaseStorage,
-      this._localUtilDatabase,
-      );
+    this._notionDataBase,
+    this._localTasksDatabase,
+    this._firebaseStorage,
+    this._localUtilDatabase,
+  );
 
   Future<void> syncTasks() async {
-    final lastModificationDate = _localUtilDatabase.getLastDateModification() ??
-        DateTime.parse('2000-01-01');
-    final tasksToUpload =
-    _localTasksDatabase.getList(query: (task) => task.remoteId == null);
-    final tasksToUpdate = _localTasksDatabase.getList(
-        query: (task) => task.remoteId != null && task.modificationDate!.isAfter(lastModificationDate));
-    for (final task in tasksToUpload) {
-      await _notionDataBase.createTask(map: task.toJson()).then((result) {
-        if (result.isRight) {
-          _writeInLocalAfterSyncing(result.right);
-        }
-      });
-    }
-
-    for (final task in tasksToUpdate) {
-      await _notionDataBase
-          .updateTask(taskId: task.remoteId!, map: task.toJson())
-          .then((result) {
-        if (result.isRight) {
-          _writeInLocalAfterSyncing(result.right);
-        }
-      });
-    }
+    sl<SyncTaskUseCase>().syncTasks();
   }
 
   Future<void> deleteTask(TaskModel task) async {
@@ -60,10 +42,11 @@ class ViewModel {
 
   Future<void> updateTask(TaskModel task) async {
     task = task.copyWith(modificationDate: DateTime.now());
+
     /// TODO: Refactor this try
     try {
       /// Upload files to firebase and get link to add to notion
-      task = await _uploadFilesNoFirebase(task: task);
+      task = await _uploadFilesToFirebase(task: task);
       await _localTasksDatabase.writeData(task.localId, task);
       _notionDataBase
           .updateTask(taskId: task.remoteId!, map: task.toJson())
@@ -75,6 +58,41 @@ class ViewModel {
     } catch (e) {
       ///TODO: Complete this catch
     }
+  }
+
+  Future<void> updateGroupOfTasks(List<TaskModel> tasks) async {
+    /// TODO: Refactor this try and delete files that are not in the firebase storage
+    for (TaskModel task in tasks) {
+      task = task.copyWith(modificationDate: DateTime.now());
+    }
+    for (TaskModel task in tasks) {
+      await _localTasksDatabase.writeData(task.localId, task);
+      debugPrint('View model : after await update task model in local tasks database ${task.groupName}');
+    }
+
+    /// TODO: Refactor this try
+    // try {
+    //   /// Upload files to firebase and get link to add to notion
+    //   for (TaskModel task in tasks) {
+    //     task = await _uploadFilesToFirebase(task: task);
+    //   }
+    //   for (TaskModel task in tasks) {
+    //     await _localTasksDatabase.writeData(task.localId, task);
+    //     debugPrint('View model : after await update task model in local tasks database');
+    //   }
+    //   for (TaskModel task in tasks) {
+    //     _notionDataBase
+    //         .updateTask(taskId: task.remoteId!, map: task.toJson())
+    //         .then((result) {
+    //       if (result.isRight) {
+    //         _writeInLocalAfterSyncing(result.right);
+    //       }
+    //     });
+    //   }
+    // } catch (e) {
+    //   debugPrint('View model: Update group tasks >> error');
+    //   ///TODO: Complete this catch
+    // }
   }
 
   Future<void> createTask(TaskModel task) async {
@@ -90,7 +108,7 @@ class ViewModel {
     }
   }
 
-  Future<TaskModel> _uploadFilesNoFirebase({required TaskModel task}) async {
+  Future<TaskModel> _uploadFilesToFirebase({required TaskModel task}) async {
     if (task.files.isNotEmpty) {
       final uploadFilesResult = await _firebaseStorage.uploadFiles(task.files);
       task = task.copyWith(files: uploadFilesResult.right);

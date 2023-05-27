@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-import '../../databases/local_databases/local_tasks_database.dart';
-import '../../helpers/tasks_filtration.dart';
-import '../../models/group_lists_model.dart';
-import '../../models/task_model/task_model.dart';
-import '../../models/tasks_list_model.dart';
-import '../../service_locator/sl.dart';
-import '../../util/constance/gaps.dart';
-import '../../util/constance/icons.dart';
-import '../widgets/group_item_design.dart';
-import '../widgets/my_divider.dart';
-import '../widgets/new_list_tile.dart';
-import '../widgets/tasks_list_item_design.dart';
+import 'package:taskaty/databases/local_databases/local_tasks_database.dart';
+import 'package:taskaty/helpers/tasks_utils.dart';
+import 'package:taskaty/models/group_lists_model.dart';
+import 'package:taskaty/models/task_model/task_model.dart';
+import 'package:taskaty/models/tasks_list_model.dart';
+import 'package:taskaty/service_locator/sl.dart';
+import 'package:taskaty/util/constance/gaps.dart';
+import 'package:taskaty/util/constance/icons.dart';
+import 'package:taskaty/view_model/view_model.dart';
+import 'package:taskaty/views/widgets/group_component.dart';
+import 'package:taskaty/views/widgets/group_item_design.dart';
+import 'package:taskaty/views/widgets/my_divider.dart';
+import 'package:taskaty/views/widgets/new_list_tile.dart';
+import 'package:taskaty/views/widgets/tasks_list_item_design.dart';
 
 class MyTasksPage extends StatelessWidget {
   const MyTasksPage({Key? key}) : super(key: key);
@@ -27,20 +28,17 @@ class MyTasksPage extends StatelessWidget {
               valueListenable: sl<LocalTasksDatabase>().getBox().listenable(),
               builder: (context, box, _) {
                 final tasks = box.values.toList();
-                debugPrint('here : ${tasks.length}');
-                dynamic myTasks = sl<TasksFiltration>().getMyTasks(tasks);
-                final tasksLists = sl<TasksFiltration>().getTasksLists(tasks);
-                final groupsLists = sl<TasksFiltration>().getGroups(
-                  tasks,
-                );
+                final tasksUtils = TasksUtils(tasks: tasks);
+                final myTasks = tasksUtils.getMyTasks();
+                final tasksLists = tasksUtils.getTasksLists();
+                final groupsLists = tasksUtils.getGroups();
                 var groupsAndLists = [...tasksLists, ...groupsLists];
-
                 return Expanded(
                   child: Column(
                     children: [
                       gap16,
                       TasksListItemDesign(
-                        tasksList: myTasks,
+                        tasksListModel: myTasks,
                         icon: homeIcon,
                       ),
                       const MyDivider(),
@@ -50,12 +48,19 @@ class MyTasksPage extends StatelessWidget {
                           itemBuilder: (context, index) => index <
                                   tasksLists.length
                               ? TasksListItemDesign(
-                                  tasksList:
+                                  tasksListModel:
                                       groupsAndLists[index] as TasksListModel,
                                 )
-                              : GroupItemDesign(
+                              : GroupComponent(
                                   group:
-                                      groupsAndLists[index] as GroupListsModel),
+                                      groupsAndLists[index] as GroupListsModel,
+                                  tasksLists: [
+                                    ...(groupsAndLists[index]
+                                            as GroupListsModel)
+                                        .lists,
+                                    ...tasksLists
+                                  ],
+                                ),
                         ),
                       ),
                     ],
@@ -63,6 +68,8 @@ class MyTasksPage extends StatelessWidget {
                 );
               },
             ),
+
+            /// TODO: change this name to name related with lists and group
             const NewListTile()
           ],
         ));

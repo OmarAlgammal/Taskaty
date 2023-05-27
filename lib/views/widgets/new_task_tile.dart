@@ -86,10 +86,7 @@ class AddNewTask extends StatelessWidget {
                               horizontalTitleGap: size0,
 // add task Icon
                               /// TODO: Replace this icon with svg icon
-                              leading: Icon(
-                                sendIcon,
-                                color: addedButtonColor,
-                              ),
+                              leading: SvgPicture.asset(addTaskIconPath, theme: SvgTheme(fontSize: 24, currentColor: Colors.red),),
 // addition text
                               title: Text(
                                 'addition'.tr(),

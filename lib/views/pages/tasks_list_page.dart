@@ -1,13 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskaty/databases/local_databases/local_tasks_database.dart';
+import 'package:taskaty/helpers/tasks_utils.dart';
+import 'package:taskaty/models/task_model/task_model.dart';
+import 'package:taskaty/view_model/view_model.dart';
+import 'package:taskaty/views/widgets/task_item_design.dart';
 
-import '../../models/task_model/task_model.dart';
 import '../../models/tasks_list_model.dart';
 import '../../service_locator/sl.dart';
 import '../../util/constance/gaps.dart';
-import '../../view_model/view_model.dart';
 import '../widgets/new_task_tile.dart';
-import '../widgets/task_item_design.dart';
 
 class TasksListPage extends StatelessWidget {
   TasksListPage({
@@ -22,7 +25,7 @@ class TasksListPage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text(
-          tasksList.name ?? 'Tasks',
+          tasksList.mainTask.title ?? 'Tasks',
         ),
         actions: [
           PopupMenuButton(
@@ -53,7 +56,11 @@ class TasksListPage extends StatelessWidget {
               ),
               PopupMenuItem(
                 onTap: () {
-                  // todo: delete list action
+                  sl<ViewModel>().deleteTask(tasksList.mainTask);
+                  for (final task in tasksList.tasks){
+                      sl<ViewModel>().deleteTask(task);
+                  }
+                  Navigator.pop(context);
                 },
                 child: Text(
                   'deleteList'.tr(),
@@ -67,32 +74,38 @@ class TasksListPage extends StatelessWidget {
         children: [
           gap16,
           Flexible(
-            flex: 1,
-            child: ListView.builder(
-              itemCount: tasksList.tasks?.length,
-              itemBuilder: (context, index) {
-                TaskModel task = tasksList.tasks![index];
-                if (task.title == null) {
-                  return const SizedBox();
-                }
-                return StatefulBuilder(builder: (context, setState) {
-                  return TaskItemDesign(
-                    task: task,
-                    onCheckBoxClicked: (value) {
-                      setState(() {
-                        task = task.copyWith(completed: value!);
-                        sl<ViewModel>().updateTask(task);
-                      });
-                    },
-                  );
-                });
+            child: ValueListenableBuilder<Box<TaskModel>>(
+              valueListenable: sl<LocalTasksDatabase>().getBox().listenable(),
+              builder: (context, box, _) {
+                return SizedBox();
+                // final tasks = TasksUtils().getTasks(box.values.toList(),
+                //     (TaskModel task) => task.listName == tasksList.mainTask.title);
+                // return ListView.builder(
+                //   itemCount: tasks.length,
+                //   itemBuilder: (context, index) {
+                //     TaskModel task = tasks[index];
+                //     if (task.title == null) {
+                //       return const SizedBox();
+                //     }
+                //     return StatefulBuilder(builder: (context, setState) {
+                //       return TaskItemDesign(
+                //         task: task,
+                //         onCheckBoxClicked: (value) {
+                //           setState(() {
+                //             task = task.copyWith(completed: value!);
+                //             sl<ViewModel>().updateTask(task);
+                //           });
+                //         },
+                //       );
+                //     });
+                //   },
+                // );
               },
             ),
           ),
           Flexible(
             flex: 0,
-            // todo: task list name
-            child: AddNewTask(listName: tasksList.name),
+            child: AddNewTask(listName: tasksList.mainTask.title),
           )
         ],
       ),

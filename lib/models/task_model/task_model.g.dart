@@ -81,58 +81,38 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
 // **************************************************************************
 
 _$_TaskModel _$$_TaskModelFromJson(Map<String, dynamic> json) => _$_TaskModel(
-      remoteId: DatabaseResponseMappers.jsonToId(json: json),
-      localId:
-          DatabaseResponseMappers.jsonToString(json: json, name: 'localId')!,
-      title: DatabaseResponseMappers.jsonToString(json: json, name: 'title'),
-      note: DatabaseResponseMappers.jsonToString(json: json, name: 'note'),
-      completed:
-          DatabaseResponseMappers.jsonToBool(json: json, name: 'completed'),
-      addedToMyDay:
-          DatabaseResponseMappers.jsonToBool(json: json, name: 'addedToMyDay'),
-      repeatDaily:
-          DatabaseResponseMappers.jsonToBool(json: json, name: 'repeatDaily'),
-      files: DatabaseResponseMappers.jsonToListOfStrings(
-              json: json, name: 'files') ??
-          [],
-      groupName:
-          DatabaseResponseMappers.jsonToString(json: json, name: 'groupName'),
-      listName:
-          DatabaseResponseMappers.jsonToString(json: json, name: 'listName'),
-      modificationDate: DatabaseResponseMappers.jsonToDate(
-          json: json, name: 'modificationDate')!,
-      dateCreated:
-          DatabaseResponseMappers.jsonToDate(json: json, name: 'dateCreated')!,
-      dateCompleted:
-          DatabaseResponseMappers.jsonToDate(json: json, name: 'dateCompleted'),
+      localId: json['localId'] as String,
+      remoteId: json['remoteId'] as String?,
+      title: json['title'] as String?,
+      note: json['note'] as String?,
+      completed: json['completed'] as bool? ?? false,
+      addedToMyDay: json['addedToMyDay'] as bool? ?? false,
+      repeatDaily: json['repeatDaily'] as bool? ?? false,
+      files:
+          (json['files'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const [],
+      groupName: json['groupName'] as String?,
+      listName: json['listName'] as String?,
+      modificationDate: DateTime.parse(json['modificationDate'] as String),
+      dateCreated: DateTime.parse(json['dateCreated'] as String),
+      dateCompleted: json['dateCompleted'] == null
+          ? null
+          : DateTime.parse(json['dateCompleted'] as String),
     );
 
 Map<String, dynamic> _$$_TaskModelToJson(_$_TaskModel instance) =>
-    DatabaseResponseMappers.modelToJson(
-        databaseId: ApiConstance.tasksDatabaseId,
-        properties: [
-          DatabaseResponseMappers.stringPropertyToJson(
-              name: 'localId', value: instance.localId),
-          DatabaseResponseMappers.stringPropertyToJson(
-              name: 'title', value: instance.title),
-          DatabaseResponseMappers.stringPropertyToJson(
-              name: 'note', value: instance.note),
-          DatabaseResponseMappers.checkboxPropertyToJson(
-              name: 'completed', value: instance.completed),
-          DatabaseResponseMappers.checkboxPropertyToJson(
-              name: 'addedToMyDay', value: instance.addedToMyDay),
-          DatabaseResponseMappers.checkboxPropertyToJson(
-              name: 'repeatDaily', value: instance.repeatDaily),
-          DatabaseResponseMappers.listOfStringPropertyToJson(
-              name: 'files', value: instance.files),
-          DatabaseResponseMappers.stringPropertyToJson(
-              name: 'groupName', value: instance.groupName),
-          DatabaseResponseMappers.stringPropertyToJson(
-              name: 'listName', value: instance.listName),
-          DatabaseResponseMappers.datePropertyToJson(
-              name: 'modificationDate', value: instance.modificationDate),
-          DatabaseResponseMappers.datePropertyToJson(
-              name: 'dateCreated', value: DateTime.now()),
-          DatabaseResponseMappers.datePropertyToJson(
-              name: 'dateCompleted', value: instance.dateCompleted),
-        ]);
+    <String, dynamic>{
+      'localId': instance.localId,
+      'remoteId': instance.remoteId,
+      'title': instance.title,
+      'note': instance.note,
+      'completed': instance.completed,
+      'addedToMyDay': instance.addedToMyDay,
+      'repeatDaily': instance.repeatDaily,
+      'files': instance.files,
+      'groupName': instance.groupName,
+      'listName': instance.listName,
+      'modificationDate': instance.modificationDate.toIso8601String(),
+      'dateCreated': instance.dateCreated.toIso8601String(),
+      'dateCompleted': instance.dateCompleted?.toIso8601String(),
+    };
