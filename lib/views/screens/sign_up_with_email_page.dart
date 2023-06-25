@@ -3,12 +3,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../util/constance/dimens.dart';
-import '../../util/constance/gaps.dart';
+import '../../utils/constance/dimens.dart';
+import '../../utils/constance/gaps.dart';
 import '../widgets/my_button.dart';
 
-class SignUpWithEmailPage extends StatelessWidget {
-  SignUpWithEmailPage({Key? key}) : super(key: key);
+class SignUpWithEmailScreen extends StatelessWidget {
+  SignUpWithEmailScreen({Key? key}) : super(key: key);
 
   static const String routeName = 'createAccountWithEmailPage';
 

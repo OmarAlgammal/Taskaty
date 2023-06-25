@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 
 import '../../databases/auth_database.dart';
 import '../../routing/routes.dart';
-import '../../service_locator/sl.dart';
-import '../../util/constance/dimens.dart';
-import '../../util/constance/gaps.dart';
-import '../../util/constance/icons.dart';
+import '../../service_locator/locator.dart';
+import '../../utils/constance/dimens.dart';
+import '../../utils/constance/gaps.dart';
+import '../../utils/constance/icons.dart';
 import '../widgets/ask_and_make_action.dart';
 import '../widgets/register_item_design.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInScreen extends StatelessWidget {
 
-  const SignInPage({Key? key}) : super(key: key);
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class SignInPage extends StatelessWidget {
                       registrationText: 'signInWithEmail'.tr(),
                       onPressed: () {
                         Navigator.pushNamed(
-                            context, AppRoutes.signUpWithEmailPage);
+                            context, AppRoutes.signUpWithEmailScreen);
                       },
                     ),
                     gap16,
@@ -55,7 +55,7 @@ class SignInPage extends StatelessWidget {
                       icon: googleIcon,
                       registrationText: 'signInWithGoogle'.tr(),
                       onPressed: () {
-                        sl<AuthDatabase>().signInWithGoogle();
+                        locator<AuthDatabase>().signInWithGoogle();
                       },
                     ),
                     gap16,
@@ -65,7 +65,7 @@ class SignInPage extends StatelessWidget {
                       onPressed: () {
                         // todo: sing in with apple account
                         Navigator.pushReplacementNamed(
-                            context, AppRoutes.homePage);
+                            context, AppRoutes.homeScreen);
                       },
                     ),
                   ],
@@ -79,7 +79,7 @@ class SignInPage extends StatelessWidget {
                         question: 'newUser'.tr(),
                         action: 'createAccount'.tr(),
                         onPressed: () {
-                          Navigator.pushNamed(context, AppRoutes.signUpPage);
+                          Navigator.pushNamed(context, AppRoutes.signUpScreen);
                         },
                       )))
             ],

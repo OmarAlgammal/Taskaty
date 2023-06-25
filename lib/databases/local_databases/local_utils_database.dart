@@ -1,26 +1,25 @@
 import '../../services/local_services/my_shared_preferences.dart';
 
 abstract class BaseLocalUtilsDatabase {
-  DateTime? getLastDateModification();
+  DateTime getModificationDate({required String key});
 
-  Future<void> setLastModificationDate();
+  Future<void> setModificationDate({required String key});
 }
 
 class LocalUtilsDatabase implements BaseLocalUtilsDatabase {
   final BaseSharedPreferences _prefs;
 
-  final String _modificationDateKey = 'last-modification-date';
-
   LocalUtilsDatabase(this._prefs);
 
   @override
-  DateTime? getLastDateModification() {
-    final date = _prefs.getStringData(_modificationDateKey);
-    return date != null ? DateTime.parse(date) : null;
+  DateTime getModificationDate({required String key}) {
+    final date = _prefs.getStringData(key);
+    // Note : if date is null return old date
+    return date != null ? DateTime.parse(date) : DateTime(2000);
   }
 
   @override
-  Future<void> setLastModificationDate() async {
-    await _prefs.setStringData(_modificationDateKey, DateTime.now().toString());
+  Future<void> setModificationDate({required String key}) async {
+    await _prefs.setStringData(key, DateTime.now().toString());
   }
 }

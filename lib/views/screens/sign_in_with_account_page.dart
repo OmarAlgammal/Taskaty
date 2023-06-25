@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../routing/routes.dart';
-import '../../util/constance/dimens.dart';
-import '../../util/constance/gaps.dart';
-import '../../util/constance/icons.dart';
+import '../../utils/constance/dimens.dart';
+import '../../utils/constance/gaps.dart';
+import '../../utils/constance/icons.dart';
 import '../widgets/ask_and_make_action.dart';
 import '../widgets/my_button.dart';
 
@@ -79,7 +79,7 @@ class SignInWithAccountPage extends StatelessWidget {
                     action: 'al.createAccount',
                     onPressed: () {
                       Navigator.pushReplacementNamed(
-                          context, AppRoutes.signUpPage);
+                          context, AppRoutes.signUpScreen);
                     },
                   )),
             )

@@ -17,6 +17,8 @@ abstract class BaseHiveService<T> {
   bool contains(String key);
 
   Future<void> closeBox();
+
+  Future<int> clearData();
 }
 
 class HiveServices<T> implements BaseHiveService<T> {
@@ -66,5 +68,10 @@ class HiveServices<T> implements BaseHiveService<T> {
   @override
   Future<void> closeBox() async {
     await _box.close();
+  }
+
+  @override
+  Future<int> clearData() async{
+    return await _box.clear();
   }
 }

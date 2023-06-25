@@ -1,18 +1,40 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:taskaty/util/extensions/screen_dimens.dart';
+import 'package:taskaty/databases/auth_database.dart';
+import 'package:taskaty/databases/firestore_database.dart';
+import 'package:taskaty/databases/local_databases/local_tasks_database.dart';
+import 'package:taskaty/service_locator/locator.dart';
+import 'package:taskaty/utils/extensions/screen_dimens.dart';
+import 'package:taskaty/view_model/tasks_view_model/use_cases/sync_tasks_use_case.dart';
 
-import '../../util/constance/dimens.dart';
-import '../../util/constance/paths.dart';
+import '../../services/internet_connection.dart';
+import '../../utils/constance/dimens.dart';
+import '../../utils/constance/paths.dart';
 import 'completed_tasks_page.dart';
 import 'my_day_page.dart';
-import 'my_tasks_page.dart';
+import 'my_tasks_screen.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    locator<InternetConnection>()
+        .checkInternetConnection()
+        .listen((connectivityResult) {
+      if (connectivityResult != ConnectivityResult.none) {
+        locator<SyncTaskUseCase>().syncTasks();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +51,15 @@ class HomePage extends StatelessWidget {
                     height: size46,
                     child: SvgPicture.asset(logoPath),
                   ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  locator<AuthDatabase>().signOut();
+                  locator<LocalTasksDatabase>().clearData();
+                },
+                icon: Icon(Icons.settings),
+              ),
+            ],
             bottom: PreferredSize(
               preferredSize: Size(((context.width / 7) * 3), size56),
               child: SizedBox(
@@ -72,7 +103,7 @@ class HomePage extends StatelessWidget {
           body: TabBarView(
             children: [
               MyDayPage(),
-              const MyTasksPage(),
+              const MyTasksScreen(),
               const CompletedTasksPage(),
             ],
           )),

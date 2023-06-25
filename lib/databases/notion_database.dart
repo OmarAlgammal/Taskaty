@@ -1,20 +1,24 @@
 import 'package:either_dart/either.dart';
+import 'package:flutter/material.dart';
 
-import '../core/errors/server_failure.dart';
-import '../core/network/api_constance.dart';
+import '../core/errors/failure.dart';
+import '../core/mappers/notion_mappers.dart';
+import '../core/network/constants/notion_api_constance.dart';
 import '../models/task_model/task_model.dart';
 import '../services/notion_services.dart';
 
 abstract class BaseNotionDataBase {
   Future<Either<ServerFailure, List<TaskModel>>> getTasks(
-      {Map<String, dynamic>? query});
+      {required String databaseId, Map<String, dynamic>? query});
 
   Future<Either<ServerFailure, TaskModel>> createTask(
-      {required Map<String, dynamic> map});
+      {required TaskModel task});
+
+  Future<Either<ServerFailure, String>> createDatabase(
+      {required String userId});
 
   Future<Either<ServerFailure, TaskModel>> updateTask({
-    required String taskId,
-    required Map<String, dynamic> map,
+    required TaskModel task,
   });
 
   Future<Either<ServerFailure, void>> deleteTask({required String taskId});
@@ -26,12 +30,6 @@ class NotionDataBase implements BaseNotionDataBase {
   NotionDataBase(this._baseNotionDataSource);
 
   @override
-  Future<Either<ServerFailure, TaskModel>> createTask(
-      {required Map<String, dynamic> map}) async {
-    return await _baseNotionDataSource.createData(map: map);
-  }
-
-  @override
   Future<Either<ServerFailure, void>> deleteTask(
       {required String taskId}) async {
     return await _baseNotionDataSource.deleteData(taskId: taskId);
@@ -39,18 +37,44 @@ class NotionDataBase implements BaseNotionDataBase {
 
   @override
   Future<Either<ServerFailure, TaskModel>> updateTask(
-      {required String taskId, required Map<String, dynamic> map}) async {
-    return await _baseNotionDataSource.updateData(map: map, taskId: taskId);
+      {required TaskModel task}) async {
+    return await _baseNotionDataSource.updateData(
+      map: task.toJson(),
+      id: task.remoteId!,
+      builder: (map) => TaskModel.fromJson(map),
+    );
   }
 
   @override
   Future<Either<ServerFailure, List<TaskModel>>> getTasks(
-      {Map<String, dynamic>? query}) async {
+      {required String databaseId, Map<String, dynamic>? query}) async {
     final results = await _baseNotionDataSource.getData<List<TaskModel>>(
         builder: (maps) {
           return maps.map((e) => TaskModel.fromJson(e)).toList();
         },
-        databaseId: ApiConstance.tasksDatabaseId);
+        databaseId: databaseId);
     return results;
   }
+
+  @override
+  Future<Either<ServerFailure, String>> createDatabase(
+      {required String userId}) async {
+    return await _baseNotionDataSource.createData<String>(
+        path: NotionApiConstance.createDatabasePath,
+        map: NotionMappers.mainDatabase(userId: userId),
+        builder: (map) => map['id'] as String);
+  }
+
+  @override
+  Future<Either<ServerFailure, TaskModel>> createTask({required TaskModel task}) async{
+    final result = await _baseNotionDataSource.createData<TaskModel>(
+      path: NotionApiConstance.createTaskPath,
+      map: task.toJson(),
+      builder: (map) => TaskModel.fromJson(map['properties']),
+    );
+    debugPrint('here at create task at database : result is ${result.isRight}');
+    return result;
+  }
+
+
 }

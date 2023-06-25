@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({Key? key}) : super(key: key);
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({Key? key}) : super(key: key);
 
 
   @override

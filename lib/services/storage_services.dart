@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:either_dart/either.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-import '../core/errors/server_failure.dart';
+import '../core/errors/failure.dart';
 
 abstract class BaseStorageService {
   Future<Either<ServerFailure, List<String>>> uploadFiles(
@@ -42,9 +42,9 @@ class StorageService implements BaseStorageService {
       // filesPaths.addAll(urls);
       return Right(filesPaths);
     } on FirebaseException catch (e) {
-      return Left(ServerFailure('Firebase exception : ${e.toString()}'));
+      return Left(ServerFailure(message: 'Firebase exception : ${e.toString()}'));
     } catch (e) {
-      return Left(ServerFailure('Error : ${e.toString()}'));
+      return Left(ServerFailure(message: 'Error : ${e.toString()}'));
     }
   }
 }

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../models/task_model/task_model.dart';
-import '../../service_locator/sl.dart';
-import '../../util/constance/dimens.dart';
-import '../../util/constance/icons.dart';
-import '../../util/constance/paths.dart';
-import '../../view_model/view_model.dart';
+import '../../service_locator/locator.dart';
+import '../../utils/constance/dimens.dart';
+import '../../utils/constance/icons.dart';
+import '../../utils/constance/paths.dart';
+import '../../view_model/tasks_view_model/tasks_view_model.dart';
 
 class AddNewTask extends StatelessWidget {
   AddNewTask({Key? key, this.addToMyDayState = false, this.listName})
@@ -78,7 +78,7 @@ class AddNewTask extends StatelessWidget {
                                       repeatDaily: repeatDailyState,
                                       dateCreated: DateTime.now(),
                                       modificationDate: DateTime.now());
-                                  sl<ViewModel>().createTask(task);
+                                  locator<ViewModel>().addTask(task);
                                   Navigator.pop(context);
                                 }
                               },

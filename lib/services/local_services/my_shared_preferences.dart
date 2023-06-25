@@ -1,4 +1,3 @@
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class BaseSharedPreferences {
@@ -11,7 +10,6 @@ abstract class BaseSharedPreferences {
 
 class MySharedPreferences implements BaseSharedPreferences {
   late final SharedPreferences _prefs;
-
 
   @override
   String? getStringData(String key) {

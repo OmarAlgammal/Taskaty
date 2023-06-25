@@ -6,8 +6,8 @@ import 'package:taskaty/databases/local_databases/local_tasks_database.dart';
 import 'package:taskaty/helpers/tasks_utils.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/models/tasks_list_model.dart';
-import 'package:taskaty/service_locator/sl.dart';
-import 'package:taskaty/util/constance/dimens.dart';
+import 'package:taskaty/service_locator/locator.dart';
+import 'package:taskaty/utils/constance/dimens.dart';
 import 'package:taskaty/views/widgets/group_component.dart';
 import 'package:taskaty/views/widgets/task_item_design.dart';
 import 'package:taskaty/views/widgets/tasks_list_item_design.dart';
@@ -28,7 +28,7 @@ class _CompletedTasksPageState extends State<CompletedTasksPage> {
       body: Padding(
         padding: padding8,
         child: ValueListenableBuilder<Box<TaskModel>>(
-          valueListenable: sl<LocalTasksDatabase>().getBox().listenable(),
+          valueListenable: locator<LocalTasksDatabase>().getBox().listenable(),
           builder: (context, box, _) {
             final tasks = box.values.toList();
             final completedTasks = TasksUtils(tasks: tasks).getCompletedTasks();

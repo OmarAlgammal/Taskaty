@@ -56,22 +56,22 @@ mixin _$TaskModel {
 /// @nodoc
 abstract class $TaskModelCopyWith<$Res> {
   factory $TaskModelCopyWith(TaskModel value, $Res Function(TaskModel) then) =
-      _$TaskModelCopyWithImpl<$Res, TaskModel>;
+  _$TaskModelCopyWithImpl<$Res, TaskModel>;
   @useResult
   $Res call(
       {@HiveField(0) String localId,
-      @HiveField(1) String? remoteId,
-      @HiveField(2) String? title,
-      @HiveField(3) String? note,
-      @HiveField(4, defaultValue: false) bool completed,
-      @HiveField(5, defaultValue: false) bool addedToMyDay,
-      @HiveField(6, defaultValue: false) bool repeatDaily,
-      @HiveField(7, defaultValue: []) List<String> files,
-      @HiveField(8) String? groupName,
-      @HiveField(9) String? listName,
-      @HiveField(10) DateTime modificationDate,
-      @HiveField(11) DateTime dateCreated,
-      @HiveField(12) DateTime? dateCompleted});
+        @HiveField(1) String? remoteId,
+        @HiveField(2) String? title,
+        @HiveField(3) String? note,
+        @HiveField(4, defaultValue: false) bool completed,
+        @HiveField(5, defaultValue: false) bool addedToMyDay,
+        @HiveField(6, defaultValue: false) bool repeatDaily,
+        @HiveField(7, defaultValue: []) List<String> files,
+        @HiveField(8) String? groupName,
+        @HiveField(9) String? listName,
+        @HiveField(10) DateTime modificationDate,
+        @HiveField(11) DateTime dateCreated,
+        @HiveField(12) DateTime? dateCompleted});
 }
 
 /// @nodoc
@@ -105,55 +105,55 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
       localId: null == localId
           ? _value.localId
           : localId // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       remoteId: freezed == remoteId
           ? _value.remoteId
           : remoteId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
+      as String?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
-              as String?,
+      as String?,
       completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
-              as bool,
+      as bool,
       addedToMyDay: null == addedToMyDay
           ? _value.addedToMyDay
           : addedToMyDay // ignore: cast_nullable_to_non_nullable
-              as bool,
+      as bool,
       repeatDaily: null == repeatDaily
           ? _value.repeatDaily
           : repeatDaily // ignore: cast_nullable_to_non_nullable
-              as bool,
+      as bool,
       files: null == files
           ? _value.files
           : files // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      as List<String>,
       groupName: freezed == groupName
           ? _value.groupName
           : groupName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      as String?,
       listName: freezed == listName
           ? _value.listName
           : listName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      as String?,
       modificationDate: null == modificationDate
           ? _value.modificationDate
           : modificationDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      as DateTime,
       dateCreated: null == dateCreated
           ? _value.dateCreated
           : dateCreated // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      as DateTime,
       dateCompleted: freezed == dateCompleted
           ? _value.dateCompleted
           : dateCompleted // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      as DateTime?,
     ) as $Val);
   }
 }
@@ -161,24 +161,24 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
 /// @nodoc
 abstract class _$$_TaskModelCopyWith<$Res> implements $TaskModelCopyWith<$Res> {
   factory _$$_TaskModelCopyWith(
-          _$_TaskModel value, $Res Function(_$_TaskModel) then) =
-      __$$_TaskModelCopyWithImpl<$Res>;
+      _$_TaskModel value, $Res Function(_$_TaskModel) then) =
+  __$$_TaskModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@HiveField(0) String localId,
-      @HiveField(1) String? remoteId,
-      @HiveField(2) String? title,
-      @HiveField(3) String? note,
-      @HiveField(4, defaultValue: false) bool completed,
-      @HiveField(5, defaultValue: false) bool addedToMyDay,
-      @HiveField(6, defaultValue: false) bool repeatDaily,
-      @HiveField(7, defaultValue: []) List<String> files,
-      @HiveField(8) String? groupName,
-      @HiveField(9) String? listName,
-      @HiveField(10) DateTime modificationDate,
-      @HiveField(11) DateTime dateCreated,
-      @HiveField(12) DateTime? dateCompleted});
+        @HiveField(1) String? remoteId,
+        @HiveField(2) String? title,
+        @HiveField(3) String? note,
+        @HiveField(4, defaultValue: false) bool completed,
+        @HiveField(5, defaultValue: false) bool addedToMyDay,
+        @HiveField(6, defaultValue: false) bool repeatDaily,
+        @HiveField(7, defaultValue: []) List<String> files,
+        @HiveField(8) String? groupName,
+        @HiveField(9) String? listName,
+        @HiveField(10) DateTime modificationDate,
+        @HiveField(11) DateTime dateCreated,
+        @HiveField(12) DateTime? dateCompleted});
 }
 
 /// @nodoc
@@ -210,55 +210,55 @@ class __$$_TaskModelCopyWithImpl<$Res>
       localId: null == localId
           ? _value.localId
           : localId // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       remoteId: freezed == remoteId
           ? _value.remoteId
           : remoteId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
+      as String?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
-              as String?,
+      as String?,
       completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
-              as bool,
+      as bool,
       addedToMyDay: null == addedToMyDay
           ? _value.addedToMyDay
           : addedToMyDay // ignore: cast_nullable_to_non_nullable
-              as bool,
+      as bool,
       repeatDaily: null == repeatDaily
           ? _value.repeatDaily
           : repeatDaily // ignore: cast_nullable_to_non_nullable
-              as bool,
+      as bool,
       files: null == files
           ? _value._files
           : files // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      as List<String>,
       groupName: freezed == groupName
           ? _value.groupName
           : groupName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      as String?,
       listName: freezed == listName
           ? _value.listName
           : listName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      as String?,
       modificationDate: null == modificationDate
           ? _value.modificationDate
           : modificationDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      as DateTime,
       dateCreated: null == dateCreated
           ? _value.dateCreated
           : dateCreated // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      as DateTime,
       dateCompleted: freezed == dateCompleted
           ? _value.dateCompleted
           : dateCompleted // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      as DateTime?,
     ));
   }
 }
@@ -268,18 +268,18 @@ class __$$_TaskModelCopyWithImpl<$Res>
 class _$_TaskModel implements _TaskModel {
   _$_TaskModel(
       {@HiveField(0) required this.localId,
-      @HiveField(1) this.remoteId,
-      @HiveField(2) this.title,
-      @HiveField(3) this.note,
-      @HiveField(4, defaultValue: false) this.completed = false,
-      @HiveField(5, defaultValue: false) this.addedToMyDay = false,
-      @HiveField(6, defaultValue: false) this.repeatDaily = false,
-      @HiveField(7, defaultValue: []) final List<String> files = const [],
-      @HiveField(8) this.groupName,
-      @HiveField(9) this.listName,
-      @HiveField(10) required this.modificationDate,
-      @HiveField(11) required this.dateCreated,
-      @HiveField(12) this.dateCompleted})
+        @HiveField(1) this.remoteId,
+        @HiveField(2) this.title,
+        @HiveField(3) this.note,
+        @HiveField(4, defaultValue: false) this.completed = false,
+        @HiveField(5, defaultValue: false) this.addedToMyDay = false,
+        @HiveField(6, defaultValue: false) this.repeatDaily = false,
+        @HiveField(7, defaultValue: []) final List<String> files = const [],
+        @HiveField(8) this.groupName,
+        @HiveField(9) this.listName,
+        @HiveField(10) required this.modificationDate,
+        @HiveField(11) required this.dateCreated,
+        @HiveField(12) this.dateCompleted})
       : _files = files;
 
   factory _$_TaskModel.fromJson(Map<String, dynamic> json) =>
@@ -445,21 +445,21 @@ class _$_TaskModel implements _TaskModel {
 abstract class _TaskModel implements TaskModel {
   factory _TaskModel(
       {@HiveField(0) required final String localId,
-      @HiveField(1) final String? remoteId,
-      @HiveField(2) final String? title,
-      @HiveField(3) final String? note,
-      @HiveField(4, defaultValue: false) final bool completed,
-      @HiveField(5, defaultValue: false) final bool addedToMyDay,
-      @HiveField(6, defaultValue: false) final bool repeatDaily,
-      @HiveField(7, defaultValue: []) final List<String> files,
-      @HiveField(8) final String? groupName,
-      @HiveField(9) final String? listName,
-      @HiveField(10) required final DateTime modificationDate,
-      @HiveField(11) required final DateTime dateCreated,
-      @HiveField(12) final DateTime? dateCompleted}) = _$_TaskModel;
+        @HiveField(1) final String? remoteId,
+        @HiveField(2) final String? title,
+        @HiveField(3) final String? note,
+        @HiveField(4, defaultValue: false) final bool completed,
+        @HiveField(5, defaultValue: false) final bool addedToMyDay,
+        @HiveField(6, defaultValue: false) final bool repeatDaily,
+        @HiveField(7, defaultValue: []) final List<String> files,
+        @HiveField(8) final String? groupName,
+        @HiveField(9) final String? listName,
+        @HiveField(10) required final DateTime modificationDate,
+        @HiveField(11) required final DateTime dateCreated,
+        @HiveField(12) final DateTime? dateCompleted}) = _$_TaskModel;
 
   factory _TaskModel.fromJson(Map<String, dynamic> json) =
-      _$_TaskModel.fromJson;
+  _$_TaskModel.fromJson;
 
   @override
   @HiveField(0)

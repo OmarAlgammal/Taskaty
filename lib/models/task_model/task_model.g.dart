@@ -81,38 +81,49 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
 // **************************************************************************
 
 _$_TaskModel _$$_TaskModelFromJson(Map<String, dynamic> json) => _$_TaskModel(
-      localId: json['localId'] as String,
-      remoteId: json['remoteId'] as String?,
-      title: json['title'] as String?,
-      note: json['note'] as String?,
-      completed: json['completed'] as bool? ?? false,
-      addedToMyDay: json['addedToMyDay'] as bool? ?? false,
-      repeatDaily: json['repeatDaily'] as bool? ?? false,
-      files:
-          (json['files'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-              const [],
-      groupName: json['groupName'] as String?,
-      listName: json['listName'] as String?,
-      modificationDate: DateTime.parse(json['modificationDate'] as String),
-      dateCreated: DateTime.parse(json['dateCreated'] as String),
-      dateCompleted: json['dateCompleted'] == null
-          ? null
-          : DateTime.parse(json['dateCompleted'] as String),
+      remoteId: NotionMappers.jsonToId(json: json),
+      localId: NotionMappers.jsonToString(json: json, name: 'localId')!,
+      title: NotionMappers.jsonToString(json: json, name: 'title'),
+      note: NotionMappers.jsonToString(json: json, name: 'note'),
+      completed: NotionMappers.jsonToBool(json: json, name: 'completed'),
+      addedToMyDay: NotionMappers.jsonToBool(json: json, name: 'addedToMyDay'),
+      repeatDaily: NotionMappers.jsonToBool(json: json, name: 'repeatDaily'),
+      files: NotionMappers.jsonToListOfStrings(json: json, name: 'files') ?? [],
+      groupName: NotionMappers.jsonToString(json: json, name: 'groupName'),
+      listName: NotionMappers.jsonToString(json: json, name: 'listName'),
+      modificationDate:
+          NotionMappers.jsonToDate(json: json, name: 'modificationDate')!,
+      dateCreated: NotionMappers.jsonToDate(json: json, name: 'dateCreated')!,
+      dateCompleted:
+          NotionMappers.jsonToDate(json: json, name: 'dateCompleted'),
     );
 
 Map<String, dynamic> _$$_TaskModelToJson(_$_TaskModel instance) =>
-    <String, dynamic>{
-      'localId': instance.localId,
-      'remoteId': instance.remoteId,
-      'title': instance.title,
-      'note': instance.note,
-      'completed': instance.completed,
-      'addedToMyDay': instance.addedToMyDay,
-      'repeatDaily': instance.repeatDaily,
-      'files': instance.files,
-      'groupName': instance.groupName,
-      'listName': instance.listName,
-      'modificationDate': instance.modificationDate.toIso8601String(),
-      'dateCreated': instance.dateCreated.toIso8601String(),
-      'dateCompleted': instance.dateCompleted?.toIso8601String(),
-    };
+    NotionMappers.modelToJson(
+        databaseId: locator<FireStoreDatabase>().notionDatabaseId!,
+        properties: [
+          NotionMappers.stringPropertyToJson(
+              name: 'localId', value: instance.localId),
+          NotionMappers.stringPropertyToJson(
+              name: 'title', value: instance.title),
+          NotionMappers.stringPropertyToJson(
+              name: 'note', value: instance.note),
+          NotionMappers.checkboxPropertyToJson(
+              name: 'completed', value: instance.completed),
+          NotionMappers.checkboxPropertyToJson(
+              name: 'addedToMyDay', value: instance.addedToMyDay),
+          NotionMappers.checkboxPropertyToJson(
+              name: 'repeatDaily', value: instance.repeatDaily),
+          NotionMappers.listOfStringPropertyToJson(
+              name: 'files', value: instance.files),
+          NotionMappers.stringPropertyToJson(
+              name: 'groupName', value: instance.groupName),
+          NotionMappers.stringPropertyToJson(
+              name: 'listName', value: instance.listName),
+          NotionMappers.datePropertyToJson(
+              name: 'modificationDate', value: instance.modificationDate),
+          NotionMappers.datePropertyToJson(
+              name: 'dateCreated', value: DateTime.now()),
+          NotionMappers.datePropertyToJson(
+              name: 'dateCompleted', value: instance.dateCompleted),
+        ]);

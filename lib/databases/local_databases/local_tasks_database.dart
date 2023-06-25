@@ -11,6 +11,8 @@ abstract class BaseLocalTasksDatabase {
   Box<TaskModel> getBox();
 
   Future<void> deleteData(String key);
+
+  Future<int> clearData();
 }
 
 class LocalTasksDatabase implements BaseLocalTasksDatabase {
@@ -37,4 +39,11 @@ class LocalTasksDatabase implements BaseLocalTasksDatabase {
   Box<TaskModel> getBox() {
     return _baseHiveService.getBox();
   }
+
+  @override
+  Future<int> clearData() async{
+    return await _baseHiveService.clearData();
+  }
+
+
 }

@@ -1,14 +1,13 @@
+
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../../models/task_model/task_model.dart';
-import '../../service_locator/sl.dart';
-import '../../util/constance/dimens.dart';
-import '../../util/constance/gaps.dart';
-import '../../util/constance/icons.dart';
-import '../../util/constance/paths.dart';
-import '../../view_model/view_model.dart';
+import 'package:taskaty/models/task_model/task_model.dart';
+import 'package:taskaty/service_locator/locator.dart';
+import 'package:taskaty/utils/constance/dimens.dart';
+import 'package:taskaty/utils/constance/gaps.dart';
+import 'package:taskaty/utils/constance/icons.dart';
+import 'package:taskaty/view_model/tasks_view_model/tasks_view_model.dart';
 
 class NewListTile extends StatefulWidget {
   const NewListTile({Key? key}) : super(key: key);
@@ -67,7 +66,7 @@ class _NewListTileState extends State<NewListTile> {
                                     listName: _listController.text,
                                     dateCreated: DateTime.now(),
                                     modificationDate: DateTime.now());
-                                sl<ViewModel>().createTask(task);
+                                locator<ViewModel>().addTask(task);
                                 _listController.clear();
                                 _addListButtonEnabled = false;
                                 Navigator.pop(context);
@@ -127,7 +126,7 @@ class _NewListTileState extends State<NewListTile> {
                               dateCreated: DateTime.now(),
                               modificationDate: DateTime.now(),
                             );
-                            sl<ViewModel>().createTask(task);
+                            locator<ViewModel>().addTask(task);
                             _groupController.clear();
                             _addGroupButtonEnabled = false;
                             Navigator.pop(context);

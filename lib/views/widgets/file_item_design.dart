@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../theme/colors.dart';
-import '../../util/constance/dimens.dart';
-import '../../util/constance/gaps.dart';
+import '../../utils/constance/dimens.dart';
+import '../../utils/constance/gaps.dart';
 
 class FileItemDesign extends StatelessWidget {
   const FileItemDesign(

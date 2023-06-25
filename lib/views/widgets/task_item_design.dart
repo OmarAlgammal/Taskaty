@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../models/task_model/task_model.dart';
 import '../../routing/routes.dart';
-import '../../service_locator/sl.dart';
-import '../../util/constance/dimens.dart';
-import '../../view_model/view_model.dart';
+import '../../service_locator/locator.dart';
+import '../../utils/constance/dimens.dart';
+import '../../view_model/tasks_view_model/tasks_view_model.dart';
 
 class TaskItemDesign extends StatelessWidget {
   TaskItemDesign({Key? key, required this.task, this.onCheckBoxClicked})
@@ -31,13 +31,13 @@ class TaskItemDesign extends StatelessWidget {
                   (value) {
                     task = task.copyWith(
                         completed: value!, modificationDate: DateTime.now());
-                    sl<ViewModel>().updateTask(task);
+                    locator<ViewModel>().updateTask(task);
                   }),
         ),
       ),
       title: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, AppRoutes.taskPage, arguments: task);
+          Navigator.pushNamed(context, AppRoutes.taskScreen, arguments: task);
         },
         child: Text(
           task.title!,

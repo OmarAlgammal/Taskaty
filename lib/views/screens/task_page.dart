@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 import '../../models/task_model/task_model.dart';
 import '../../routing/routes.dart';
-import '../../service_locator/sl.dart';
-import '../../util/constance/dimens.dart';
-import '../../util/constance/gaps.dart';
-import '../../util/constance/icons.dart';
-import '../../view_model/view_model.dart';
+import '../../service_locator/locator.dart';
+import '../../utils/constance/dimens.dart';
+import '../../utils/constance/gaps.dart';
+import '../../utils/constance/icons.dart';
+import '../../view_model/tasks_view_model/tasks_view_model.dart';
 import '../widgets/editable_task_item_design.dart';
 import '../widgets/file_item_design.dart';
 import '../widgets/task_option_item_design.dart';
@@ -133,7 +133,7 @@ class _TaskPageState extends State<TaskPage> {
                         optionName: 'addANote'.tr(),
                         onPressed: () async {
                           updatedTask = await Navigator.pushNamed(
-                              context, AppRoutes.notePage,
+                              context, AppRoutes.noteScreen,
                               arguments: updatedTask) as TaskModel;
                         }),
                   ],
@@ -146,7 +146,7 @@ class _TaskPageState extends State<TaskPage> {
                   leading: IconButton(
                     onPressed: () {
                       /// TODO: Create a dialog to make user confirm this action
-                      sl<ViewModel>()
+                      locator<ViewModel>()
                           .deleteTask(originalTask)
                           .then((value) => Navigator.pop(context));
                     },
@@ -163,6 +163,6 @@ class _TaskPageState extends State<TaskPage> {
   }
 
   void updateTask() {
-    sl<ViewModel>().updateTask(updatedTask);
+    locator<ViewModel>().updateTask(updatedTask);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../util/constance/dimens.dart';
-import '../../util/constance/icons.dart';
+import '../../utils/constance/dimens.dart';
+import '../../utils/constance/icons.dart';
 
 class ListItemSelectionDesign extends StatelessWidget {
   const ListItemSelectionDesign(

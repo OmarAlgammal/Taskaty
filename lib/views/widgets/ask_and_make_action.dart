@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../util/constance/gaps.dart';
+import '../../utils/constance/gaps.dart';
 
 class AskAndMakeAction extends StatelessWidget {
   const AskAndMakeAction({

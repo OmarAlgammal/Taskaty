@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../util/constance/dimens.dart';
+import '../utils/constance/dimens.dart';
 import 'colors.dart';
 
 ThemeData darkTheme () => ThemeData(

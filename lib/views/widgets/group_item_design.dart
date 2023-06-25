@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:taskaty/models/group_lists_model.dart';
 import 'package:taskaty/models/tasks_list_model.dart';
-import 'package:taskaty/service_locator/sl.dart';
-import 'package:taskaty/util/constance/icons.dart';
-import 'package:taskaty/util/extensions/screen_dimens.dart';
-import 'package:taskaty/view_model/view_model.dart';
+import 'package:taskaty/service_locator/locator.dart';
+import 'package:taskaty/utils/constance/icons.dart';
+import 'package:taskaty/utils/extensions/screen_dimens.dart';
+import 'package:taskaty/view_model/tasks_view_model/tasks_view_model.dart';
 import 'package:taskaty/views/widgets/list_item_selection_design.dart';
 import 'package:taskaty/views/widgets/my_dialog.dart';
 
@@ -72,9 +72,9 @@ class GroupItemDesign extends StatelessWidget {
                 onTap: () {
                   for (final list in group.lists) {
                     list.mainTask = list.mainTask.copyWith(groupName: null);
-                    sl<ViewModel>().updateTask(list.mainTask);
+                    locator<ViewModel>().updateTask(list.mainTask);
                   }
-                  sl<ViewModel>().deleteTask(group.mainTask);
+                  locator<ViewModel>().deleteTask(group.mainTask);
                 },
                 child: Text(
                   'ungroupLists'.tr(),

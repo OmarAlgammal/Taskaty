@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/models/tasks_list_model.dart';
-import 'package:taskaty/service_locator/sl.dart';
-import 'package:taskaty/util/constance/icons.dart';
-import 'package:taskaty/util/extensions/screen_dimens.dart';
-import 'package:taskaty/view_model/view_model.dart';
+import 'package:taskaty/service_locator/locator.dart';
+import 'package:taskaty/utils/constance/icons.dart';
+import 'package:taskaty/utils/extensions/screen_dimens.dart';
+import 'package:taskaty/view_model/tasks_view_model/tasks_view_model.dart';
 import 'package:taskaty/views/widgets/list_item_selection_design.dart';
 
 class MyAlertDialog extends StatelessWidget {
@@ -35,7 +35,7 @@ class MyAlertDialog extends StatelessWidget {
         TextButton(
           onPressed: () {
             if (_tasksToUpdate.isNotEmpty) {
-              sl<ViewModel>()
+              locator<ViewModel>()
                   .updateGroupOfTasks(_tasksToUpdate)
                   .then((value) => Navigator.pop(context));
             }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../util/constance/dimens.dart';
+import '../../utils/constance/dimens.dart';
 
 class RegisterItemDesign extends StatelessWidget {
   const RegisterItemDesign(

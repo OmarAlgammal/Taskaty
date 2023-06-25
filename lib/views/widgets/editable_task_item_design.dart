@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../util/constance/dimens.dart';
-import '../../util/constance/gaps.dart';
+import '../../utils/constance/dimens.dart';
+import '../../utils/constance/gaps.dart';
 
 class EditableTaskItem extends StatelessWidget {
   EditableTaskItem(

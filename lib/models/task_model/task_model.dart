@@ -1,11 +1,11 @@
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:taskaty/core/mappers/data_source_mappers.dart';
-import 'package:taskaty/core/network/api_constance.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskaty/core/mappers/notion_mappers.dart';
+import 'package:taskaty/core/network/constants/notion_api_constance.dart';
+import 'package:taskaty/databases/firestore_database.dart';
 import 'package:taskaty/helpers/date_time_util.dart';
-import 'package:taskaty/models/group_lists_model.dart';
-import 'package:taskaty/models/task_model/task_model.dart';
 
+import '../../service_locator/locator.dart';
 
 part 'task_model.freezed.dart';
 
@@ -35,8 +35,7 @@ class TaskModel with _$TaskModel {
   factory TaskModel.fromJson(Map<String, Object?> map) =>
       _$TaskModelFromJson(map);
 
-
-  bool isInMyTasks(){
+  bool isInMyTasks() {
     return listName == null && groupName == null;
   }
 
@@ -53,7 +52,7 @@ class TaskModel with _$TaskModel {
     return this.listName == listName && listName != null && groupName == null;
   }
 
-  bool representAListInGroup(){
+  bool representAListInGroup() {
     return listName != null && groupName != null;
   }
 
@@ -61,7 +60,7 @@ class TaskModel with _$TaskModel {
     return this.groupName == groupName && this.groupName != null;
   }
 
-  bool representAGroup(){
+  bool representAGroup() {
     return listName == null && groupName != null;
   }
 }
