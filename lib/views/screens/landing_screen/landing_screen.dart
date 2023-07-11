@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../service_locator/locator.dart';
 import '../../services/firebase_auth.dart';
-import 'home_page.dart';
+import 'home_screen/home_page.dart';
 import 'sign_in_page.dart';
 
 class LandingPage extends StatelessWidget {

@@ -37,7 +37,7 @@ class _TaskPageState extends State<TaskPage> {
     return WillPopScope(
       onWillPop: () async {
         if (originalTask != updatedTask) {
-          updateTask();
+          locator<ViewModel>().updateTask(updatedTask);
         }
         return true;
       },
@@ -162,7 +162,4 @@ class _TaskPageState extends State<TaskPage> {
     );
   }
 
-  void updateTask() {
-    locator<ViewModel>().updateTask(updatedTask);
-  }
 }

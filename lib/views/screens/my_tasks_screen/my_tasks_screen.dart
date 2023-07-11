@@ -31,7 +31,6 @@ class MyTasksScreen extends StatelessWidget {
                 final tasksLists = tasksUtils.getTasksLists();
                 final groupsLists = tasksUtils.getGroups();
                 var groupsAndLists = [...tasksLists, ...groupsLists];
-                debugPrint('my tasks screen : tasks length is ${tasks.length}');
                 return Expanded(
                   child: Column(
                     children: [
