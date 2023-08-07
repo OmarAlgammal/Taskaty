@@ -1,87 +1,79 @@
 import 'package:flutter/cupertino.dart';
-import 'package:taskaty/databases/auth_database.dart';
-import 'package:taskaty/models/group_lists_model.dart';
-import 'package:taskaty/models/task_model/task_model.dart';
-import 'package:taskaty/models/tasks_list_model.dart';
+import 'package:taskaty/models/group_model.dart';
 
-import '../service_locator/locator.dart';
-import 'date_time_util.dart';
+import 'package:taskaty/models/group_model.dart';
+
+import 'package:taskaty/models/group_model.dart';
+
+import 'package:taskaty/models/group_model.dart';
+
+import '../models/list_model.dart';
+import '../models/task_model/task_model.dart';
 
 class TasksUtils {
-
   List<TaskModel> tasks;
+
   TasksUtils({required this.tasks});
 
-  List<TaskModel> getDailyTasks() {
-    return tasks.where((task) => task.isAddedToMyDay()).toList();
-  }
 
-  TasksListModel getMyTasks() {
-    final myTasks = tasks.where((task) => task.isInMyTasks()).toList();
-    return TasksListModel()..tasks = myTasks
-    /// TODO: Refactor this task model (remove some properties)
-      ..mainTask = TaskModel(
-        localId: DateTime.now().toString(),
-        modificationDate: DateTime.now(),
-        dateCreated: DateTime.now());
-  }
+  ({List<TaskModel> completedTasks, List<GroupModel> groups, List<ListModel> lists, ListModel myTasks, List<TaskModel> todayTasks}) getCombinations() {
+    List<TaskModel> todayTasks = [];
+    ListModel myTasks = ListModel()..mainTask = TaskModel();
+    List<TaskModel> completedTasks = [];
+    Map<String, ListModel> lists = {};
+    Map<String, GroupModel> groups = {};
 
-  TasksListModel getSingleTasksList({required TaskModel mainTask}){
-      final list = tasks.where((task) => task.isInList(mainTask.listName)).toList();
-      return TasksListModel()..mainTask = mainTask..tasks = list;
-  }
-
-  List<TasksListModel> getTasksLists() {
-    return _getTasksByCondition((task, comingTask) => task.isInList(comingTask.listName));
-  }
-
-  List<GroupListsModel> getGroups() {
-    List<GroupListsModel> groups = [];
-    final groupsWithoutTasks = _getGroupsWithoutLists();
-    final tasksLists = _getTasksByCondition((task, comingTask) => task.representAListInGroup());
-    for (final group in groupsWithoutTasks) {
-      final listsInGroup = tasksLists
-          .where((list) {
-        return list.mainTask.isInGroup(group.mainTask.groupName);
-      })
-          .toList();
-      groups.add(group..lists = listsInGroup);
-    }
-    return groups;
-  }
-
-
-
-  List<TasksListModel> _getTasksByCondition(bool Function(TaskModel task, TaskModel comingTask) condition){
-      List<TasksListModel> lists = [];
-      for (final task in tasks) {
-        final list = tasks
-            .where((element) =>
-                // This condition to prevent repeated lists
-                lists
-                    .where((e) => e.mainTask.listName == element.listName)
-                    .isEmpty &&
-                condition(task, element))
-            .toList();
-        if (list.isNotEmpty) {
-          lists.add(TasksListModel()
-            ..mainTask = task
-            ..tasks = list);
-        }
+    for (final task in tasks) {
+      // Get Daily tasks
+      if (task.isTodayTask()) {
+        todayTasks.add(task);
       }
-      return lists;
-  }
+      // Get my tasks
+      if (task.isIndependentTask()) {
+        myTasks.tasks.add(task);
+      }
+      // Get completed tasks
+      if (task.isCompleted()) {
+        completedTasks.add(task);
+      }
+      // Add each task to it's list
+      if (task.isTaskInList()) {
+        if (lists[task.listName] == null) {
+          lists[task.listName!] = ListModel()..tasks = [task];
+        } else
+          lists[task.listName]?.tasks.add(task);
+      }
+      // Combine lists
+      if (task.isList()) {
+        if (lists[task.listName] == null) {
+          lists[task.listName!] = ListModel()..mainTask = task;
+        } else
+          lists[task.listName]!.mainTask = task;
+      }
+      // Add each list to it's group
+      if (task.isListInGroup()) {
+        if (groups[task.groupName] == null) {
+          groups[task.groupName!] = GroupModel()
+            ..lists = [lists[task.listName]!];
+        } else
+          groups[task.groupName]!.lists.add(lists[task.listName]!);
+      }
+      // Combine groups
+      if (task.isGroup()) {
+        if (groups[task.groupName] == null) {
+          groups[task.groupName!] = GroupModel()..mainTask = task;
+        } else
+          groups[task.groupName]!.mainTask = task;
+      }
+    }
 
-  List<GroupListsModel> _getGroupsWithoutLists() {
-    return tasks
-        .where((task) => task.representAGroup())
-        .map((e) => GroupListsModel()..mainTask = e)
-        .toList();
-  }
-
-  /// TODO: Make this method to return completed single tasks and completed tasks in lists and completed tasks in groups
-  List<TaskModel> getCompletedTasks(){
-    return tasks.where((task) => task.isCompleted()).toList();
+    return (
+      todayTasks: todayTasks,
+      myTasks: myTasks,
+      completedTasks: completedTasks,
+      lists: lists.values.toList(),
+      groups: groups.values.toList()
+    );
   }
 
 }

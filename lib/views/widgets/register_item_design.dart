@@ -26,13 +26,11 @@ class RegisterItemDesign extends StatelessWidget {
           )),
       leading: Icon(
         icon,
-        size: size36,
+        size: size28,
       ),
       title: Text(
         registrationText,
-        style: const TextStyle(
-          fontSize: size18,
-        ),
+        style: Theme.of(context).textTheme.bodyMedium
       ),
     );
   }

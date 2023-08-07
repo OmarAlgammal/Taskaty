@@ -1,5 +1,5 @@
+
 import 'package:either_dart/either.dart';
-import 'package:flutter/material.dart';
 
 import '../core/errors/failure.dart';
 import '../core/mappers/notion_mappers.dart';
@@ -38,6 +38,7 @@ class NotionDataBase implements BaseNotionDataBase {
   @override
   Future<Either<ServerFailure, TaskModel>> updateTask(
       {required TaskModel task}) async {
+        task.completed;
     return await _baseNotionDataSource.updateData(
       map: task.toJson(),
       id: task.remoteId!,
@@ -72,7 +73,6 @@ class NotionDataBase implements BaseNotionDataBase {
       map: task.toJson(),
       builder: (map) => TaskModel.fromJson(map['properties']),
     );
-    debugPrint('here at create task at database : result is ${result.isRight}');
     return result;
   }
 

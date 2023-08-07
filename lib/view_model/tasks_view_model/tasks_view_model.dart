@@ -32,8 +32,6 @@ class ViewModel {
 
   /// TODO: Make separated use case to update files with task
   Future<void> updateTask(TaskModel task) async {
-    // Note: update task modification date here instead of update it in more than one place
-    task = task.copyWith(modificationDate: DateTime.now());
     await _updateLocalData(task: task);
   }
 
@@ -43,18 +41,14 @@ class ViewModel {
   }
 
   Future<void> updateGroupOfTasks(List<TaskModel> tasks) async {
-    /// TODO: Refactor this try and delete files that are not in the firebase storage
-    for (TaskModel task in tasks) {
-      task = task.copyWith(modificationDate: DateTime.now());
-    }
+    /// TODO: Delete files that are not in the firebase storage
     for (TaskModel task in tasks) {
       await _baseLocalTasksDatabase.writeData(task.localId, task);
-      debugPrint(
-          'View model : after await update task model in local tasks database ${task.groupName}');
     }
   }
 
   Future<void> _updateLocalData({required TaskModel task}) async {
+    /// TODO: update local utils inside local tasks database it self not here
     await _baseLocalTasksDatabase.writeData(task.localId, task);
     _baseLocalUtilDatabase.setModificationDate(
         key: LocalUtilsDatabaseKeys.lastLocalModificationDate);
@@ -64,7 +58,7 @@ class ViewModel {
   Future<TaskModel> _uploadFilesToFirebase({required TaskModel task}) async {
     if (task.files.isNotEmpty) {
       final uploadFilesResult = await _firebaseStorage.uploadFiles(task.files);
-      task = task.copyWith(files: uploadFilesResult.right);
+      task.files = uploadFilesResult.right;
     }
     return task;
   }

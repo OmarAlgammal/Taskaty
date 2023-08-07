@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:taskaty/models/group_lists_model.dart';
-import 'package:taskaty/models/tasks_list_model.dart';
+import 'package:taskaty/models/group_model.dart';
+import 'package:taskaty/models/list_model.dart';
 import 'package:taskaty/service_locator/locator.dart';
 import 'package:taskaty/utils/constance/icons.dart';
 import 'package:taskaty/utils/extensions/screen_dimens.dart';
@@ -17,8 +17,8 @@ class GroupItemDesign extends StatelessWidget {
       required this.isExpanded})
       : super(key: key);
 
-  final GroupListsModel group;
-  final List<TasksListModel> tasksLists;
+  final GroupModel group;
+  final List<ListModel> tasksLists;
   final bool isExpanded;
 
   @override
@@ -50,11 +50,11 @@ class GroupItemDesign extends StatelessWidget {
                   );
                 },
                 /// NOTE: this expression widget.lists.length > 1 ? true : false, to ensure that there are lists other than Tasks list
-                enabled: tasksLists.length > 1 ? true : false,
+                enabled: tasksLists.isNotEmpty,
                 child: Text(
                   'additionOrRemovalLists'.tr(),
                   style: TextStyle(
-                    color: tasksLists.length > 1
+                    color: tasksLists.isNotEmpty
                         ? null
                         : Theme.of(context).colorScheme.secondary,
                   ),
@@ -71,7 +71,7 @@ class GroupItemDesign extends StatelessWidget {
               PopupMenuItem(
                 onTap: () {
                   for (final list in group.lists) {
-                    list.mainTask = list.mainTask.copyWith(groupName: null);
+                    list.mainTask.groupName = null;
                     locator<ViewModel>().updateTask(list.mainTask);
                   }
                   locator<ViewModel>().deleteTask(group.mainTask);

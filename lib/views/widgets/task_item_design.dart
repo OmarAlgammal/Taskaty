@@ -29,8 +29,7 @@ class TaskItemDesign extends StatelessWidget {
               activeColor: Theme.of(context).colorScheme.onPrimary,
               onChanged: onCheckBoxClicked ??
                   (value) {
-                    task = task.copyWith(
-                        completed: value!, modificationDate: DateTime.now());
+                    task.completed = value!;
                     locator<ViewModel>().updateTask(task);
                   }),
         ),

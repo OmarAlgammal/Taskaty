@@ -31,10 +31,8 @@ class FireStoreDatabase implements BaseFireStoreDatabase {
     final result = await _baseFireStoreService.getData(data: userId);
     if (result.isRight) {
       _notionDatabaseId = result.right;
-      debugPrint('here in get notion database id : result is ${result.right}');
       return Right(_notionDatabaseId);
     }
-    debugPrint('get notion database id error is ${result.left.message}');
     return Left(result.left);
   }
 

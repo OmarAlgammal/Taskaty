@@ -73,7 +73,6 @@ class NotionService implements BaseNotionService {
       required Function(Map<String, dynamic> map) builder}) async {
     try {
       final response = await _dio.post(path, data: map);
-      debugPrint('here ata create data : response is ${response.statusCode}');
       if (response.statusCode != 200) {
         return Left(ServerFailure(
             message: 'Error status message ${response.statusMessage}'));

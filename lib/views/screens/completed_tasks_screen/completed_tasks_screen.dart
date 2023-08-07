@@ -1,11 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taskaty/databases/local_databases/local_tasks_database.dart';
 import 'package:taskaty/helpers/tasks_utils.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
-import 'package:taskaty/models/tasks_list_model.dart';
+import 'package:taskaty/models/list_model.dart';
 import 'package:taskaty/service_locator/locator.dart';
 import 'package:taskaty/utils/constance/dimens.dart';
 import 'package:taskaty/views/widgets/group_component.dart';
@@ -20,7 +18,6 @@ class CompletedTasksPage extends StatefulWidget {
 }
 
 class _CompletedTasksPageState extends State<CompletedTasksPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +28,9 @@ class _CompletedTasksPageState extends State<CompletedTasksPage> {
           valueListenable: locator<LocalTasksDatabase>().getBox().listenable(),
           builder: (context, box, _) {
             final tasks = box.values.toList();
-            final completedTasks = TasksUtils(tasks: tasks).getCompletedTasks();
+            final completedTasks =
+                TasksUtils(tasks: tasks).getCombinations().completedTasks;
+
             /// TODO: Refactor this
             if (completedTasks.isEmpty) {
               return const Center(child: Text('No Completed Tasks'));

@@ -13,4 +13,5 @@ class AppRoutes{
   static const taskScreen = 'tasks-screen';
   static const noteScreen = 'note-screen';
   static const paymentWebViewScreen = 'payment-web-view-screen';
+  static const settingScreen = 'settings-screen';
 }

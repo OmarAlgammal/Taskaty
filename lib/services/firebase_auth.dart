@@ -31,6 +31,7 @@ class AuthServices implements BaseAuthServices {
   @override
   Future<Either<ServerFailure, UserCredential>> signInWithGoogle() async {
     try {
+
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
@@ -42,10 +43,8 @@ class AuthServices implements BaseAuthServices {
           await FirebaseAuth.instance.signInWithCredential(credential);
       return Right(userCredential);
     } on FirebaseException catch (e) {
-      debugPrint('error one');
       return Left(ServerFailure(message: 'error : ${e.message}'));
     } catch (e) {
-      debugPrint('error two');
       return Left(ServerFailure(
           message: 'An error occurred while signing in with Google : ${e.toString()}'));
     }

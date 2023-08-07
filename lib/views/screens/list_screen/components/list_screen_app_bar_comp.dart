@@ -5,16 +5,16 @@ import '../../../../models/list_model.dart';
 import '../../../../service_locator/locator.dart';
 import '../../../../view_model/tasks_view_model/tasks_view_model.dart';
 
-class TasksListAppBarComp extends StatelessWidget implements PreferredSizeWidget {
-  const TasksListAppBarComp({Key? key, required this.tasksList}) : super(key: key);
+class ListScreenAppBarComp extends StatelessWidget implements PreferredSizeWidget {
+  const ListScreenAppBarComp({Key? key, required this.list}) : super(key: key);
 
-  final ListModel tasksList;
+  final ListModel list;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(
-        tasksList.mainTask.listName ?? 'Tasks',
+        list.mainTask.listName ?? 'Tasks',
       ),
       actions: [
         PopupMenuButton(
@@ -43,10 +43,11 @@ class TasksListAppBarComp extends StatelessWidget implements PreferredSizeWidget
                 'sortBy'.tr(),
               ),
             ),
+            if (list.mainTask.listName != null)
             PopupMenuItem(
               onTap: () {
-                locator<ViewModel>().deleteTask(tasksList.mainTask);
-                for (final task in tasksList.tasks) {
+                locator<ViewModel>().deleteTask(list.mainTask);
+                for (final task in list.tasks) {
                   locator<ViewModel>().deleteTask(task);
                 }
                 Navigator.pop(context);

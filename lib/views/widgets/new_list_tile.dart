@@ -61,11 +61,7 @@ class _NewListTileState extends State<NewListTile> {
                             padding: padding0,
                             onPressed: () {
                               if (_listController.text.trim().isNotEmpty) {
-                                final task = TaskModel(
-                                    localId: DateTime.now().toString(),
-                                    listName: _listController.text,
-                                    dateCreated: DateTime.now(),
-                                    modificationDate: DateTime.now());
+                                final task = TaskModel()..listName = _listController.text;
                                 locator<ViewModel>().addTask(task);
                                 _listController.clear();
                                 _addListButtonEnabled = false;
@@ -120,12 +116,7 @@ class _NewListTileState extends State<NewListTile> {
                       TextButton(
                         onPressed: () {
                           if (_groupController.text.trim().isNotEmpty) {
-                            final task = TaskModel(
-                              localId: DateTime.now().toString(),
-                              groupName: _groupController.text,
-                              dateCreated: DateTime.now(),
-                              modificationDate: DateTime.now(),
-                            );
+                            final task = TaskModel()..groupName = _groupController.text;
                             locator<ViewModel>().addTask(task);
                             _groupController.clear();
                             _addGroupButtonEnabled = false;

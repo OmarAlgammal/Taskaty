@@ -37,7 +37,6 @@ class PaymentService implements BasePaymentService {
 
   PaymentService() {
     _dio = Dio(BaseOptions(baseUrl: PaymentApiConstants.baseApiKey));
-    debugPrint('all is well');
   }
 
   @override
@@ -45,12 +44,10 @@ class PaymentService implements BasePaymentService {
       {required String phoneNumber, required int amount}) async {
     final tokenResult = await _getToken();
     if (tokenResult.isLeft) return Left(tokenResult.left);
-    debugPrint('one passed');
     final orderRegistrationApiResult = await _orderRegistrationApi(
         authToken: tokenResult.right, amount: amount);
     if (orderRegistrationApiResult.isLeft)
       return Left(orderRegistrationApiResult.left);
-    debugPrint('two passed');
     final paymentKeyRequestResult = await _getPaymentKeyRequestApi(
         authToken: tokenResult.right,
         orderId: orderRegistrationApiResult.right,
@@ -58,11 +55,9 @@ class PaymentService implements BasePaymentService {
         amount: amount);
     if (paymentKeyRequestResult.isLeft)
       return Left(paymentKeyRequestResult.left);
-    debugPrint('three passed');
     final payRequestResult = await _payRequest(
         paymentToken: paymentKeyRequestResult.right, phoneNumber: phoneNumber);
     if (payRequestResult.isLeft) return Left(payRequestResult.left);
-    debugPrint('four passed and url : ${payRequestResult.right}');
     return Right(payRequestResult.right);
   }
 

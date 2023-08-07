@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskaty/models/list_model.dart';
 
 import '../../../../databases/local_databases/local_tasks_database.dart';
 import '../../../../helpers/tasks_utils.dart';
@@ -19,15 +20,18 @@ class TasksListScreenTasksListComp extends StatelessWidget {
     return ValueListenableBuilder<Box<TaskModel>>(
       valueListenable: locator<LocalTasksDatabase>().getBox().listenable(),
       builder: (context, box, _) {
-        dynamic tasks = box.values.toList();
+        List<TaskModel> tasks = box.values.toList();
         final tasksUtils = TasksUtils(tasks: tasks);
-        tasks = mainTask.listName != null
-            ? tasksUtils.getSingleTasksList(mainTask: mainTask).tasks
-            : tasksUtils.getMyTasks().tasks;
+        ListModel list = mainTask.listName != null
+            ? tasksUtils
+                .getCombinations()
+                .lists
+                .where((list) => list.mainTask.listName == mainTask.listName).single
+            : tasksUtils.getCombinations().myTasks;
         return ListView.builder(
-          itemCount: tasks.length,
+          itemCount: list.tasks.length,
           itemBuilder: (context, index) {
-            TaskModel task = tasks[index];
+            TaskModel task = list.tasks[index];
             if (task.title == null) {
               return const SizedBox();
             }

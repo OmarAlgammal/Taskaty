@@ -1,17 +1,14 @@
-
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/constance/dimens.dart';
-import '../../utils/constance/gaps.dart';
-import '../widgets/my_button.dart';
+import '../../../utils/constance/dimens.dart';
+import '../../../utils/constance/gaps.dart';
+import '../../widgets/my_button.dart';
 
 class SignUpWithEmailScreen extends StatelessWidget {
   SignUpWithEmailScreen({Key? key}) : super(key: key);
 
   static const String routeName = 'createAccountWithEmailPage';
-
 
   @override
   Widget build(BuildContext context) {

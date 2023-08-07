@@ -1,9 +1,9 @@
 
 import 'package:taskaty/models/task_model/task_model.dart';
 
-import 'tasks_list_model.dart';
+import 'list_model.dart';
 
-class GroupListsModel {
+class GroupModel {
   late TaskModel mainTask;
-  List<TasksListModel> lists = [];
+  List<ListModel> lists = [];
 }

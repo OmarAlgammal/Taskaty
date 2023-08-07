@@ -70,14 +70,7 @@ class AddNewTask extends StatelessWidget {
                             child: ListTile(
                               onTap: () {
                                 if (controller.text.isNotEmpty) {
-                                  final task = TaskModel(
-                                      localId: DateTime.now().toString(),
-                                      title: controller.text,
-                                      addedToMyDay: addToMyDayState,
-                                      listName: listName,
-                                      repeatDaily: repeatDailyState,
-                                      dateCreated: DateTime.now(),
-                                      modificationDate: DateTime.now());
+                                  final task = TaskModel()..title = controller.text..todayTask = addToMyDayState..listName = listName..repeatDaily = repeatDailyState;
                                   locator<ViewModel>().addTask(task);
                                   Navigator.pop(context);
                                 }

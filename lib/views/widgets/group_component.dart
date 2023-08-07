@@ -2,9 +2,9 @@ import 'dart:ffi';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:taskaty/models/group_lists_model.dart';
+import 'package:taskaty/models/group_model.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
-import 'package:taskaty/models/tasks_list_model.dart';
+import 'package:taskaty/models/list_model.dart';
 import 'package:taskaty/service_locator/locator.dart';
 import 'package:taskaty/utils/constance/dimens.dart';
 import 'package:taskaty/utils/constance/icons.dart';
@@ -17,18 +17,18 @@ import 'package:taskaty/views/widgets/tasks_list_item_design.dart';
 /// TODO: Convert it to stateless
 class GroupComponent extends StatefulWidget {
   const GroupComponent(
-      {Key? key, required this.group, required this.tasksLists})
+      {Key? key, required this.group, required this.lists})
       : super(key: key);
 
-  final GroupListsModel group;
-  final List<TasksListModel> tasksLists;
+  final GroupModel group;
+  final List<ListModel> lists;
 
   @override
   State<GroupComponent> createState() => _GroupComponentState();
 }
 
 class _GroupComponentState extends State<GroupComponent> {
-  late List<TasksListModel> dialogLists;
+  late List<ListModel> dialogLists;
   bool _isExpanded = false;
 
   @override
@@ -55,12 +55,12 @@ class _GroupComponentState extends State<GroupComponent> {
         //   },
         //   child: Text('omar'),
         // )
-        GroupItemDesign(group: widget.group, isExpanded: _isExpanded, tasksLists: widget.tasksLists,),
+        GroupItemDesign(group: widget.group, isExpanded: _isExpanded, tasksLists: widget.lists,),
       ),
       children: widget.group.lists.map((e) => Padding(
         padding: paddingH16,
         child: TasksListItemDesign(
-          tasksListModel: e,
+          list: e,
         ),
       )).toList()
     );

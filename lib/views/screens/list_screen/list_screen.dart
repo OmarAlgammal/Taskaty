@@ -5,17 +5,17 @@ import 'package:taskaty/databases/local_databases/local_tasks_database.dart';
 import 'package:taskaty/helpers/tasks_utils.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/view_model/tasks_view_model/tasks_view_model.dart';
-import 'package:taskaty/views/screens/tasks_list_screen/components/tasks_list_app_bar_comp.dart';
 import 'package:taskaty/views/widgets/task_item_design.dart';
 
 import '../../../models/list_model.dart';
 import '../../../service_locator/locator.dart';
 import '../../../utils/constance/gaps.dart';
 import '../../widgets/new_task_tile.dart';
-import 'components/tasks_list_screen_tasks_list_comp.dart';
+import 'components/list_screen_app_bar_comp.dart';
+import 'components/list_screen_tasks_list_comp.dart';
 
-class TasksListScreen extends StatelessWidget {
-  TasksListScreen({
+class ListScreen extends StatelessWidget {
+  ListScreen({
     Key? key,
   }) : super(key: key);
 
@@ -25,7 +25,7 @@ class TasksListScreen extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as ListModel;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: TasksListAppBarComp(tasksList: tasksList),
+      appBar: ListScreenAppBarComp(list: tasksList),
       body: Column(
         children: [
           gap16,

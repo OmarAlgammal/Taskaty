@@ -19,13 +19,10 @@ class FireStoreService implements BaseFireStoreService {
   @override
   Future<Either<ServerFailure, String?>> getData({required String data}) async {
     try {
-      debugPrint('here in get data');
       final snapshot = await _fireStore
           .collection('Users').doc(data)
           .get(const GetOptions(source: Source.cache));
-      debugPrint('snapshot here is ${snapshot.data()} and it is exists ${snapshot.exists}');
       if (! snapshot.exists) return const Right(null);
-      debugPrint('database id here is ${snapshot.data()!['databaseId']}');
       final result = snapshot.data()!['databaseId'];
       return Right(result);
     } on FirebaseException catch (error) {

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:taskaty/routing/routes.dart';
 import 'package:taskaty/utils/extensions/screen_dimens.dart';
 
 import '../../../../databases/auth_database.dart';
@@ -9,9 +10,9 @@ import '../../../../service_locator/locator.dart';
 import '../../../../utils/constance/dimens.dart';
 import '../../../../utils/constance/paths.dart';
 
-class HomeScreenAppBarcom extends StatelessWidget
+class HomeScreenAppBarComp extends StatelessWidget
     implements PreferredSizeWidget {
-  const HomeScreenAppBarcom({Key? key}) : super(key: key);
+  const HomeScreenAppBarComp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +28,7 @@ class HomeScreenAppBarcom extends StatelessWidget
       actions: [
         IconButton(
           onPressed: () {
-            locator<AuthDatabase>().signOut();
-            locator<LocalTasksDatabase>().clearData();
+            Navigator.pushNamed(context, AppRoutes.settingScreen);
           },
           icon: const Icon(Icons.settings),
         ),
@@ -76,5 +76,5 @@ class HomeScreenAppBarcom extends StatelessWidget
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(size86);
 }

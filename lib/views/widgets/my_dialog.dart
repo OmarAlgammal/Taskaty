@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
-import 'package:taskaty/models/tasks_list_model.dart';
+import 'package:taskaty/models/list_model.dart';
 import 'package:taskaty/service_locator/locator.dart';
 import 'package:taskaty/utils/constance/icons.dart';
 import 'package:taskaty/utils/extensions/screen_dimens.dart';
@@ -11,16 +11,16 @@ import 'package:taskaty/views/widgets/list_item_selection_design.dart';
 class MyAlertDialog extends StatelessWidget {
   MyAlertDialog({Key? key, required this.tasksLists, required this.groupName}) : super(key: key);
 
-  final List<TasksListModel> tasksLists;
+  final List<ListModel> tasksLists;
   final String groupName;
 
   final ValueNotifier<bool> _valueNotifier = ValueNotifier<bool>(false);
-  List<TasksListModel> _dialogLists = [];
+  List<ListModel> _dialogLists = [];
   List<TaskModel> _tasksToUpdate = [];
 
-  List<TasksListModel> copyTasksLists() {
+  List<ListModel> copyTasksLists() {
     return tasksLists.map((e) {
-      return e.copyWith(e) as TasksListModel;
+      return e.copyWith(e) as ListModel;
     }).toList();
   }
 
@@ -83,7 +83,9 @@ class MyAlertDialog extends StatelessWidget {
                     mainTask.groupName != null ? checkIcon : null,
                 onPressed: () {
                   /// TODO: Refactor this method
-                  mainTask = mainTask.copyWith(groupName: mainTask.groupName != null ? null : groupName);
+                  // Update task group name
+                  mainTask.groupName = mainTask.groupName != null ? null : groupName;
+                  // Check if list is exist before in updated list
                   final taskExist = _tasksToUpdate
                       .where(
                           (element) => element.localId == mainTask.localId)

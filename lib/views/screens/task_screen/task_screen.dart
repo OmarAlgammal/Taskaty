@@ -1,16 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:taskaty/utils/extensions/date_time_extension.dart';
 
-import '../../models/task_model/task_model.dart';
-import '../../routing/routes.dart';
-import '../../service_locator/locator.dart';
-import '../../utils/constance/dimens.dart';
-import '../../utils/constance/gaps.dart';
-import '../../utils/constance/icons.dart';
-import '../../view_model/tasks_view_model/tasks_view_model.dart';
-import '../widgets/editable_task_item_design.dart';
-import '../widgets/file_item_design.dart';
-import '../widgets/task_option_item_design.dart';
+import '../../../models/task_model/task_model.dart';
+import '../../../routing/routes.dart';
+import '../../../service_locator/locator.dart';
+import '../../../utils/constance/dimens.dart';
+import '../../../utils/constance/gaps.dart';
+import '../../../utils/constance/icons.dart';
+import '../../../view_model/tasks_view_model/tasks_view_model.dart';
+import '../../widgets/editable_task_item_design.dart';
+import '../../widgets/file_item_design.dart';
+import '../../widgets/task_option_item_design.dart';
 
 class TaskPage extends StatefulWidget {
   const TaskPage({
@@ -62,25 +63,23 @@ class _TaskPageState extends State<TaskPage> {
                         onTitleChanged: (String? text) {
                           setState(() {
                             if (text != null || text!.trim().isNotEmpty) {
-                              updatedTask = updatedTask.copyWith(title: text);
+                              updatedTask.title = text;
                             }
                           });
                         },
                         onCheckChanged: (bool? value) {
                           setState(() {
-                            updatedTask = updatedTask.copyWith(
-                                completed: !updatedTask.completed);
+                            updatedTask.completed = !updatedTask.completed;
                           });
                         }),
                     gap16,
                     TaskOptionItemDesign(
                         icon: dayIcon,
                         optionName: 'addToMyDay'.tr(),
-                        optionState: updatedTask.addedToMyDay,
+                        optionState: updatedTask.todayTask,
                         onPressed: () {
                           setState(() {
-                            updatedTask = updatedTask.copyWith(
-                                addedToMyDay: !updatedTask.addedToMyDay);
+                            updatedTask.todayTask = !updatedTask.todayTask;
                           });
                         }),
                     TaskOptionItemDesign(
@@ -89,27 +88,25 @@ class _TaskPageState extends State<TaskPage> {
                         optionState: updatedTask.repeatDaily,
                         onPressed: () {
                           setState(() {
-                            updatedTask = updatedTask.copyWith(
-                                repeatDaily: !updatedTask.repeatDaily);
+                            updatedTask.repeatDaily = !updatedTask.repeatDaily;
                           });
                         }),
-                    TaskOptionItemDesign(
-                        icon: attachIcon,
-                        optionName: 'addFile'.tr(),
-                        onPressed: () async {
-                          // dynamic result = await FilePicker.platform.pickFiles();
-                          // if (result != null) {
-                          //   setState(() {
-                          //     result = result.files.map((e) => e.path).toList();
-                          //     updatedTask = updatedTask
-                          //         .copyWith(files: [...updatedTask.files, ...result]);
-                          //   });
-                          // }
-                        }),
-                    gap8,
+                    // TaskOptionItemDesign(
+                    //     icon: attachIcon,
+                    //     optionName: 'addFile'.tr(),
+                    //     onPressed: () async {
+                    //       // dynamic result = await FilePicker.platform.pickFiles();
+                    //       // if (result != null) {
+                    //       //   setState(() {
+                    //       //     result = result.files.map((e) => e.path).toList();
+                    //       //     updatedTask = updatedTask
+                    //       //         .copyWith(files: [...updatedTask.files, ...result]);
+                    //       //   });
+                    //       // }
+                    //     }),
+                    //gap8,
 // files list view
-                    if (updatedTask.files != null &&
-                        updatedTask.files!.isNotEmpty)
+                    if (updatedTask.files!.isNotEmpty)
                       ListView.builder(
                         itemCount: updatedTask.files!.length,
                         shrinkWrap: true,
@@ -152,7 +149,7 @@ class _TaskPageState extends State<TaskPage> {
                     },
                     icon: const Icon(deleteIcon),
                   ),
-                  title: Text(originalTask.dateCreated.toString()),
+                  title: Text(originalTask.dateCreated.formattedDate()),
                 ),
               )
             ],
