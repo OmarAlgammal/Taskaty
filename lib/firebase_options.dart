@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,40 +49,22 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyArZY6JBeVcZcrcBsFBnvAvDfwB6a4W_Ho',
-    appId: '1:804513084873:web:352bad4390db28a08ee418',
-    messagingSenderId: '804513084873',
-    projectId: 'taskaty-one',
-    authDomain: 'taskaty-one.firebaseapp.com',
-    storageBucket: 'taskaty-one.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC1AXiRFtcGgmzuozuMi_Nb3OpZblad29M',
-    appId: '1:804513084873:android:dbba5933c2cb8e668ee418',
-    messagingSenderId: '804513084873',
-    projectId: 'taskaty-one',
-    storageBucket: 'taskaty-one.appspot.com',
+    apiKey: 'AIzaSyBuzzUedFutr7MZyH1hwCMTyYTw3rZZ_s8',
+    appId: '1:121579168221:android:e0847dc696215246585634',
+    messagingSenderId: '121579168221',
+    projectId: 'taskaty-f3808',
+    storageBucket: 'taskaty-f3808.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAgxlnyfSCr7V1-ZnTVJJyNsXD0bit91pI',
-    appId: '1:804513084873:ios:10200d21c39e7de58ee418',
-    messagingSenderId: '804513084873',
-    projectId: 'taskaty-one',
-    storageBucket: 'taskaty-one.appspot.com',
-    iosClientId: '804513084873-gi5g846plmnnl3mf1rel1m57leuropgt.apps.googleusercontent.com',
+    apiKey: 'AIzaSyB0x9kAKczFp368XxV-yhzzwqYSXQSy3xg',
+    appId: '1:121579168221:ios:75a147ada462971a585634',
+    messagingSenderId: '121579168221',
+    projectId: 'taskaty-f3808',
+    storageBucket: 'taskaty-f3808.appspot.com',
+    androidClientId: '121579168221-dn5ric4fmjf5eviucb0fffjp05obbanm.apps.googleusercontent.com',
+    iosClientId: '121579168221-erimrahgq2b8454md4rc9sgngad5r9i7.apps.googleusercontent.com',
     iosBundleId: 'com.omarprogramzone.taskaty.taskaty',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAgxlnyfSCr7V1-ZnTVJJyNsXD0bit91pI',
-    appId: '1:804513084873:ios:a807bc9102c7c1fe8ee418',
-    messagingSenderId: '804513084873',
-    projectId: 'taskaty-one',
-    storageBucket: 'taskaty-one.appspot.com',
-    iosClientId: '804513084873-flnm90q89lmg7p2lup1snnr3agdu6hi6.apps.googleusercontent.com',
-    iosBundleId: 'com.omarprogramzone.taskaty.taskaty.RunnerTests',
   );
 }

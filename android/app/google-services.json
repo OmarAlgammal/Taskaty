@@ -1,34 +1,49 @@
 {
   "project_info": {
-    "project_number": "625438177962",
-    "project_id": "taskaty-ce980",
-    "storage_bucket": "taskaty-ce980.appspot.com"
+    "project_number": "121579168221",
+    "project_id": "taskaty-f3808",
+    "storage_bucket": "taskaty-f3808.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:625438177962:android:aacfb8bce037814b8d6ed3",
+        "mobilesdk_app_id": "1:121579168221:android:e0847dc696215246585634",
         "android_client_info": {
           "package_name": "com.omarprogramzone.taskaty.taskaty"
         }
       },
       "oauth_client": [
         {
-          "client_id": "625438177962-3idftgtbsnhdg6312lt50e383fbmf3oi.apps.googleusercontent.com",
+          "client_id": "121579168221-dn5ric4fmjf5eviucb0fffjp05obbanm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.omarprogramzone.taskaty.taskaty",
+            "certificate_hash": "3cb243a900dae962943db45d4c2c8b824439f1f7"
+          }
+        },
+        {
+          "client_id": "121579168221-2krei5f6bupncafbteijrbcdabiui8n1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBRfNbHjZ2BRoA-jMBEkbK8UhLjfMya4wo"
+          "current_key": "AIzaSyBuzzUedFutr7MZyH1hwCMTyYTw3rZZ_s8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "625438177962-3idftgtbsnhdg6312lt50e383fbmf3oi.apps.googleusercontent.com",
+              "client_id": "121579168221-2krei5f6bupncafbteijrbcdabiui8n1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "121579168221-erimrahgq2b8454md4rc9sgngad5r9i7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.omarprogramzone.taskaty.taskaty"
+              }
             }
           ]
         }

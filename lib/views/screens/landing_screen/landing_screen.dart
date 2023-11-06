@@ -13,6 +13,7 @@ class LandingPage extends StatelessWidget {
     return StreamBuilder(
       stream: locator<AuthServices>().authStateChanges(),
       builder: (context, snapshot) {
+        debugPrint('snapshot here is ${snapshot.data?.email} \n ${snapshot.connectionState}');
         if ([ConnectionState.active, ConnectionState.done]
             .contains(snapshot.connectionState)) {
           if (snapshot.data != null) {

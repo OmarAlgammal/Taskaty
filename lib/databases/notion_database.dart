@@ -1,4 +1,3 @@
-
 import 'package:either_dart/either.dart';
 
 import '../core/errors/failure.dart';
@@ -38,7 +37,7 @@ class NotionDataBase implements BaseNotionDataBase {
   @override
   Future<Either<ServerFailure, TaskModel>> updateTask(
       {required TaskModel task}) async {
-        task.completed;
+    task.completed;
     return await _baseNotionDataSource.updateData(
       map: task.toJson(),
       id: task.remoteId!,
@@ -50,10 +49,11 @@ class NotionDataBase implements BaseNotionDataBase {
   Future<Either<ServerFailure, List<TaskModel>>> getTasks(
       {required String databaseId, Map<String, dynamic>? query}) async {
     final results = await _baseNotionDataSource.getData<List<TaskModel>>(
-        builder: (maps) {
-          return maps.map((e) => TaskModel.fromJson(e)).toList();
-        },
-        databaseId: databaseId);
+      builder: (maps) {
+        return maps.map((e) => TaskModel.fromJson(e)).toList();
+      },
+      databaseId: databaseId,
+    );
     return results;
   }
 
@@ -67,7 +67,8 @@ class NotionDataBase implements BaseNotionDataBase {
   }
 
   @override
-  Future<Either<ServerFailure, TaskModel>> createTask({required TaskModel task}) async{
+  Future<Either<ServerFailure, TaskModel>> createTask(
+      {required TaskModel task}) async {
     final result = await _baseNotionDataSource.createData<TaskModel>(
       path: NotionApiConstance.createTaskPath,
       map: task.toJson(),
@@ -75,6 +76,4 @@ class NotionDataBase implements BaseNotionDataBase {
     );
     return result;
   }
-
-
 }
