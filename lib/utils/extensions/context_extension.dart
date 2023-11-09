@@ -5,4 +5,7 @@ extension ScreenSize on BuildContext{
   double get height => MediaQuery.of(this).size.height;
 
   double get width => MediaQuery.of(this).size.height;
+
+  ColorScheme get colorScheme => Theme.of(this).colorScheme;
+  TextTheme get textTheme => Theme.of(this).textTheme;
 }

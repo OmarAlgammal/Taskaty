@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskaty/utils/constance/border_radius.dart';
 
 import '../../utils/constance/dimens.dart';
 
@@ -19,7 +20,7 @@ class RegisterItemDesign extends StatelessWidget {
     return ListTile(
       onTap: onPressed,
       shape: RoundedRectangleBorder(
-          borderRadius: circular8,
+          borderRadius: Circular.circular8,
           side: BorderSide(
             color: Theme.of(context).colorScheme.primary,
             width: size2,
@@ -28,10 +29,8 @@ class RegisterItemDesign extends StatelessWidget {
         icon,
         size: size28,
       ),
-      title: Text(
-        registrationText,
-        style: Theme.of(context).textTheme.bodyMedium
-      ),
+      title:
+          Text(registrationText, style: Theme.of(context).textTheme.bodyMedium),
     );
   }
 }

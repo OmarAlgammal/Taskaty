@@ -4,7 +4,7 @@ import 'package:taskaty/models/group_model.dart';
 import 'package:taskaty/models/list_model.dart';
 import 'package:taskaty/service_locator/locator.dart';
 import 'package:taskaty/utils/constance/icons.dart';
-import 'package:taskaty/utils/extensions/screen_dimens.dart';
+import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/view_model/tasks_view_model/tasks_view_model.dart';
 import 'package:taskaty/views/widgets/list_item_selection_design.dart';
 import 'package:taskaty/views/widgets/my_dialog.dart';

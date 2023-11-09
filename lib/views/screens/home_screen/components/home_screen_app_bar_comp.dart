@@ -2,7 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:taskaty/routing/routes.dart';
-import 'package:taskaty/utils/extensions/screen_dimens.dart';
+import 'package:taskaty/utils/constance/border_radius.dart';
+import 'package:taskaty/utils/extensions/context_extension.dart';
 
 import '../../../../databases/auth_database.dart';
 import '../../../../databases/local_databases/local_tasks_database.dart';
@@ -67,7 +68,7 @@ class HomeScreenAppBarComp extends StatelessWidget
             physics: const NeverScrollableScrollPhysics(),
             indicator: BoxDecoration(
               color: Theme.of(context).colorScheme.secondary,
-              borderRadius: circular100,
+              borderRadius: Circular.circular100,
             ),
           ),
         ),

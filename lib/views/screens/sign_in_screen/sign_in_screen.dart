@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
-import 'package:taskaty/utils/extensions/screen_dimens.dart';
+import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/views/widgets/task_item_design.dart';
 
 import '../../../databases/auth_database.dart';

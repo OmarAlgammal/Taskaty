@@ -6,7 +6,7 @@ import 'package:taskaty/theme/light_theme.dart';
 class ThemeViewModel extends ChangeNotifier {
 
   bool _lightTheme = true;
-  ThemeData _myTheme = lightTheme();
+  ThemeData _myTheme = lightTheme;
 
   static ThemeViewModel instance (BuildContext context) => Provider.of<ThemeViewModel>(context);
 
@@ -14,7 +14,7 @@ class ThemeViewModel extends ChangeNotifier {
 
   void changeTheme() {
     _lightTheme = ! _lightTheme;
-    _myTheme = _lightTheme ? lightTheme() : darkTheme();
+    _myTheme = _lightTheme ? lightTheme : darkTheme;
     notifyListeners();
   }
 }

@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
-
-import '../../completed_tasks_screen/completed_tasks_screen.dart';
-import '../../my_day_screen/my_day_screen.dart';
-import '../../my_tasks_screen/my_tasks_screen.dart';
+import 'package:taskaty/utils/enums/main_tabs_enum.dart';
 
 class HomeScreenTabBarComp extends StatelessWidget {
   const HomeScreenTabBarComp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const TabBarView(
-      children: [
-        MyDayPage(),
-        MyTasksScreen(),
-        CompletedTasksPage(),
-      ],
+    return TabBarView(
+      children: List.generate(MainTabs.values.length, (index) => Scaffold()),
     );
   }
 }

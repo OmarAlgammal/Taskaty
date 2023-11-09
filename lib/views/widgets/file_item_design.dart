@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskaty/utils/constance/border_radius.dart';
 
 import '../../theme/colors.dart';
 import '../../utils/constance/dimens.dart';
@@ -34,7 +35,7 @@ class FileItemDesign extends StatelessWidget {
                 height: size46,
                 decoration: const BoxDecoration(
                   color: greenColor,
-                  borderRadius: circular5,
+                  borderRadius: Circular.circular5,
                 ),
 // file type
                 child: Center(

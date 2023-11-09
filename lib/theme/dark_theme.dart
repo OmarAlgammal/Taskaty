@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import '../utils/constance/dimens.dart';
 import 'colors.dart';
 
-ThemeData darkTheme () => ThemeData(
+ThemeData darkTheme  = ThemeData(
   primarySwatch: const MaterialColor(0xff000000, {
     50: Color.fromRGBO(0, 0, 0, .1),
     100: Color.fromRGBO(0, 0, 0, .2),

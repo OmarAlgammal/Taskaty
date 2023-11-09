@@ -20,6 +20,7 @@ const size100 = 100.0;
 
 const padding0 = EdgeInsets.all(0);
 const padding4 = EdgeInsets.all(4);
+const padding6 = EdgeInsets.all(6);
 const padding8 = EdgeInsets.all(8);
 const padding16 = EdgeInsets.all(16);
 const padding24 = EdgeInsets.all(24);
@@ -35,7 +36,3 @@ const paddingH8 = EdgeInsets.only(left: 8, right: 8);
 const paddingH16 = EdgeInsets.only(left: 16, right: 16);
 
 
-const circular5 = BorderRadius.all(Radius.circular(5));
-const circular8 = BorderRadius.all(Radius.circular(8));
-const circular16 = BorderRadius.all(Radius.circular(16));
-const circular100 = BorderRadius.all(Radius.circular(100));
