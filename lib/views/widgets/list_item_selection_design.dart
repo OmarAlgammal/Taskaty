@@ -17,7 +17,7 @@ class ListItemSelectionDesign extends StatelessWidget {
     return ListTile(
         horizontalTitleGap: size0,
         leading: const Icon(
-          listIcon,
+          AppIcons.listIcon,
         ),
         title: Text(
           taskListName,
@@ -25,7 +25,7 @@ class ListItemSelectionDesign extends StatelessWidget {
         trailing: IconButton(
           onPressed: onPressed,
           icon: Icon(
-            addListIconState ?? addNewTaskIcon,
+            addListIconState ?? AppIcons.addNewTaskIcon,
           ),
         ));
   }

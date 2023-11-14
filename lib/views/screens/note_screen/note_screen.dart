@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/task_model/task_model.dart';
+import '../../../models/task_model.dart';
 import '../../../service_locator/locator.dart';
-import '../../../view_model/tasks_view_model/tasks_view_model.dart';
+import '../../../view_model/tasks_view_model/tasks_view_model_deprecated.dart';
 
 class NotePage extends StatefulWidget {
   NotePage({Key? key}) : super(key: key);
@@ -24,7 +24,8 @@ class _NotePageState extends State<NotePage> {
 
   @override
   void deactivate() {
-    locator<ViewModel>().updateTask(task);
+    /// TODO: Remove this line
+    //locator<TaskViewModel>().updateTask(task);
   }
 
   @override

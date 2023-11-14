@@ -1,16 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:taskaty/utils/extensions/date_time_extension.dart';
 
-import '../../../models/task_model/task_model.dart';
+import '../../../models/task_model.dart';
 import '../../../routing/routes.dart';
 import '../../../service_locator/locator.dart';
 import '../../../utils/constance/dimens.dart';
 import '../../../utils/constance/gaps.dart';
 import '../../../utils/constance/icons.dart';
-import '../../../view_model/tasks_view_model/tasks_view_model.dart';
+import '../../../view_model/tasks_view_model/use_cases/task_view_model.dart';
 import '../../widgets/editable_task_item_design.dart';
-import '../../widgets/file_item_design.dart';
 import '../../widgets/task_option_item_design.dart';
 
 class TaskPage extends StatefulWidget {
@@ -38,7 +36,8 @@ class _TaskPageState extends State<TaskPage> {
     return WillPopScope(
       onWillPop: () async {
         if (originalTask != updatedTask) {
-          locator<ViewModel>().updateTask(updatedTask);
+          /// TODO: Remove this line
+          locator<TaskViewModel>().writeTask(updatedTask);
         }
         return true;
       },
@@ -46,7 +45,7 @@ class _TaskPageState extends State<TaskPage> {
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
           title: Text(
-            updatedTask.title!,
+            updatedTask.title,
           ),
         ),
         body: Padding(
@@ -58,7 +57,7 @@ class _TaskPageState extends State<TaskPage> {
                   children: [
                     gap24,
                     EditableTaskItem(
-                        title: updatedTask.title!,
+                        title: updatedTask.title,
                         completedTask: updatedTask.completed,
                         onTitleChanged: (String? text) {
                           setState(() {
@@ -74,16 +73,14 @@ class _TaskPageState extends State<TaskPage> {
                         }),
                     gap16,
                     TaskOptionItemDesign(
-                        icon: dayIcon,
+                        icon: AppIcons.dayIcon,
                         optionName: 'addToMyDay'.tr(),
-                        optionState: updatedTask.todayTask,
+                        optionState: true,
                         onPressed: () {
-                          setState(() {
-                            updatedTask.todayTask = !updatedTask.todayTask;
-                          });
+                          setState(() {});
                         }),
                     TaskOptionItemDesign(
-                        icon: dailyRepetitionIcon,
+                        icon: AppIcons.dailyRepetitionIcon,
                         optionName: 'repeatDaily'.tr(),
                         optionState: updatedTask.repeatDaily,
                         onPressed: () {
@@ -106,27 +103,10 @@ class _TaskPageState extends State<TaskPage> {
                     //     }),
                     //gap8,
 // files list view
-                    if (updatedTask.files!.isNotEmpty)
-                      ListView.builder(
-                        itemCount: updatedTask.files!.length,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          final filePath = updatedTask.files![index];
-                          return SizedBox();
-                          // return FileItemDesign(
-                          //   fileType: path.extension(filePath),
-                          //   fileName: path.basename(filePath),
-                          //   fileSize: 1.8,
-                          //   onPressed: () {
-                          //     ///TODO: Open file
-                          //   },
-                          // );
-                        },
-                      ),
+
                     gap16,
                     TaskOptionItemDesign(
-                        icon: addNewTaskIcon,
+                        icon: AppIcons.addNewTaskIcon,
                         optionName: 'addANote'.tr(),
                         onPressed: () async {
                           updatedTask = await Navigator.pushNamed(
@@ -143,13 +123,13 @@ class _TaskPageState extends State<TaskPage> {
                   leading: IconButton(
                     onPressed: () {
                       /// TODO: Create a dialog to make user confirm this action
-                      locator<ViewModel>()
-                          .deleteTask(originalTask)
-                          .then((value) => Navigator.pop(context));
+                      // locator<TaskViewModel>()
+                      //     .deleteTask(originalTask)
+                      //     .then((value) => Navigator.pop(context));
                     },
-                    icon: const Icon(deleteIcon),
+                    icon: const Icon(AppIcons.deleteIcon),
                   ),
-                  title: Text(originalTask.dateCreated.formattedDate()),
+                  title: Text('originalTask.dateCreated'),
                 ),
               )
             ],
@@ -158,5 +138,4 @@ class _TaskPageState extends State<TaskPage> {
       ),
     );
   }
-
 }

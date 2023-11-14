@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
-import 'package:taskaty/views/widgets/task_item_design.dart';
 
 import '../../../databases/auth_database.dart';
 import '../../../service_locator/locator.dart';
@@ -41,11 +40,15 @@ class SignInScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    descriptionItemDesign(context: context, title: 'Register and Complete your tasks easily'.tr()),
-                    descriptionItemDesign(context: context, title: 'Follow your complete tasks'.tr()),
+                    descriptionItemDesign(
+                        context: context,
+                        title: 'Register and Complete your tasks easily'.tr()),
+                    descriptionItemDesign(
+                        context: context,
+                        title: 'Follow your complete tasks'.tr()),
                     gap36,
                     RegisterItemDesign(
-                      icon: googleIcon,
+                      icon: AppIcons.googleIcon,
                       registrationText: 'signInWithGoogle'.tr(),
                       onPressed: () {
                         locator<AuthDatabase>().signInWithGoogle();
@@ -56,7 +59,6 @@ class SignInScreen extends StatelessWidget {
               )
             ],
           ),
-
         ),
       ),
     );

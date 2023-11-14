@@ -11,7 +11,7 @@ class HomeScreenTabBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       bottom: PreferredSize(
-          preferredSize: Size(((context.width / 7) * 3), size56),
+          preferredSize: Size.fromHeight(size86),
           child: TabBar(
             physics: NeverScrollableScrollPhysics(),
             padding: padding4,

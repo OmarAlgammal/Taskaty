@@ -1,9 +1,10 @@
 enum MainTabs {
-  today('Today'),
-  weekly('Weekly'),
-  monthly('Monthly'),
-  all('All');
+  today('Today', 0),
+  weekly('Weekly', 1),
+  monthly('Monthly', 2),
+  all('All',3);
 
   final String name;
-  const MainTabs(this.name);
+  final int groupNum;
+  const MainTabs(this.name, this.groupNum);
 }

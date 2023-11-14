@@ -2,12 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../models/task_model/task_model.dart';
-import '../../service_locator/locator.dart';
 import '../../utils/constance/dimens.dart';
 import '../../utils/constance/icons.dart';
 import '../../utils/constance/paths.dart';
-import '../../view_model/tasks_view_model/tasks_view_model.dart';
 
 class AddNewTask extends StatelessWidget {
   AddNewTask({Key? key, this.addToMyDayState = false, this.listName})
@@ -69,17 +66,17 @@ class AddNewTask extends StatelessWidget {
                             flex: 1,
                             child: ListTile(
                               onTap: () {
-                                if (controller.text.isNotEmpty) {
-                                  final task = TaskModel()..title = controller.text..todayTask = addToMyDayState..listName = listName..repeatDaily = repeatDailyState;
-                                  locator<ViewModel>().addTask(task);
-                                  Navigator.pop(context);
-                                }
+                                if (controller.text.isNotEmpty) {}
                               },
                               contentPadding: padding0,
                               horizontalTitleGap: size0,
 // add task Icon
                               /// TODO: Replace this icon with svg icon
-                              leading: SvgPicture.asset(addTaskIconPath, theme: SvgTheme(fontSize: 24, currentColor: Colors.red),),
+                              leading: SvgPicture.asset(
+                                addTaskIconPath,
+                                theme: SvgTheme(
+                                    fontSize: 24, currentColor: Colors.red),
+                              ),
 // addition text
                               title: Text(
                                 'addition'.tr(),
@@ -100,7 +97,7 @@ class AddNewTask extends StatelessWidget {
                               contentPadding: padding0,
                               horizontalTitleGap: size0,
                               leading: Icon(
-                                dailyRepetitionIcon,
+                                AppIcons.dailyRepetitionIcon,
                                 color: repeatDailyButtonColor,
                               ),
                               title: Text(
@@ -124,7 +121,7 @@ class AddNewTask extends StatelessWidget {
       horizontalTitleGap: size0,
 // add new task icon
       leading: const Icon(
-        addNewTaskIcon,
+        AppIcons.addNewTaskIcon,
         size: size28,
       ),
 // add new task text

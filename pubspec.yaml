@@ -53,19 +53,17 @@ dependencies:
   get_it: ^7.6.0
   flutter_svg: ^2.0.5
   firebase_core: ^2.15.1
-  firebase_storage: ^11.2.0
   localization: ^2.1.0
   flutter_gen: ^5.3.1
   easy_localization: ^3.0.2-dev.6+0
   cloud_firestore: ^4.7.1
   webview_flutter: ^4.2.2
   flutter_bloc: ^8.1.3
-  flutter_paytabs_bridge: ^2.4.2
-  connectivity_plus: ^4.0.1
   freezed: ^2.3.5
   provider: ^6.0.5
   firebase_app_check: ^0.1.5+2
   flutter_launcher_icons: ^0.13.1
+  connectivity_plus: ^5.0.1
 
 dev_dependencies:
   #flutter_launcher_icons: "^0.13.1"

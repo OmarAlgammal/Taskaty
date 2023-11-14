@@ -108,22 +108,22 @@ class _$FailureCopyWithImpl<$Res, $Val extends Failure>
 }
 
 /// @nodoc
-abstract class _$$ServerFailureCopyWith<$Res>
+abstract class _$$ServerFailureImplCopyWith<$Res>
     implements $FailureCopyWith<$Res> {
-  factory _$$ServerFailureCopyWith(
-          _$ServerFailure value, $Res Function(_$ServerFailure) then) =
-      __$$ServerFailureCopyWithImpl<$Res>;
+  factory _$$ServerFailureImplCopyWith(
+          _$ServerFailureImpl value, $Res Function(_$ServerFailureImpl) then) =
+      __$$ServerFailureImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$ServerFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res, _$ServerFailure>
-    implements _$$ServerFailureCopyWith<$Res> {
-  __$$ServerFailureCopyWithImpl(
-      _$ServerFailure _value, $Res Function(_$ServerFailure) _then)
+class __$$ServerFailureImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$ServerFailureImpl>
+    implements _$$ServerFailureImplCopyWith<$Res> {
+  __$$ServerFailureImplCopyWithImpl(
+      _$ServerFailureImpl _value, $Res Function(_$ServerFailureImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -131,7 +131,7 @@ class __$$ServerFailureCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$ServerFailure(
+    return _then(_$ServerFailureImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -142,8 +142,8 @@ class __$$ServerFailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ServerFailure implements ServerFailure {
-  _$ServerFailure({required this.message});
+class _$ServerFailureImpl implements ServerFailure {
+  _$ServerFailureImpl({required this.message});
 
   @override
   final String message;
@@ -157,7 +157,7 @@ class _$ServerFailure implements ServerFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ServerFailure &&
+            other is _$ServerFailureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -167,8 +167,8 @@ class _$ServerFailure implements ServerFailure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ServerFailureCopyWith<_$ServerFailure> get copyWith =>
-      __$$ServerFailureCopyWithImpl<_$ServerFailure>(this, _$identity);
+  _$$ServerFailureImplCopyWith<_$ServerFailureImpl> get copyWith =>
+      __$$ServerFailureImplCopyWithImpl<_$ServerFailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -249,34 +249,35 @@ class _$ServerFailure implements ServerFailure {
 }
 
 abstract class ServerFailure implements Failure {
-  factory ServerFailure({required final String message}) = _$ServerFailure;
+  factory ServerFailure({required final String message}) = _$ServerFailureImpl;
 
   @override
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$ServerFailureCopyWith<_$ServerFailure> get copyWith =>
+  _$$ServerFailureImplCopyWith<_$ServerFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$InternetConnectionFailureCopyWith<$Res>
+abstract class _$$InternetConnectionFailureImplCopyWith<$Res>
     implements $FailureCopyWith<$Res> {
-  factory _$$InternetConnectionFailureCopyWith(
-          _$InternetConnectionFailure value,
-          $Res Function(_$InternetConnectionFailure) then) =
-      __$$InternetConnectionFailureCopyWithImpl<$Res>;
+  factory _$$InternetConnectionFailureImplCopyWith(
+          _$InternetConnectionFailureImpl value,
+          $Res Function(_$InternetConnectionFailureImpl) then) =
+      __$$InternetConnectionFailureImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$InternetConnectionFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res, _$InternetConnectionFailure>
-    implements _$$InternetConnectionFailureCopyWith<$Res> {
-  __$$InternetConnectionFailureCopyWithImpl(_$InternetConnectionFailure _value,
-      $Res Function(_$InternetConnectionFailure) _then)
+class __$$InternetConnectionFailureImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$InternetConnectionFailureImpl>
+    implements _$$InternetConnectionFailureImplCopyWith<$Res> {
+  __$$InternetConnectionFailureImplCopyWithImpl(
+      _$InternetConnectionFailureImpl _value,
+      $Res Function(_$InternetConnectionFailureImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -284,7 +285,7 @@ class __$$InternetConnectionFailureCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$InternetConnectionFailure(
+    return _then(_$InternetConnectionFailureImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -295,8 +296,8 @@ class __$$InternetConnectionFailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InternetConnectionFailure implements InternetConnectionFailure {
-  _$InternetConnectionFailure({required this.message});
+class _$InternetConnectionFailureImpl implements InternetConnectionFailure {
+  _$InternetConnectionFailureImpl({required this.message});
 
   @override
   final String message;
@@ -310,7 +311,7 @@ class _$InternetConnectionFailure implements InternetConnectionFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InternetConnectionFailure &&
+            other is _$InternetConnectionFailureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -320,9 +321,9 @@ class _$InternetConnectionFailure implements InternetConnectionFailure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InternetConnectionFailureCopyWith<_$InternetConnectionFailure>
-      get copyWith => __$$InternetConnectionFailureCopyWithImpl<
-          _$InternetConnectionFailure>(this, _$identity);
+  _$$InternetConnectionFailureImplCopyWith<_$InternetConnectionFailureImpl>
+      get copyWith => __$$InternetConnectionFailureImplCopyWithImpl<
+          _$InternetConnectionFailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -404,33 +405,33 @@ class _$InternetConnectionFailure implements InternetConnectionFailure {
 
 abstract class InternetConnectionFailure implements Failure {
   factory InternetConnectionFailure({required final String message}) =
-      _$InternetConnectionFailure;
+      _$InternetConnectionFailureImpl;
 
   @override
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$InternetConnectionFailureCopyWith<_$InternetConnectionFailure>
+  _$$InternetConnectionFailureImplCopyWith<_$InternetConnectionFailureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TimeoutFailureCopyWith<$Res>
+abstract class _$$TimeoutFailureImplCopyWith<$Res>
     implements $FailureCopyWith<$Res> {
-  factory _$$TimeoutFailureCopyWith(
-          _$TimeoutFailure value, $Res Function(_$TimeoutFailure) then) =
-      __$$TimeoutFailureCopyWithImpl<$Res>;
+  factory _$$TimeoutFailureImplCopyWith(_$TimeoutFailureImpl value,
+          $Res Function(_$TimeoutFailureImpl) then) =
+      __$$TimeoutFailureImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$TimeoutFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res, _$TimeoutFailure>
-    implements _$$TimeoutFailureCopyWith<$Res> {
-  __$$TimeoutFailureCopyWithImpl(
-      _$TimeoutFailure _value, $Res Function(_$TimeoutFailure) _then)
+class __$$TimeoutFailureImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$TimeoutFailureImpl>
+    implements _$$TimeoutFailureImplCopyWith<$Res> {
+  __$$TimeoutFailureImplCopyWithImpl(
+      _$TimeoutFailureImpl _value, $Res Function(_$TimeoutFailureImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -438,7 +439,7 @@ class __$$TimeoutFailureCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$TimeoutFailure(
+    return _then(_$TimeoutFailureImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -449,8 +450,8 @@ class __$$TimeoutFailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TimeoutFailure implements TimeoutFailure {
-  _$TimeoutFailure({required this.message});
+class _$TimeoutFailureImpl implements TimeoutFailure {
+  _$TimeoutFailureImpl({required this.message});
 
   @override
   final String message;
@@ -464,7 +465,7 @@ class _$TimeoutFailure implements TimeoutFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TimeoutFailure &&
+            other is _$TimeoutFailureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -474,8 +475,9 @@ class _$TimeoutFailure implements TimeoutFailure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TimeoutFailureCopyWith<_$TimeoutFailure> get copyWith =>
-      __$$TimeoutFailureCopyWithImpl<_$TimeoutFailure>(this, _$identity);
+  _$$TimeoutFailureImplCopyWith<_$TimeoutFailureImpl> get copyWith =>
+      __$$TimeoutFailureImplCopyWithImpl<_$TimeoutFailureImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -556,33 +558,34 @@ class _$TimeoutFailure implements TimeoutFailure {
 }
 
 abstract class TimeoutFailure implements Failure {
-  factory TimeoutFailure({required final String message}) = _$TimeoutFailure;
+  factory TimeoutFailure({required final String message}) =
+      _$TimeoutFailureImpl;
 
   @override
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$TimeoutFailureCopyWith<_$TimeoutFailure> get copyWith =>
+  _$$TimeoutFailureImplCopyWith<_$TimeoutFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$BadResponseFailureCopyWith<$Res>
+abstract class _$$BadResponseFailureImplCopyWith<$Res>
     implements $FailureCopyWith<$Res> {
-  factory _$$BadResponseFailureCopyWith(_$BadResponseFailure value,
-          $Res Function(_$BadResponseFailure) then) =
-      __$$BadResponseFailureCopyWithImpl<$Res>;
+  factory _$$BadResponseFailureImplCopyWith(_$BadResponseFailureImpl value,
+          $Res Function(_$BadResponseFailureImpl) then) =
+      __$$BadResponseFailureImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$BadResponseFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res, _$BadResponseFailure>
-    implements _$$BadResponseFailureCopyWith<$Res> {
-  __$$BadResponseFailureCopyWithImpl(
-      _$BadResponseFailure _value, $Res Function(_$BadResponseFailure) _then)
+class __$$BadResponseFailureImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$BadResponseFailureImpl>
+    implements _$$BadResponseFailureImplCopyWith<$Res> {
+  __$$BadResponseFailureImplCopyWithImpl(_$BadResponseFailureImpl _value,
+      $Res Function(_$BadResponseFailureImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -590,7 +593,7 @@ class __$$BadResponseFailureCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$BadResponseFailure(
+    return _then(_$BadResponseFailureImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -601,8 +604,8 @@ class __$$BadResponseFailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BadResponseFailure implements BadResponseFailure {
-  _$BadResponseFailure({required this.message});
+class _$BadResponseFailureImpl implements BadResponseFailure {
+  _$BadResponseFailureImpl({required this.message});
 
   @override
   final String message;
@@ -616,7 +619,7 @@ class _$BadResponseFailure implements BadResponseFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BadResponseFailure &&
+            other is _$BadResponseFailureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -626,8 +629,8 @@ class _$BadResponseFailure implements BadResponseFailure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BadResponseFailureCopyWith<_$BadResponseFailure> get copyWith =>
-      __$$BadResponseFailureCopyWithImpl<_$BadResponseFailure>(
+  _$$BadResponseFailureImplCopyWith<_$BadResponseFailureImpl> get copyWith =>
+      __$$BadResponseFailureImplCopyWithImpl<_$BadResponseFailureImpl>(
           this, _$identity);
 
   @override
@@ -710,12 +713,12 @@ class _$BadResponseFailure implements BadResponseFailure {
 
 abstract class BadResponseFailure implements Failure {
   factory BadResponseFailure({required final String message}) =
-      _$BadResponseFailure;
+      _$BadResponseFailureImpl;
 
   @override
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$BadResponseFailureCopyWith<_$BadResponseFailure> get copyWith =>
+  _$$BadResponseFailureImplCopyWith<_$BadResponseFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

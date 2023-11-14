@@ -9,7 +9,7 @@ import 'package:taskaty/services/local_services/my_shared_preferences.dart';
 import 'package:taskaty/view_model/theme_view_model/theme_view_model.dart';
 
 import 'firebase_options.dart';
-import 'models/task_model/task_model.dart';
+import 'models/task_model.dart';
 import 'routing/routers.dart';
 import 'routing/routes.dart';
 import 'service_locator/locator.dart';

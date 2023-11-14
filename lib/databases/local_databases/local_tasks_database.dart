@@ -1,21 +1,20 @@
 import 'package:hive/hive.dart';
 
-import '../../models/task_model/task_model.dart';
+import '../../models/task_model.dart';
 import '../../services/local_services/hive_services.dart';
 
-abstract class BaseLocalTasksDatabase {
-  Future<void> writeData(String key, TaskModel value);
+abstract class BaseLocalTasksDatabase<T> {
+  Future<void> writeData(key, value);
 
-  List<TaskModel> getList({required bool Function(TaskModel element) query});
 
-  Box<TaskModel> getBox();
+  Box<T> getBox();
 
   Future<void> deleteData(String key);
 
   Future<int> clearData();
 }
 
-class LocalTasksDatabase implements BaseLocalTasksDatabase {
+class LocalTasksDatabase implements BaseLocalTasksDatabase<TaskModel> {
   final BaseHiveService<TaskModel> _baseHiveService;
 
   LocalTasksDatabase(this._baseHiveService);
@@ -26,12 +25,7 @@ class LocalTasksDatabase implements BaseLocalTasksDatabase {
   }
 
   @override
-  List<TaskModel> getList({required bool Function(TaskModel element) query}) {
-    return _baseHiveService.getList(query: query);
-  }
-
-  @override
-  Future<void> writeData(String key, TaskModel value) async {
+  Future<void> writeData(key, value) async {
     return await _baseHiveService.writeData(key, value);
   }
 

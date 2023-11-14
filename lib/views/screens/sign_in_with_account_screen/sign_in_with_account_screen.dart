@@ -9,7 +9,7 @@ import '../../widgets/ask_and_make_action.dart';
 import '../../widgets/my_button.dart';
 
 class SignInWithAccountPage extends StatelessWidget {
-  SignInWithAccountPage({Key? key}) : super(key: key);
+  const SignInWithAccountPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class SignInWithAccountPage extends StatelessWidget {
                       decoration: InputDecoration(
                     hintText: 'account'.tr(),
                     prefixIcon: const Icon(
-                      emailIcon,
+                      AppIcons.emailIcon,
                     ),
                   )),
                   TextFormField(
@@ -57,7 +57,7 @@ class SignInWithAccountPage extends StatelessWidget {
                       decoration: InputDecoration(
                         hintText: 'passwordHint'.tr(),
                         prefixIcon: const Icon(
-                          eyeIcon,
+                          AppIcons.eyeIcon,
                         ),
                       )),
                   gap36,
