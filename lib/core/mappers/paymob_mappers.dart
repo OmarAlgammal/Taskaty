@@ -42,7 +42,7 @@ class PaymobMappers {
           "state": "NA"
         },
         "currency": "EGP",
-        "integration_id": PaymentApiConstants.integrationId,
+        "integration_id": PaymentApiConstants.onlineCardIntegrationId,
       };
 
   static Map<String, dynamic> walletPayRequest({

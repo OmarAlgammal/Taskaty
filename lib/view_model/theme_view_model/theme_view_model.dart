@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:taskaty/theme/dark_theme.dart';
-import 'package:taskaty/theme/light_theme.dart';
+
+import '../../theme/dark_theme/dartk_theme.dart';
+import '../../theme/light_theme/light_theme.dart';
+
 
 class ThemeViewModel extends ChangeNotifier {
 
-  bool _lightTheme = true;
+  bool _isLightTheme = true;
   ThemeData _myTheme = lightTheme;
 
-  static ThemeViewModel instance (BuildContext context) => Provider.of<ThemeViewModel>(context);
+  static ThemeViewModel instance (BuildContext context) => Provider.of<ThemeViewModel>(context, listen: false);
 
   ThemeData get myTheme => _myTheme;
 
   void changeTheme() {
-    _lightTheme = ! _lightTheme;
-    _myTheme = _lightTheme ? lightTheme : darkTheme;
+    _isLightTheme = ! _isLightTheme;
+    _myTheme = _isLightTheme ? lightTheme : darkTheme;
     notifyListeners();
   }
 }
+

@@ -1,56 +1,80 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:taskaty/utils/constance/border_radius.dart';
-import 'package:taskaty/utils/constance/dimens.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
+import 'package:taskaty/utils/extensions/int_extensions.dart';
+import 'package:taskaty/views/screens/home_screen/components/add_task_button.dart';
+import 'package:taskaty/views/widgets/singl_divider.dart';
 import 'package:taskaty/views/widgets/task_widget.dart';
 
-import '../../models/task_model.dart';
+import '../../models/task_model/task_model.dart';
 
 class PeriodItem extends StatelessWidget {
-  const PeriodItem({super.key, required this.tasks});
+  const PeriodItem({
+    super.key,
+    required this.tasks,
+    required this.monthNum,
+    required this.fromNextMonths,
+    required this.thisMonth,
+  });
 
+  final int monthNum;
   final List<TaskModel> tasks;
+  final bool fromNextMonths;
+  final bool thisMonth;
 
   @override
   Widget build(BuildContext context) {
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
       children: [
-        Text('Sat'),
-        gap8,
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              color: context.colorScheme.onPrimary.withOpacity(.2),
-              borderRadius: Circular.circular16,
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              children: [
+                Text(
+                  monthNum.getMonthAbbreviatedName,
+                  style: thisMonth
+                      ? context.textTheme.headlineSmall!
+                          .copyWith(fontWeight: FontWeight.bold)
+                      : context.textTheme.bodyMedium,
+                ),
+                if (thisMonth || fromNextMonths)
+                  AddTaskButton(monthNum: monthNum),
+              ],
             ),
-            child: ListView.builder(
-              itemCount: tasks.length,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => SizedBox(
-                height: 48,
-                child: ListTileTheme(
-                  horizontalTitleGap: 0,
-                  child: TaskWidget(task: tasks[index]),
-                  // CheckboxListTile(
-                  //   title: Text('title'),
-                  //   contentPadding: padding0,
-                  //   side: BorderSide.none,
-                  //   checkboxShape: const CircleBorder(),
-                  //   tristate: true,
-                  //   controlAffinity: ListTileControlAffinity.leading,
-                  //   value: true,
-                  //   onChanged: (value) {},
-                  // ),
+            gap8,
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: tasks.isNotEmpty
+                      ? context.colorScheme.onPrimary.withOpacity(.2)
+                      : null,
+                  borderRadius: Circular.circular16,
+                ),
+                child: ListView.separated(
+                  itemCount: tasks.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  separatorBuilder: (context, index) => SingleDivider(
+                    color: context.colorScheme.background,
+                  ),
+                  itemBuilder: (context, index) => SizedBox(
+                    height: 48,
+                    child: ListTileTheme(
+                      horizontalTitleGap: 0,
+                      child: TaskWidget(
+                        task: tasks[index],
+                        showTileColor: false,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        )
+            )
+          ],
+        ),
+        gap12,
       ],
     );
   }

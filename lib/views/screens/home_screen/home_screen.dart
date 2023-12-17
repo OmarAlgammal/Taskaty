@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: MainTabs.values.length,
-      child: SafeArea(
+      child: const SafeArea(
         child: Scaffold(
           appBar: HomeScreenTabBar(),
           body: HomeScreenTabViewComp(),

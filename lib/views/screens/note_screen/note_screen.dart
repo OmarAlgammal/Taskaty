@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:taskaty/utils/extensions/context_extension.dart';
 
-import '../../../models/task_model.dart';
+import '../../../models/task_model/task_model.dart';
 import '../../../service_locator/locator.dart';
 import '../../../view_model/tasks_view_model/tasks_view_model_deprecated.dart';
 
@@ -22,11 +23,6 @@ class _NotePageState extends State<NotePage> {
     task = ModalRoute.of(context)!.settings.arguments as TaskModel;
   }
 
-  @override
-  void deactivate() {
-    /// TODO: Remove this line
-    //locator<TaskViewModel>().updateTask(task);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +35,7 @@ class _NotePageState extends State<NotePage> {
         appBar: AppBar(
             title: SingleChildScrollView(
           child: Text(
-            task.title!,
+            task.title,
           ),
         )),
         body: TextFormField(
@@ -49,11 +45,11 @@ class _NotePageState extends State<NotePage> {
           minLines: null,
           maxLines: null,
           onChanged: (description) {
-            task.note = description;
+            task.updateTask(note: description);
           },
           decoration: InputDecoration(
             border: InputBorder.none,
-            fillColor: Theme.of(context).colorScheme.background,
+            fillColor: context.colorScheme.background,
             filled: true,
           ),
         ),

@@ -3,32 +3,46 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:paymob_payment/paymob_payment.dart';
 import 'package:provider/provider.dart';
-import 'package:taskaty/services/local_services/hive_services.dart';
-import 'package:taskaty/services/local_services/my_shared_preferences.dart';
+import 'package:taskaty/core/network/constants/payment_api_constants.dart';
 import 'package:taskaty/view_model/theme_view_model/theme_view_model.dart';
 
 import 'firebase_options.dart';
-import 'models/task_model.dart';
+import 'models/task_model/task_model.dart';
 import 'routing/routers.dart';
 import 'routing/routes.dart';
 import 'service_locator/locator.dart';
+import 'services/local/hive_services.dart';
+import 'services/local/my_shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAppCheck.instance.activate(
-    webRecaptchaSiteKey: 'recaptcha-v3-site-key',
-    androidProvider: AndroidProvider.debug,
-    appleProvider: AppleProvider.appAttest,
-  );
-  await EasyLocalization.ensureInitialized();
   setup();
   Hive.registerAdapter(TaskModelAdapter());
-  await locator<HiveServices<TaskModel>>().init();
-  await locator<MySharedPreferences>().init();
+  PaymobPayment.instance.initialize(
+    apiKey: PaymentApiConstants.apiKey,
+    integrationID: PaymentApiConstants.onlineCardIntegrationId,
+    iFrameID: 603861,
+  );
+  await Future.wait([
+    FirebaseAppCheck.instance.activate(
+      webRecaptchaSiteKey: 'recaptcha-v3-site-key',
+      androidProvider: AndroidProvider.debug,
+      appleProvider: AppleProvider.appAttest,
+    ),
+    EasyLocalization.ensureInitialized(),
+    locator<HiveServices<TaskModel>>().init(),
+    locator<MySharedPreferences>().init(),
+    PaymobPayment.instance.initialize(
+      apiKey: PaymentApiConstants.apiKey,
+      integrationID: 4379027,
+      iFrameID: 603861,
+    ),
+  ]);
 
   runApp(
     EasyLocalization(
@@ -66,7 +80,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       onGenerateRoute: onGenerate,
-      initialRoute: AppRoutes.homeScreen,
+      initialRoute: AppRoutes.landingScreen,
     );
   }
 }

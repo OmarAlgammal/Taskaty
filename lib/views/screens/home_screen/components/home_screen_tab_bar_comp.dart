@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:taskaty/databases/local_databases/local_tasks_database.dart';
-import 'package:taskaty/models/task_model.dart';
+import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/utils/enums/main_tabs_enum.dart';
+import 'package:taskaty/utils/extensions/context_extension.dart';
+import 'package:taskaty/utils/extensions/date_time_extension.dart';
 import 'package:taskaty/views/screens/home_screen/components/monthly_comp.dart';
+import 'package:taskaty/views/screens/home_screen/components/tasks_list_comp.dart';
 import 'package:taskaty/views/screens/home_screen/components/weekly_comp.dart';
-import 'package:taskaty/views/widgets/task_widget.dart';
+import 'package:taskaty/views/widgets/add_task_button_comp.dart';
 
+import '../../../../repositories/local_service_repos/local_tasks_repo.dart';
 import '../../../../service_locator/locator.dart';
-import '../../../../view_model/tasks_view_model/use_cases/task_view_model.dart';
+import '../../../../utils/constance/icons.dart';
 
 class HomeScreenTabViewComp extends StatelessWidget {
   const HomeScreenTabViewComp({
@@ -23,55 +26,33 @@ class HomeScreenTabViewComp extends StatelessWidget {
         (index) {
           final tab = MainTabs.values[index];
           return Scaffold(
-            floatingActionButton: tab == MainTabs.today || tab == MainTabs.all
-                ? FloatingActionButton(
-                    onPressed: () {
-                      locator<TaskViewModel>().writeTask(TaskModel('_title',
-                          '_note', DateTime.now(), true, DateTime(2023, 11, 29)));
-                    },
-                    child: const Icon(Icons.add),
-                  )
-                : null,
+            floatingActionButton: FloatingActionButton(
+              child: Icon(
+                AppIcons.addIcon,
+                color: context.colorScheme.onPrimary,
+              ),
+              onPressed: () {
+                showModalBottomSheet(
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (context) => AddTaskButtonComp(),
+                );
+              },
+            ),
             body: ValueListenableBuilder<Box<TaskModel>>(
               valueListenable:
-                  (locator<LocalTasksDatabase>().getBox()).listenable(),
+                  (locator<LocalTasksRepo>().getBox()).listenable(),
               builder: (context, box, _) {
-                final monthsTasks = getTasks(box.values.toList());
-
-                return switch(tab){
+                final monthsTasks = getMonthsTasks(box.values.toList());
+                return switch (tab) {
                   MainTabs.weekly => WeeklyComp(months: monthsTasks),
-                MainTabs.monthly => MonthlyComp(monthTasks: monthsTasks),
-                 _ => Text('Task'),
+                  MainTabs.monthly => MonthlyComp(monthTasks: monthsTasks),
+                  _ => TasksListComp(
+                      tab: tab,
+                      tasks: tab == MainTabs.today
+                          ? getDailyTasks(box.values.toList())
+                          : box.values.toList()),
                 };
-                return MonthlyComp(monthTasks: monthsTasks);
-                // final todayTasks =
-                //     box.values.where((element) => element.isTodayTask).toList();
-                // final allTasks = box.values.toList();
-                // final tab =
-                //     MainTabs.values[DefaultTabController.of(context).index];
-                // final itemCountLength = switch (tab) {
-                //   MainTabs.today => todayTasks.length,
-                //   MainTabs.weekly => 12 * 5,
-                //   MainTabs.monthly => 12,
-                //   MainTabs.all => allTasks.length,
-                // };
-                // return Padding(
-                //   padding: const EdgeInsets.fromLTRB(8, 24, 8, 0),
-                //   child: ListView.separated(
-                //     itemCount: itemCountLength,
-                //     separatorBuilder: (context, index) => gap4,
-                //     itemBuilder: (context, index) {
-                //       switch (tab) {
-                //         case MainTabs.today:
-                //           return TaskWidget(task: todayTasks[index]);
-                //         case MainTabs.all:
-                //           return TaskWidget(task: allTasks[index]);
-                //         default:
-                //         return PeriodItem(map: monthsTasks);
-                //       }
-                //     },
-                //   ),
-                // );
               },
             ),
           );
@@ -80,15 +61,22 @@ class HomeScreenTabViewComp extends StatelessWidget {
     );
   }
 
-  Map<int, Map<int, List<TaskModel>>> getTasks(Iterable<TaskModel> tasks) {
+  List<TaskModel> getDailyTasks(Iterable<TaskModel> tasks) =>
+      tasks.where((element) => element.isTodayTask).toList();
+
+  Map<int, Map<int, List<TaskModel>>> getMonthsTasks(
+      Iterable<TaskModel> tasks) {
     final tasksStructure = getTasksStructure();
-    final yearTasks = tasks.where((task) => task.thisSameYear()).toList();
+    final yearTasks =
+        tasks.where((task) => task.creationDate.likeThisYear).toList();
     for (int i = 0; i < yearTasks.length; i++) {
       final task = yearTasks[i];
-      final monthNumber = task.getMonthNumber;
-      final weekNumber = task.getWeekNumberInMonth();
-      debugPrint('week number here is $weekNumber');
-      tasksStructure[monthNumber]![weekNumber]!.add(task);
+      debugPrint('task $i id ${task.id}');
+      if (task.dueDate != null) {
+        final monthNumber = task.dueDate!.month;
+        final weekNumber = task.dueDate!.getWeekNumberInMonth;
+        tasksStructure[monthNumber]![weekNumber]!.add(task);
+      }
     }
     return tasksStructure;
   }
@@ -98,16 +86,4 @@ class HomeScreenTabViewComp extends StatelessWidget {
       for (int m = 1; m <= 12; m++) m: {for (int w = 1; w <= 5; w++) w: []}
     };
   }
-
-  // List<List<TaskModel>> getWeeks(
-  //     Map<int, Map<int, List<TaskModel>>> map) {
-  //   List<List<TaskModel>> list = [];
-  //
-  //   for (int m = 1; m <= 12; m++) {
-  //     for (int w = 1; w <= 5; w++) {
-  //       list.add(map[m]![w]!);
-  //     }
-  //   }
-  //   return list;
-  // }
 }

@@ -79,7 +79,7 @@ class SignInWithAccountPage extends StatelessWidget {
                     action: 'al.createAccount',
                     onPressed: () {
                       Navigator.pushReplacementNamed(
-                          context, AppRoutes.signUpScreen);
+                          context, AppRoutes.paymentScreen);
                     },
                   )),
             )

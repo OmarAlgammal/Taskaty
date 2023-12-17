@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:taskaty/utils/constance/border_radius.dart';
+import 'package:taskaty/utils/constance/icons.dart';
+import 'package:taskaty/utils/extensions/context_extension.dart';
+import 'package:taskaty/utils/helper/file_helper.dart';
 
-import '../../theme/colors.dart';
 import '../../utils/constance/dimens.dart';
 import '../../utils/constance/gaps.dart';
 
 class FileItemDesign extends StatelessWidget {
   const FileItemDesign(
       {Key? key,
-      required this.fileType,
-      required this.fileName,
-      required this.fileSize,
-      required this.onPressed})
+      required this.filePath,
+      required this.onFilePressed,
+      required this.onDeleteButtonPressed})
       : super(key: key);
 
-  final String fileType;
-  final String fileName;
-  final double fileSize;
-  final VoidCallback onPressed;
+  final String filePath;
+  final VoidCallback onFilePressed;
+  final VoidCallback onDeleteButtonPressed;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
+      onTap: onFilePressed,
       child: Padding(
         padding: paddingV4,
         child: SizedBox(
@@ -33,14 +33,14 @@ class FileItemDesign extends StatelessWidget {
               Container(
                 width: size46,
                 height: size46,
-                decoration: const BoxDecoration(
-                  color: greenColor,
+                decoration: BoxDecoration(
+                  color: context.colorScheme.onPrimary,
                   borderRadius: Circular.circular5,
                 ),
 // file type
                 child: Center(
                   child: Text(
-                    fileType,
+                    FileHelper.getFileProperties(filePath).fileExtension,
                   ),
                 ),
               ),
@@ -51,14 +51,24 @@ class FileItemDesign extends StatelessWidget {
                 children: [
 // file name
                   Text(
-                    fileName,
+                    FileHelper.getFileProperties(filePath).fileName,
                   ),
 // file size
-                  Text(
-                    '$fileSize MB',
+                  FutureBuilder(
+                    future: FileHelper.formatFileSize(filePath),
+                    builder: (context, snapshot) {
+                      if (ConnectionState.done == snapshot.connectionState) {
+                        return Text(snapshot.data ?? '');
+                      }
+                      return const Text('loading file size..');
+                    },
                   )
                 ],
-              )
+              ),
+              const Spacer(),
+              IconButton(
+                  onPressed: onDeleteButtonPressed,
+                  icon: const Icon(AppIcons.deleteIcon))
             ],
           ),
         ),

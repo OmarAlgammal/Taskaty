@@ -31,8 +31,12 @@ const paddingV8 = EdgeInsets.only(top: 8.0);
 const paddingV18 = EdgeInsets.only(top: 18.0);
 
 
+const paddingVV18 = EdgeInsets.symmetric(vertical: 18);
+
+
 const paddingH4 = EdgeInsets.only(left: 4, right: 4);
 const paddingH8 = EdgeInsets.only(left: 8, right: 8);
 const paddingH16 = EdgeInsets.only(left: 16, right: 16);
+const paddingH32 = EdgeInsets.only(left: 32, right: 32);
 
 

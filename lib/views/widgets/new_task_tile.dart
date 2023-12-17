@@ -13,10 +13,12 @@ class AddNewTask extends StatelessWidget {
   final bool addToMyDayState;
   final String? listName;
 
-  final controller = TextEditingController();
 
   bool addedButtonEnabled = false;
   bool repeatDailyState = false;
+
+  final controller = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,7 @@ class AddNewTask extends StatelessWidget {
 // add task Icon
                               /// TODO: Replace this icon with svg icon
                               leading: SvgPicture.asset(
-                                addTaskIconPath,
+                                AppPaths.addTaskIcon,
                                 theme: SvgTheme(
                                     fontSize: 24, currentColor: Colors.red),
                               ),

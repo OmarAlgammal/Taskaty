@@ -1,13 +1,13 @@
 // import 'package:either_dart/either.dart';
 // import 'package:taskaty/core/database/constance/local_utils_database_keys.dart';
-// import 'package:taskaty/databases/auth_database.dart';
+// import 'package:taskaty/databases/auth_repo.dart';
 // import 'package:taskaty/databases/firestore_database.dart';
-// import 'package:taskaty/databases/local_databases/local_tasks_database.dart';
-// import 'package:taskaty/databases/local_databases/local_utils_database.dart';
+// import 'package:taskaty/databases/local_databases/local_tasks_repo.dart';
+// import 'package:taskaty/databases/local_databases/local_utils_repo.dart';
 // import 'package:taskaty/databases/notion_database.dart';
 // import 'package:taskaty/models/task_model/task_model.dart';
 //
-// import '../../../core/errors/failure.dart';
+// import '../../../core/errors/error.dart';
 //
 // class SyncTaskUseCase {
 //   final BaseLocalUtilsDatabase _baseLocalUtilsDatabase;

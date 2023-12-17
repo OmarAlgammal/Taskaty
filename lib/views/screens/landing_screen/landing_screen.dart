@@ -1,27 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:taskaty/utils/extensions/context_extension.dart';
+import 'package:taskaty/views/screens/register_screen/register_screen.dart';
 
-import '../../../service_locator/locator.dart';
-import '../../../services/firebase_auth.dart';
 import '../home_screen/home_screen.dart';
-import '../sign_in_screen/sign_in_screen.dart';
 
 class LandingPage extends StatelessWidget {
-  const LandingPage({Key? key}) : super(key: key);
+  const LandingPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: locator<AuthServices>().authStateChanges(),
+    context.paymentRepo.getPaymentPrice(forRegistration: true).then((value) {
+      if (value.isRight){
+        debugPrint('value here is ${value.right}');
+      }else{
+        debugPrint('value is left');
+      }
+    });
+    return StreamBuilder<User?>(
+      stream: context.authRepo.authStateChanges(),
       builder: (context, snapshot) {
-        return const HomeScreen();
-        if ([ConnectionState.active, ConnectionState.done]
-            .contains(snapshot.connectionState)) {
-          if (snapshot.data != null) {
-            return const HomeScreen();
-          }
-          return const SignInScreen();
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
         }
-        return const Scaffold(body: Center(child: CircularProgressIndicator()));
+
+        if (snapshot.data == null) {
+          return const RegisterScreen();
+        }
+
+        return const HomeScreen();
       },
     );
   }
