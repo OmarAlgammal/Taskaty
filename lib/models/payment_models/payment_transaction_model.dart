@@ -22,8 +22,8 @@ class PaymentTransactionModel {
     transactionId: json['id'],
     message: json['message'],
     responseCode: json['txn_response_code'],
-    date: DateTime.parse(json['date']) ?? DateTime.now(),
-    expiryDate: DateTime.parse(json['expiryDate']) ?? DateTime.now().add(const Duration(days: 365)),
+    date: json['date'] != null ? DateTime.parse(json['date']) :  DateTime.now(),
+    expiryDate: json['expiryDate'] != null ? DateTime.parse(json['expiryDate']) : DateTime.now().add(const Duration(days: 365)),
   );
 
 

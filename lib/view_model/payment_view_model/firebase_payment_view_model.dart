@@ -1,4 +1,6 @@
 import 'package:either_dart/either.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:taskaty/utils/extensions/date_time_extension.dart';
 
 import '../../core/errors/error.dart';
 import '../../models/payment_models/payment_transaction_model.dart';
@@ -20,18 +22,19 @@ class FirebasePaymentViewModel {
 
   Future<Either<MyError, void>> savePaymentDetails(
       {required PaymentTransactionModel paymentTransactionModel}) {
+    _userOnSubscriptionPeriod = paymentTransactionModel.expiryDate.isAfterNow;
     return _baseFirebasePaymentRepo.savePaymentDetails(
         paymentTransactionModel: paymentTransactionModel);
   }
 
-  Future<Either<MyError, bool>> isUserStillOnSubscriptionPeriod() async {
-    return _baseFirebasePaymentRepo.isUserStillOnSubscriptionPeriod();
-  }
-
-  Future<void> userStillOnSubscriptionPeriod() async {
-    final result =
-        await _baseFirebasePaymentRepo.isUserStillOnSubscriptionPeriod();
-    _userOnSubscriptionPeriod = result.isRight || false;
+  Future<void> isUserStillOnSubscriptionPeriod() async {
+    final result = await _baseFirebasePaymentRepo.isUserStillOnSubscriptionPeriod();
+    if (result.isRight){
+      debugPrint('Firebase payment view model : right result is ${result.right}');
+    }else {
+      debugPrint('Firebase payment view model : left result is ${result.left}');
+    }
+    _userOnSubscriptionPeriod = result.isRight;
   }
 
   Stream<PaymentTransactionModel> getLastPaymentProcess(){

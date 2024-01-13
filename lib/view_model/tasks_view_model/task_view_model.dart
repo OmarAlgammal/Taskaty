@@ -1,4 +1,5 @@
 import 'package:either_dart/either.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:taskaty/core/errors/error.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
@@ -23,6 +24,7 @@ class TaskViewModel {
   }
 
   Future<Either<MyError, void>> setTask(TaskModel task) async {
+    debugPrint('Task new model : is paid ${_firebasePaymentViewModel.userOnSubscriptionPeriod}');
     if (_firebasePaymentViewModel.userOnSubscriptionPeriod) {
       return _baseFirestoreTasksRepo.setTask(task: task);
     }

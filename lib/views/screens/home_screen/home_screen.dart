@@ -14,13 +14,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    context.firebasePaymentViewModel.isUserStillOnSubscriptionPeriod().then((value) {
-      if (value.isRight){
-        debugPrint('value here is ${value.right}');
-      }else{
-        debugPrint('value is left');
-      }
-    });
     return DefaultTabController(
       length: MainTabs.values.length,
       child: const SafeArea(
