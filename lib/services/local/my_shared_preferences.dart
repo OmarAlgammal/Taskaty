@@ -5,7 +5,7 @@ abstract class BaseSharedPreferences {
 
   Future<void> setBoolData(String key, bool data);
 
-  bool getBoolValue(String data);
+  bool? getBoolValue(String data);
 }
 
 class MySharedPreferences implements BaseSharedPreferences {
@@ -22,7 +22,7 @@ class MySharedPreferences implements BaseSharedPreferences {
   }
 
   @override
-  bool getBoolValue(String key) {
-    return _prefs.getBool(key) ?? false;
+  bool? getBoolValue(String key) {
+    return _prefs.getBool(key);
   }
 }

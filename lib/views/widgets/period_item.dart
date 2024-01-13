@@ -4,7 +4,7 @@ import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/extensions/int_extensions.dart';
 import 'package:taskaty/views/screens/home_screen/components/add_task_button.dart';
-import 'package:taskaty/views/widgets/singl_divider.dart';
+import 'package:taskaty/views/widgets/single_divider.dart';
 import 'package:taskaty/views/widgets/task_widget.dart';
 
 import '../../models/task_model/task_model.dart';

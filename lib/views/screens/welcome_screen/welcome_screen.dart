@@ -8,7 +8,6 @@ import 'package:taskaty/utils/constance/icons.dart';
 import 'package:taskaty/utils/constance/paths.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 
-import '../../../repositories/local_service_repos/local_utils_repo.dart';
 import '../../../repositories/remote_service_repos/auth_repo.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -61,7 +60,6 @@ class WelcomeScreen extends StatelessWidget {
                       registerButton(context, primary: false, text: 'Skip',
                           onPressed: () {
                         Navigator.pushNamed(context, AppRoutes.homeScreen);
-                        locator<LocalUtilsRepo>().setWelcomeScreenValue();
                       }),
                       gap16,
                       registerButton(context,

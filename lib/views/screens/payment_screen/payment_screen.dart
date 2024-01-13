@@ -17,14 +17,18 @@ class PaymentScreen extends StatefulWidget {
 class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
-    final paymentScreenModel = ModalRoute.of(context)!.settings.arguments as PaymentScreenModel;
+    final paymentScreenModel =
+        ModalRoute.of(context)!.settings.arguments as PaymentScreenModel;
     return Scaffold(
       appBar: AppBar(
-        title: Text(paymentScreenModel.payForSubscription ? 'pay for subscription' : 'Say thanks'),
+        title: Text(paymentScreenModel.payForSubscription
+            ? 'pay for subscription'
+            : 'Say thanks'),
       ),
       body: Center(
         child: FutureBuilder(
-          future: context.paymentRepo.getPaymentKeyRequest(amount: paymentScreenModel.amount),
+          future: context.paymentViewModel
+              .getPaymentKeyRequest(amount: paymentScreenModel.amount),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               final url = PaymentApiConstants.paymentFramUrl(
@@ -41,11 +45,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           final params = Uri.parse(request.url).queryParameters;
                           final response =
                               PaymentTransactionModel.fromJson(params);
-                          if (response.success && paymentScreenModel.payForSubscription){
-                            await context.paymentRepo.savePaymentDetails(paymentTransactionModel: response);
+                          if (response.success &&
+                              paymentScreenModel.payForSubscription) {
+                            await context.firebasePaymentViewModel
+                                .savePaymentDetails(
+                                    paymentTransactionModel: response);
                           }
                           Navigator.pop(context);
-                          alertDialogHelper(context: context, paidSuccessfully: response.success);
+                          alertDialogHelper(
+                              context: context,
+                              paidSuccessfully: response.success);
                           return NavigationDecision.prevent;
                         }
                         return NavigationDecision.navigate;

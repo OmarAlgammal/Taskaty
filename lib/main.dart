@@ -6,6 +6,9 @@ import 'package:hive/hive.dart';
 import 'package:paymob_payment/paymob_payment.dart';
 import 'package:provider/provider.dart';
 import 'package:taskaty/core/network/constants/payment_api_constants.dart';
+import 'package:taskaty/repositories/local_service_repos/theme_repo.dart';
+import 'package:taskaty/repositories/remote_service_repos/payment_repo.dart';
+import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
 import 'package:taskaty/view_model/theme_view_model/theme_view_model.dart';
 
 import 'firebase_options.dart';
@@ -23,11 +26,6 @@ Future<void> main() async {
   );
   setup();
   Hive.registerAdapter(TaskModelAdapter());
-  PaymobPayment.instance.initialize(
-    apiKey: PaymentApiConstants.apiKey,
-    integrationID: PaymentApiConstants.onlineCardIntegrationId,
-    iFrameID: 603861,
-  );
   await Future.wait([
     FirebaseAppCheck.instance.activate(
       webRecaptchaSiteKey: 'recaptcha-v3-site-key',
@@ -42,6 +40,7 @@ Future<void> main() async {
       integrationID: 4379027,
       iFrameID: 603861,
     ),
+    locator<FirebasePaymentViewModel>().isUserStillOnSubscriptionPeriod(),
   ]);
 
   runApp(
@@ -50,7 +49,7 @@ Future<void> main() async {
       path: 'assets/localization',
       fallbackLocale: const Locale('ar'),
       child: ChangeNotifierProvider<ThemeViewModel>(
-        create: (context) => ThemeViewModel(),
+        create: (context) => ThemeViewModel(locator<ThemeRepo>()),
         child: const MyApp(),
         //child: const MyApp(),
       ),
@@ -75,7 +74,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: Provider.of<ThemeViewModel>(context).myTheme,
+      theme: Provider.of<ThemeViewModel>(context).getTheme(),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,

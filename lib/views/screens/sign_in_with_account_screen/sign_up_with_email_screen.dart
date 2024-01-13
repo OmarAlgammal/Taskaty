@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/constance/dimens.dart';
 import '../../../utils/constance/gaps.dart';
-import '../../widgets/my_button.dart';
+import '../../widgets/buttons/my_button.dart';
 
 class SignUpWithEmailScreen extends StatelessWidget {
   SignUpWithEmailScreen({Key? key}) : super(key: key);

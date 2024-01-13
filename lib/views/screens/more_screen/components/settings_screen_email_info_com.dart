@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/extensions/string_extensions.dart';
-import 'package:taskaty/views/widgets/singl_divider.dart';
+import 'package:taskaty/views/widgets/single_divider.dart';
 
 import '../../../../repositories/local_service_repos/local_tasks_repo.dart';
 import '../../../../repositories/remote_service_repos/auth_repo.dart';

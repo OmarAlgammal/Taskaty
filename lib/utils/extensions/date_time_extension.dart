@@ -9,6 +9,9 @@ extension DateTimeExtension on DateTime {
     return false;
   }
 
+
+  bool get isAfterNow => isAfter(DateTime.now());
+
   bool get likeThisYear => year == DateTime.now().year;
 
   int get getWeekNumberInMonth => (day / 7).ceil();

@@ -46,7 +46,7 @@ class _TaskPageState extends State<TaskPage> {
     return WillPopScope(
       onWillPop: () async {
         debugPrint('will pop scope : ${task.title}');
-        context.taskViewModel.writeTask(task);
+        context.taskViewModel.setTask(task);
         return true;
       },
       child: Scaffold(

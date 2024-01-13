@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:paymob_payment/paymob_payment.dart';
 import 'package:taskaty/routing/routes.dart';
-import 'package:taskaty/utils/constance/border_radius.dart';
 import 'package:taskaty/utils/constance/dimens.dart';
 import 'package:taskaty/utils/constance/icons.dart';
 import 'package:taskaty/utils/constance/paths.dart';
@@ -21,9 +19,11 @@ class HomeScreenTabBar extends StatelessWidget implements PreferredSizeWidget {
         color: context.colorScheme.primary,
       ),
       actions: [
-        IconButton(onPressed: () {
-         Navigator.pushNamed(context, AppRoutes.moreScreen);
-        }, icon: const Icon(AppIcons.more)),
+        IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.moreScreen);
+            },
+            icon: const Icon(AppIcons.more)),
       ],
       centerTitle: true,
       bottom: PreferredSize(

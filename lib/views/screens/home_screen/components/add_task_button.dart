@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskaty/views/widgets/add_task_button_comp.dart';
+import 'package:taskaty/views/widgets/buttons/add_task_button_comp.dart';
 
 import '../../../../utils/constance/border_radius.dart';
 import '../../../../utils/constance/icons.dart';

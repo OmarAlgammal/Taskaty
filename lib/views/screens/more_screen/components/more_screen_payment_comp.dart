@@ -3,8 +3,8 @@ import 'package:taskaty/models/navigation_models/payment_screen_model.dart';
 import 'package:taskaty/routing/routes.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 
-import '../../utils/constance/dimens.dart';
-import '../../utils/constance/icons.dart';
+import '../../../../utils/constance/dimens.dart';
+import '../../../../utils/constance/icons.dart';
 
 class PaymentComp extends StatelessWidget {
   PaymentComp({super.key, this.payForSubscription = true});
@@ -31,8 +31,8 @@ class PaymentComp extends StatelessWidget {
             ),
       title: Text(payForSubscription ? 'Subscribe' : 'Say thanks'),
       trailing: FutureBuilder(
-        future: context.paymentRepo
-            .getPaymentPrice(forRegistration: payForSubscription),
+        future: context.firebasePaymentViewModel
+            .getPaymentPrice(payForSubscription),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Text('Loading');

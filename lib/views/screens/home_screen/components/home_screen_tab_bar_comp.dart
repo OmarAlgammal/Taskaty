@@ -7,10 +7,8 @@ import 'package:taskaty/utils/extensions/date_time_extension.dart';
 import 'package:taskaty/views/screens/home_screen/components/monthly_comp.dart';
 import 'package:taskaty/views/screens/home_screen/components/tasks_list_comp.dart';
 import 'package:taskaty/views/screens/home_screen/components/weekly_comp.dart';
-import 'package:taskaty/views/widgets/add_task_button_comp.dart';
+import 'package:taskaty/views/widgets/buttons/add_task_button_comp.dart';
 
-import '../../../../repositories/local_service_repos/local_tasks_repo.dart';
-import '../../../../service_locator/locator.dart';
 import '../../../../utils/constance/icons.dart';
 
 class HomeScreenTabViewComp extends StatelessWidget {
@@ -35,26 +33,51 @@ class HomeScreenTabViewComp extends StatelessWidget {
                 showModalBottomSheet(
                   isScrollControlled: true,
                   context: context,
-                  builder: (context) => AddTaskButtonComp(),
+                  builder: (context) => const AddTaskButtonComp(),
                 );
               },
             ),
-            body: ValueListenableBuilder<Box<TaskModel>>(
-              valueListenable:
-                  (locator<LocalTasksRepo>().getBox()).listenable(),
-              builder: (context, box, _) {
-                final monthsTasks = getMonthsTasks(box.values.toList());
-                return switch (tab) {
-                  MainTabs.weekly => WeeklyComp(months: monthsTasks),
-                  MainTabs.monthly => MonthlyComp(monthTasks: monthsTasks),
-                  _ => TasksListComp(
-                      tab: tab,
-                      tasks: tab == MainTabs.today
-                          ? getDailyTasks(box.values.toList())
-                          : box.values.toList()),
-                };
-              },
-            ),
+            body: context.taskViewModel.getTasksSource().isRight
+                ? StreamBuilder(
+                    stream: context.taskViewModel.getTasksSource().right,
+                    builder: (context, snapshot) {
+                      if (snapshot.data == null) {
+                        return const Text('Error');
+                      }
+                      final tasks = snapshot.data!;
+                      //debugPrint('Home Screen tab bar : tasks is ${tasks.first.id}');
+                      final monthsTasks = getMonthsTasks(tasks);
+                      return switch (tab) {
+                        MainTabs.weekly => WeeklyComp(months: monthsTasks),
+                        MainTabs.monthly =>
+                          MonthlyComp(monthTasks: monthsTasks),
+                        _ => TasksListComp(
+                            tab: tab,
+                            tasks: tab == MainTabs.today
+                                ? getDailyTasks(tasks)
+                                : tasks),
+                      };
+                    },
+                  )
+                : ValueListenableBuilder<Box<TaskModel>>(
+                    valueListenable: context.taskViewModel
+                        .getTasksSource()
+                        .left
+                        .listenable(),
+                    builder: (context, box, _) {
+                      final monthsTasks = getMonthsTasks(box.values.toList());
+                      return switch (tab) {
+                        MainTabs.weekly => WeeklyComp(months: monthsTasks),
+                        MainTabs.monthly =>
+                          MonthlyComp(monthTasks: monthsTasks),
+                        _ => TasksListComp(
+                            tab: tab,
+                            tasks: tab == MainTabs.today
+                                ? getDailyTasks(box.values.toList())
+                                : box.values.toList()),
+                      };
+                    },
+                  ),
           );
         },
       ),

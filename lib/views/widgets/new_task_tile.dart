@@ -41,7 +41,6 @@ class AddNewTask extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-// text from field
                       TextFormField(
                         controller: controller,
                         autofocus: true,
@@ -68,18 +67,19 @@ class AddNewTask extends StatelessWidget {
                             flex: 1,
                             child: ListTile(
                               onTap: () {
-                                if (controller.text.isNotEmpty) {}
+                                debugPrint('Add new task');
+                                if (controller.text.isNotEmpty) {
+                                  debugPrint('Add new task');
+                                }
                               },
                               contentPadding: padding0,
                               horizontalTitleGap: size0,
-// add task Icon
                               /// TODO: Replace this icon with svg icon
                               leading: SvgPicture.asset(
                                 AppPaths.addTaskIcon,
-                                theme: SvgTheme(
+                                theme: const SvgTheme(
                                     fontSize: 24, currentColor: Colors.red),
                               ),
-// addition text
                               title: Text(
                                 'addition'.tr(),
                                 style: TextStyle(
@@ -121,12 +121,10 @@ class AddNewTask extends StatelessWidget {
         );
       },
       horizontalTitleGap: size0,
-// add new task icon
       leading: const Icon(
         AppIcons.addNewTaskIcon,
         size: size28,
       ),
-// add new task text
       title: Text(
         'newTask'.tr(),
       ),

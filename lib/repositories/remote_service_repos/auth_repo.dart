@@ -9,7 +9,7 @@ abstract class BaseAuthRepo {
 
   Stream<User?> authStateChanges();
 
-  Future<Either<ServerError, UserCredential>> signInWithGoogle();
+  Future<Either<MyError, UserCredential>> signInWithGoogle();
 
   Future<void> signOut();
 }
@@ -28,7 +28,7 @@ class AuthRepo implements BaseAuthRepo {
   }
 
   @override
-  Future<Either<ServerError, UserCredential>> signInWithGoogle() async {
+  Future<Either<MyError, UserCredential>> signInWithGoogle() async {
     return _baseAuthServices.signInWithGoogle();
   }
 

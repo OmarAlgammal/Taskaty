@@ -1,20 +1,17 @@
-import 'package:hive/hive.dart';
+import 'package:either_dart/src/either.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskaty/core/errors/error.dart';
+import 'package:taskaty/models/task_model/task_model.dart';
+import 'package:taskaty/utils/typedefs/typedef.dart';
 
 abstract class BaseHiveService<T> {
-  Future<void> init();
+  Future<Either<ServerError, void>> writeData(String key, T value);
 
-  Future<void> initBox(String boxName);
+  Future<Either<MyError, void>> deleteData({required String key});
 
-  Future<void> writeData(String key, T value);
+  Stream<T> getStream(String key, HiveQueryBuilder<T> hiveQueryBuilder);
 
   Box<T> getBox();
-
-  List<T> getList({required bool Function (T element) query});
-
-  Future<void> deleteData(String key);
-
-  bool contains(String key);
 
   Future<void> closeBox();
 
@@ -29,40 +26,46 @@ class HiveServices<T> implements BaseHiveService<T> {
     this._boxName;
   }
 
-  @override
   Future<void> init() async {
     await Hive.initFlutter();
     await initBox(_boxName);
   }
 
-  @override
   Future<void> initBox(String boxName) async {
     _box = await Hive.openBox<T>(boxName);
   }
 
   @override
-  bool contains(String key) {
-    return _box.get(key) != null;
+  Future<Either<ServerError, void>> writeData(String key, T value) async {
+    try {
+      final result = await _box.put(key, value);
+      return Right(result);
+    } on HiveError catch (error) {
+      /// TODO: Refactor error exception
+      return Left(
+          ServerError(message: 'Failed to set Data to server : $error'));
+    } catch (error) {
+      return Left(ServerError(message: 'Failed to set Data: $error'));
+    }
   }
 
   @override
-  Future<void> deleteData(String key) async {
-    await _box.delete(key);
+  Future<Either<MyError, void>> deleteData({required String key}) async {
+    try {
+      final deleteResult = await _box.delete(key);
+      return Right(deleteResult);
+    } on HiveError catch (error) {
+      /// TODO: Refactor error exception
+      return Left(
+          ServerError(message: 'Failed to set Data to server : $error'));
+    } catch (error) {
+      return Left(ServerError(message: 'Failed to set Data: $error'));
+    }
   }
 
   @override
-  Box<T> getBox() {
-    return _box;
-  }
-
-  @override
-  List<T> getList({required bool Function (T element) query}){
-    return _box.values.where(query).toList();
-  }
-
-  @override
-  Future<void> writeData(String key, T value) async {
-    await _box.put(key, value);
+  Stream<T> getStream(String key, HiveQueryBuilder<T> hiveQueryBuilder) {
+    return _box.watch(key: key).map((event) => hiveQueryBuilder(event));
   }
 
   @override
@@ -71,7 +74,12 @@ class HiveServices<T> implements BaseHiveService<T> {
   }
 
   @override
-  Future<int> clearData() async{
+  Future<int> clearData() async {
     return await _box.clear();
+  }
+
+  @override
+  Box<T> getBox() {
+    return _box;
   }
 }

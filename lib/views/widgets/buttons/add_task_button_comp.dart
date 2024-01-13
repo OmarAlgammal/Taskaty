@@ -10,7 +10,7 @@ import 'package:taskaty/utils/helper/date_helper.dart';
 import 'package:taskaty/utils/helper/my_date_utils_helper.dart';
 import 'package:taskaty/views/widgets/calendar_widget.dart';
 
-import '../../utils/constance/dimens.dart';
+import '../../../utils/constance/dimens.dart';
 
 class AddTaskButtonComp extends StatefulWidget {
   const AddTaskButtonComp({super.key, this.monthNum, this.weekNum});
@@ -158,7 +158,9 @@ class _AddTaskButtonCompState extends State<AddTaskButtonComp> {
         icon: Icon(AppIcons.playArrow, color: iconColor),
         onPressed: () {
           if (task != null) {
-            context.taskViewModel.writeTask(task);
+            context.taskViewModel.setTask(task).then((value){
+              debugPrint('Add new button : value is ${value.isRight}');
+            });
             Navigator.pop(context);
           }
         },

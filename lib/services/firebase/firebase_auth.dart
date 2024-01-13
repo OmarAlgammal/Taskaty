@@ -1,6 +1,5 @@
 import 'package:either_dart/either.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:taskaty/core/errors/error.dart';
 
@@ -9,7 +8,7 @@ abstract class BaseAuthServices {
 
   User? get currentUser;
 
-  Future<Either<ServerError, UserCredential>> signInWithGoogle();
+  Future<Either<MyError, UserCredential>> signInWithGoogle();
 
   Future<void> signOut();
 }
@@ -29,7 +28,7 @@ class AuthServices implements BaseAuthServices {
   }
 
   @override
-  Future<Either<ServerError, UserCredential>> signInWithGoogle() async {
+  Future<Either<MyError, UserCredential>> signInWithGoogle() async {
     try {
 
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();

@@ -10,7 +10,7 @@ import 'package:taskaty/views/widgets/task_widget.dart';
 import '../../../../models/task_model/task_model.dart';
 import '../../../../utils/constance/dimens.dart';
 import '../../../../utils/helper/my_date_utils_helper.dart';
-import '../../../widgets/my_elevated_button.dart';
+import '../../../widgets/buttons/my_elevated_button.dart';
 
 class WeeklyComp extends StatelessWidget {
   WeeklyComp({super.key, required this.months});

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:taskaty/repositories/remote_service_repos/auth_repo.dart';
-import 'package:taskaty/repositories/remote_service_repos/payment_repo.dart';
-import 'package:taskaty/repositories/remote_service_repos/tasks_repo.dart';
 import 'package:taskaty/service_locator/locator.dart';
-import 'package:taskaty/view_model/tasks_view_model/use_cases/task_view_model.dart';
+import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
+import 'package:taskaty/view_model/payment_view_model/payment_view_model.dart';
+import 'package:taskaty/view_model/tasks_view_model/task_view_model.dart';
+
+import '../../repositories/remote_service_repos/auth_repo.dart';
+import '../../view_model/theme_view_model/theme_view_model.dart';
 
 extension ScreenSize on BuildContext {
   double get height => MediaQuery.of(this).size.height;
@@ -16,9 +18,18 @@ extension ScreenSize on BuildContext {
 
   TaskViewModel get taskViewModel => locator<TaskViewModel>();
 
-  TasksRepo get tasksService => locator<TasksRepo>();
+  PaymentViewModel get paymentViewModel => locator<PaymentViewModel>();
 
-  PaymentRepo get paymentRepo => locator<PaymentRepo>();
+  FirebasePaymentViewModel get firebasePaymentViewModel =>
+      locator<FirebasePaymentViewModel>();
+
+  //TasksRepo get tasksService => locator<TasksRepo>();
+
+  //PaymentRepo get paymentRepo => locator<PaymentRepo>();
+
+  //FirebasePaymentRepo get firebasePaymentRepo => locator<FirebasePaymentRepo>();
 
   AuthRepo get authRepo => locator<AuthRepo>();
+
+  ThemeViewModel get themeViewModel => ThemeViewModel.instance(this);
 }

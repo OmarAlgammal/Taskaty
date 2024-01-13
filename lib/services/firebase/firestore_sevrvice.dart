@@ -1,20 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:either_dart/either.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:taskaty/core/errors/error.dart';
 import 'package:taskaty/utils/typedefs/typedef.dart';
 
 abstract class BaseFireStoreService {
-  Future<Either<ServerError, void>> setData(
+  Future<Either<MyError, void>> setData(
       {required String path, required Map<String, dynamic> map});
 
-  Future<Either<ServerError, List<T>>> getCollection<T>({required String path, required DataBuilder<T> dataBuilder});
+  Future<Either<MyError, void>> deleteData({required String path});
 
-  Future<Either<ServerError, T>> getDoc<T>({required String path, required DataBuilder<T> dataBuilder, GetOptions? getOptions});
+  Future<Either<MyError, T>> getCollection<T>(
+      {required String path, required QuerySnapshotBuilder<T> querySnapshotBuilder, QueryBuilder? queryBuilder});
 
-  Stream<List<T>> getStreamCollection<T>(
+  Future<Either<MyError, T>> getDoc<T>(
+      {required String path,
+      required DataBuilder<T> dataBuilder,
+      });
+
+  Stream<T> getStreamCollection<T>(
       {required String path,
       QueryBuilder? queryBuilder,
-      required DataBuilder<T> dataBuilder});
+      required QuerySnapshotBuilder<T> querySnapshotBuilder});
 }
 
 /// TODO: Collect messages and paths in separate files
@@ -23,10 +30,13 @@ class FireStoreService implements BaseFireStoreService {
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
   @override
-  Future<Either<ServerError, List<T>>> getCollection<T>({required String path, required DataBuilder<T> dataBuilder}) async {
+  Future<Either<MyError, T>> getCollection<T>(
+      {required String path, required QuerySnapshotBuilder<T> querySnapshotBuilder, QueryBuilder? queryBuilder,}) async {
     try {
-      final snapshot = await _fireStore.collection(path).get();
-      return Right(snapshot.docs.map((e) => dataBuilder(e.data())).toList());
+      Query collection = _fireStore.collection(path);
+      collection = queryBuilder != null ? queryBuilder(collection) : collection;
+      final querySnapshot = await collection.get();
+      return Right(querySnapshotBuilder(querySnapshot.docs));
     } on FirebaseException catch (error) {
       /// TODO: Refactor error exception
       return Left(
@@ -37,7 +47,7 @@ class FireStoreService implements BaseFireStoreService {
   }
 
   @override
-  Future<Either<ServerError, void>> setData(
+  Future<Either<MyError, void>> setData(
       {required String path, required Map<String, dynamic> map}) async {
     try {
       final setDataResult = await _fireStore.doc(path).set(map);
@@ -52,24 +62,12 @@ class FireStoreService implements BaseFireStoreService {
   }
 
   @override
-  Stream<List<T>> getStreamCollection<T>(
+  Future<Either<MyError, T>> getDoc<T>(
       {required String path,
-      QueryBuilder? queryBuilder,
-      required DataBuilder<T> dataBuilder}) {
-    Query collection = _fireStore.collection(path);
-    collection = queryBuilder != null ? queryBuilder(collection) : collection;
-
-    final snapshot = collection.snapshots();
-    return snapshot.map((event) => event.docs
-        .map((e) => dataBuilder(e as Map<String, dynamic>))
-        .where((element) => element != null)
-        .toList());
-  }
-
-  @override
-  Future<Either<ServerError, T>> getDoc<T>({required String path, required DataBuilder<T> dataBuilder, GetOptions? getOptions}) async{
+      required DataBuilder<T> dataBuilder,
+      }) async {
     try {
-      final snapshot = await _fireStore.doc(path).get(getOptions);
+      final snapshot = await _fireStore.doc(path).get();
       return Right(dataBuilder(snapshot.data()));
     } on FirebaseException catch (error) {
       /// TODO: Refactor error exception
@@ -78,6 +76,31 @@ class FireStoreService implements BaseFireStoreService {
     } catch (error) {
       return Left(ServerError(message: 'Failed to set Data: $error'));
     }
+  }
 
+  @override
+  Stream<T> getStreamCollection<T>(
+      {required String path,
+      QueryBuilder? queryBuilder,
+      required QuerySnapshotBuilder<T> querySnapshotBuilder}) {
+    Query collection = _fireStore.collection(path);
+    collection = queryBuilder != null ? queryBuilder(collection) : collection;
+
+    final snapshot = collection.snapshots();
+    return snapshot.map((event) => querySnapshotBuilder(event.docs));
+  }
+
+  @override
+  Future<Either<MyError, void>> deleteData({required String path}) async {
+    try {
+      final deletingResult = await _fireStore.doc(path).delete();
+      return Right(deletingResult);
+    } on FirebaseException catch (error) {
+      /// TODO: Refactor error exception
+      return Left(
+          ServerError(message: 'Failed to set Data to server : $error'));
+    } catch (error) {
+      return Left(ServerError(message: 'Failed to set Data: $error'));
+    }
   }
 }

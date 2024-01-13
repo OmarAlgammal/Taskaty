@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../utils/constance/dimens.dart';
+import '../../../utils/constance/dimens.dart';
 
 class MyButton extends StatelessWidget {
   const MyButton({Key? key, required this.onPressed, required this.buttonName}) : super(key: key);

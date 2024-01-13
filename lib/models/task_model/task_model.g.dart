@@ -22,10 +22,12 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
       fields[5] as DateTime?,
       fields[6] == null ? false : fields[6] as bool,
     )
-      ..completed = fields[3] == null ? false : fields[3] as bool
-      ..completedDate = fields[4] as DateTime?
-      ..modificationDate = fields[7] as DateTime?
-      ..files = (fields[9] as List?)?.cast<String>();
+      .._id = fields[0] as String
+      .._completed = fields[3] == null ? false : fields[3] as bool
+      .._completedDate = fields[4] as DateTime?
+      .._modificationDate = fields[7] as DateTime
+      .._creationDate = fields[8] as DateTime
+      .._files = (fields[9] as List?)?.cast<String>();
   }
 
   @override
@@ -33,25 +35,25 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
     writer
       ..writeByte(10)
       ..writeByte(0)
-      ..write(obj.id)
+      ..write(obj._id)
       ..writeByte(1)
-      ..write(obj.title)
+      ..write(obj._title)
       ..writeByte(2)
-      ..write(obj.note)
+      ..write(obj._note)
       ..writeByte(3)
-      ..write(obj.completed)
+      ..write(obj._completed)
       ..writeByte(4)
-      ..write(obj.completedDate)
+      ..write(obj._completedDate)
       ..writeByte(5)
-      ..write(obj.dueDate)
+      ..write(obj._dueDate)
       ..writeByte(6)
-      ..write(obj.repeatDaily)
+      ..write(obj._repeatDaily)
       ..writeByte(7)
-      ..write(obj.modificationDate)
+      ..write(obj._modificationDate)
       ..writeByte(8)
-      ..write(obj.creationDate)
+      ..write(obj._creationDate)
       ..writeByte(9)
-      ..write(obj.files);
+      ..write(obj._files);
   }
 
   @override
@@ -64,36 +66,3 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
-
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-TaskModel _$TaskModelFromJson(Map<String, dynamic> json) => TaskModel(
-      json['title'] as String,
-      json['note'] as String?,
-      json['dueDate'] == null
-          ? null
-          : DateTime.parse(json['dueDate'] as String),
-      json['repeatDaily'] as bool,
-    )
-      ..completed = json['completed'] as bool
-      ..completedDate = json['completedDate'] == null
-          ? null
-          : DateTime.parse(json['completedDate'] as String)
-      ..modificationDate = json['modificationDate'] == null
-          ? null
-          : DateTime.parse(json['modificationDate'] as String)
-      ..files =
-          (json['files'] as List<dynamic>?)?.map((e) => e as String).toList();
-
-Map<String, dynamic> _$TaskModelToJson(TaskModel instance) => <String, dynamic>{
-      'title': instance.title,
-      'note': instance.note,
-      'completed': instance.completed,
-      'completedDate': instance.completedDate?.toIso8601String(),
-      'dueDate': instance.dueDate?.toIso8601String(),
-      'repeatDaily': instance.repeatDaily,
-      'modificationDate': instance.modificationDate?.toIso8601String(),
-      'files': instance.files,
-    };

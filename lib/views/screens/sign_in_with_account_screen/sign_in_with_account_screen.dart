@@ -6,7 +6,7 @@ import '../../../utils/constance/dimens.dart';
 import '../../../utils/constance/gaps.dart';
 import '../../../utils/constance/icons.dart';
 import '../../widgets/ask_and_make_action.dart';
-import '../../widgets/my_button.dart';
+import '../../widgets/buttons/my_button.dart';
 
 class SignInWithAccountPage extends StatelessWidget {
   const SignInWithAccountPage({Key? key}) : super(key: key);

@@ -12,13 +12,6 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.paymentRepo.getPaymentPrice(forRegistration: true).then((value) {
-      if (value.isRight){
-        debugPrint('value here is ${value.right}');
-      }else{
-        debugPrint('value is left');
-      }
-    });
     return StreamBuilder<User?>(
       stream: context.authRepo.authStateChanges(),
       builder: (context, snapshot) {
