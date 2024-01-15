@@ -12,6 +12,8 @@ import '../BaseTasksRepo.dart';
 
 abstract class BaseFirestoreTasksRepo implements BaseTasksRepo{
   Stream<List<TaskModel>> getTasksStream({QueryBuilder? queryBuilder});
+
+  Future<Either<MyError, List<TaskModel>>> getTasksList({QueryBuilder? queryBuilder});
 }
 
 class FirestoreTasksRepo implements BaseFirestoreTasksRepo {
@@ -45,5 +47,13 @@ class FirestoreTasksRepo implements BaseFirestoreTasksRepo {
     return await _baseFireStoreService.deleteData(
         path: FirestorePathsConstants.singleTaskPath(
             _baseAuthService.currentUser!.uid, id));
+  }
+
+  @override
+  Future<Either<MyError, List<TaskModel>>> getTasksList({QueryBuilder? queryBuilder}) async{
+    return await _baseFireStoreService.getCollection<List<TaskModel>>(path: FirestorePathsConstants.allTasksPath(
+        _baseAuthService.currentUser!.uid), querySnapshotBuilder: (List<QueryDocumentSnapshot<Object?>> docs){
+      return docs.map((e) => TaskModel.fromJson(e.data() as Map<String, dynamic>)).toList();
+    });
   }
 }

@@ -29,11 +29,6 @@ class FirebasePaymentViewModel {
 
   Future<void> isUserStillOnSubscriptionPeriod() async {
     final result = await _baseFirebasePaymentRepo.isUserStillOnSubscriptionPeriod();
-    if (result.isRight){
-      debugPrint('Firebase payment view model : right result is ${result.right}');
-    }else {
-      debugPrint('Firebase payment view model : left result is ${result.left}');
-    }
     _userOnSubscriptionPeriod = result.isRight;
   }
 

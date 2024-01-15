@@ -158,9 +158,7 @@ class _AddTaskButtonCompState extends State<AddTaskButtonComp> {
         icon: Icon(AppIcons.playArrow, color: iconColor),
         onPressed: () {
           if (task != null) {
-            context.taskViewModel.setTask(task).then((value){
-              debugPrint('Add new button : value is ${value.isRight}');
-            });
+            context.taskViewModel.setTask(task);
             Navigator.pop(context);
           }
         },

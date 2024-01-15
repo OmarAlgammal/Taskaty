@@ -57,6 +57,7 @@ class FirebasePaymentRepo implements BaseFirebasePaymentRepo {
 
   @override
   Future<Either<MyError, bool>> isUserStillOnSubscriptionPeriod() async {
+    if (_baseAuthRepo.currentUser == null) return const Right(false);
     return await _baseFireStoreService.getCollection<bool>(
         path: FirestorePathsConstants.allPaymentsPath(
             _baseAuthRepo.currentUser!.uid),

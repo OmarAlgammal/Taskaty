@@ -1,7 +1,5 @@
 import 'package:either_dart/either.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
-import 'package:taskaty/core/errors/error.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
 
@@ -23,24 +21,37 @@ class TaskViewModel {
     return Left(_baseLocalTasksRepo.getBox());
   }
 
-  Future<Either<MyError, void>> setTask(TaskModel task) async {
-    debugPrint('Task new model : is paid ${_firebasePaymentViewModel.userOnSubscriptionPeriod}');
-    if (_firebasePaymentViewModel.userOnSubscriptionPeriod) {
-      return _baseFirestoreTasksRepo.setTask(task: task);
-    }
-    return _baseLocalTasksRepo.setTask(task: task);
+  Future<void> setTask(TaskModel task) async {
+    Future.wait([
+      if (_firebasePaymentViewModel.userOnSubscriptionPeriod)
+        _baseFirestoreTasksRepo.setTask(task: task),
+      _baseLocalTasksRepo.setTask(task: task),
+    ]);
   }
 
-  Future<Either<MyError, void>> deleteTask(String taskId) async {
-    if (_firebasePaymentViewModel.userOnSubscriptionPeriod) {
-      return _baseFirestoreTasksRepo.deleteTask(id: taskId);
-    }
-
-    return _baseLocalTasksRepo.deleteTask(id: taskId);
+  Future<void> deleteTask(String taskId) async {
+    Future.wait([
+      if (_firebasePaymentViewModel.userOnSubscriptionPeriod)
+        _baseFirestoreTasksRepo.deleteTask(id: taskId),
+      _baseLocalTasksRepo.deleteTask(id: taskId),
+    ]);
   }
 
-  Future<Either<MyError, void>> syncData() async {
-    /// TODO: Complete syncData()
-    throw UnimplementedError();
+  void syncDataFromLocalToRemote() async {
+    final tasks = _baseLocalTasksRepo.getBox().values;
+    await Future.wait(tasks.map((e) {
+      return _baseFirestoreTasksRepo.setTask(task: e).thenRight((right) {
+        return _baseLocalTasksRepo.deleteTask(id: e.id);
+      });
+    }));
   }
+
+// void syncDataFromRemoteToLocal() async{
+//   final tasksResult = await _baseFirestoreTasksRepo.getTasksList();
+//   if (tasksResult.isRight){
+//     Future.wait(tasksResult.right.map((e) {
+//       return _baseLocalTasksRepo.setTask(task: e);
+//     }));
+//   }
+// }
 }
