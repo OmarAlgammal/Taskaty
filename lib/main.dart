@@ -9,6 +9,7 @@ import 'package:taskaty/core/network/constants/payment_api_constants.dart';
 import 'package:taskaty/repositories/local_service_repos/theme_repo.dart';
 import 'package:taskaty/repositories/remote_service_repos/payment_repo.dart';
 import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
+import 'package:taskaty/view_model/tasks_view_model/task_view_model.dart';
 import 'package:taskaty/view_model/theme_view_model/theme_view_model.dart';
 
 import 'firebase_options.dart';
@@ -41,6 +42,7 @@ Future<void> main() async {
       iFrameID: 603861,
     ),
     locator<FirebasePaymentViewModel>().isUserStillOnSubscriptionPeriod(),
+    locator<TaskViewModel>().syncDataFromLocalToRemote(),
   ]);
 
   runApp(

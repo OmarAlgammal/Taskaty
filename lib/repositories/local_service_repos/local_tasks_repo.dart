@@ -46,6 +46,6 @@ class LocalTasksRepo implements BaseLocalTasksRepo {
 
   @override
   Future<Either<MyError, void>> setTask({required TaskModel task}) {
-    return _baseHiveService.writeData(task.id, task);
+    return _baseHiveService.writeData(task.localId, task);
   }
 }

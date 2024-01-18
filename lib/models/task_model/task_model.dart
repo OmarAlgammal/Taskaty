@@ -11,24 +11,26 @@ part 'task_model.g.dart';
 @HiveType(typeId: 0)
 class TaskModel extends Equatable {
   @HiveField(0)
-  String _id;
+  String _localId;
   @HiveField(1)
-  String _title;
+  String? remoteId;
   @HiveField(2)
+  String _title;
+  @HiveField(3)
   String? _note;
-  @HiveField(3, defaultValue: false)
+  @HiveField(4, defaultValue: false)
   bool _completed = false;
-  @HiveField(4)
-  DateTime? _completedDate;
   @HiveField(5)
+  DateTime? _completedDate;
+  @HiveField(6)
   DateTime? _dueDate;
-  @HiveField(6, defaultValue: false)
+  @HiveField(7, defaultValue: false)
   bool _repeatDaily = false;
-  @HiveField(7)
-  DateTime _modificationDate;
   @HiveField(8)
-  DateTime _creationDate;
+  DateTime _modificationDate;
   @HiveField(9)
+  DateTime _creationDate;
+  @HiveField(10)
   List<String>? _files;
 
   TaskModel(
@@ -36,17 +38,20 @@ class TaskModel extends Equatable {
     this._note,
     this._dueDate,
     this._repeatDaily,
-  )   : _id = DateTime.now().toString(),
+  )   : _localId = DateTime.now().toString(),
         _modificationDate = DateTime.now(),
         _creationDate = DateTime.now();
 
   void updateTask(
-      {String? title,
+      {
+        String? remoteId,
+        String? title,
       String? note,
       bool? completed,
       DateTime? dueDate,
       bool? repeatDaily,
       List<String>? files}) {
+    this.remoteId = remoteId;
     _title = title ?? _title;
     _note = note ?? _note;
     _dueDate = dueDate ?? _dueDate;
@@ -62,7 +67,8 @@ class TaskModel extends Equatable {
   // Convert TaskModel to a JSON-encodable map
   Map<String, dynamic> toJson() {
     return {
-      'id': _id,
+      'id': _localId,
+      'remoteId': remoteId ?? DateTime.now(),
       'title': _title,
       'note': _note,
       'completed': _completed,
@@ -85,7 +91,7 @@ class TaskModel extends Equatable {
           : null,
       json['repeatDaily'] as bool,
     )
-      .._id = json['id'] as String
+      .._localId = json['id'] as String
       .._completed = json['completed'] as bool
       .._completedDate = json['completedDate'] != null
           ? DateTime.parse(json['completedDate'] as String)
@@ -100,7 +106,8 @@ class TaskModel extends Equatable {
 
   @override
   List<Object?> get props => [
-        _id,
+        _localId,
+        remoteId,
         _title,
         _note,
         _completed,
@@ -111,7 +118,7 @@ class TaskModel extends Equatable {
         _creationDate
       ];
 
-  String get id => _id;
+  String get localId => _localId;
 
   DateTime get modificationDate => _modificationDate;
 

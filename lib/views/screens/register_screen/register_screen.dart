@@ -10,7 +10,7 @@ import '../../../repositories/remote_service_repos/auth_repo.dart';
 import '../../../service_locator/locator.dart';
 import '../../../utils/constance/dimens.dart';
 import '../../../utils/constance/icons.dart';
-import '../../widgets/register_item_design.dart';
+import 'comps/register_comp.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -49,7 +49,7 @@ class RegisterScreen extends StatelessWidget {
                         context: context,
                         title: 'Follow your complete tasks'.tr()),
                     gap36,
-                    RegisterItemDesign(
+                    RegiserComp(
                       icon: AppIcons.googleIcon,
                       registrationText: 'signInWithGoogle'.tr(),
                       onPressed: () {

@@ -17,42 +17,45 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TaskModel(
-      fields[1] as String,
-      fields[2] as String?,
-      fields[5] as DateTime?,
-      fields[6] == null ? false : fields[6] as bool,
+      fields[2] as String,
+      fields[3] as String?,
+      fields[6] as DateTime?,
+      fields[7] == null ? false : fields[7] as bool,
     )
-      .._id = fields[0] as String
-      .._completed = fields[3] == null ? false : fields[3] as bool
-      .._completedDate = fields[4] as DateTime?
-      .._modificationDate = fields[7] as DateTime
-      .._creationDate = fields[8] as DateTime
-      .._files = (fields[9] as List?)?.cast<String>();
+      .._localId = fields[0] as String
+      ..remoteId = fields[1] as String?
+      .._completed = fields[4] == null ? false : fields[4] as bool
+      .._completedDate = fields[5] as DateTime?
+      .._modificationDate = fields[8] as DateTime
+      .._creationDate = fields[9] as DateTime
+      .._files = (fields[10] as List?)?.cast<String>();
   }
 
   @override
   void write(BinaryWriter writer, TaskModel obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(0)
-      ..write(obj._id)
+      ..write(obj._localId)
       ..writeByte(1)
-      ..write(obj._title)
+      ..write(obj.remoteId)
       ..writeByte(2)
-      ..write(obj._note)
+      ..write(obj._title)
       ..writeByte(3)
-      ..write(obj._completed)
+      ..write(obj._note)
       ..writeByte(4)
-      ..write(obj._completedDate)
+      ..write(obj._completed)
       ..writeByte(5)
-      ..write(obj._dueDate)
+      ..write(obj._completedDate)
       ..writeByte(6)
-      ..write(obj._repeatDaily)
+      ..write(obj._dueDate)
       ..writeByte(7)
-      ..write(obj._modificationDate)
+      ..write(obj._repeatDaily)
       ..writeByte(8)
-      ..write(obj._creationDate)
+      ..write(obj._modificationDate)
       ..writeByte(9)
+      ..write(obj._creationDate)
+      ..writeByte(10)
       ..write(obj._files);
   }
 

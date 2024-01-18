@@ -25,8 +25,6 @@ ThemeData lightTheme = ThemeData(
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
       ),
-      actionsIconTheme: IconThemeData(color: LightThemeColors.onPrimaryColor),
-      toolbarTextStyle: TextStyle(color: LightThemeColors.errorColor),
       color: LightThemeColors.appBarColor,
       elevation: 0.0,
     ),
@@ -45,7 +43,7 @@ ThemeData lightTheme = ThemeData(
       color: LightThemeColors.primaryColor,
     ),
     scaffoldBackgroundColor: LightThemeColors.backgroundColor,
-    colorScheme: const ColorScheme(
+    colorScheme: ColorScheme(
       background: LightThemeColors.backgroundColor,
       onBackground: LightThemeColors.onBackgroundColor,
       brightness: Brightness.light,
@@ -72,14 +70,12 @@ class LightThemeColors {
   static const errorColor = AppColors.redColor;
   static const onErrorColor = AppColors.redColor;
 
-  static const secondaryColor = AppColors.brightBlueColor;
-  static const onSecondaryColor = AppColors.brightBlueColor;
+  static final secondaryColor = AppColors.brightGreenColor;
+  static final onSecondaryColor = AppColors.brightGreenColor;
 
   static const backgroundColor = AppColors.whiteColor;
   static const onBackgroundColor = AppColors.whiteColor;
 
   static const surfaceColor = AppColors.brightGreyColor;
   static const onSurfaceColor = AppColors.greyColor;
-
-
 }

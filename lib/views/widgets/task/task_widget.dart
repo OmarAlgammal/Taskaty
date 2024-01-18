@@ -4,9 +4,9 @@ import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/extensions/date_time_extension.dart';
 import 'package:taskaty/utils/helper/date_helper.dart';
 
-import '../../models/task_model/task_model.dart';
-import '../../routing/routes.dart';
-import '../../utils/constance/dimens.dart';
+import '../../../models/task_model/task_model.dart';
+import '../../../routing/routes.dart';
+import '../../../utils/constance/dimens.dart';
 
 class TaskWidget extends StatelessWidget {
   TaskWidget(

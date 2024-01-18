@@ -1,4 +1,5 @@
 import 'package:either_dart/either.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
@@ -37,21 +38,14 @@ class TaskViewModel {
     ]);
   }
 
-  void syncDataFromLocalToRemote() async {
-    final tasks = _baseLocalTasksRepo.getBox().values;
+  Future<void> syncDataFromLocalToRemote() async {
+    if (! _firebasePaymentViewModel.userOnSubscriptionPeriod) return;
+    final tasks = _baseLocalTasksRepo.getBox().values.where((element) => element.remoteId == null);
     await Future.wait(tasks.map((e) {
       return _baseFirestoreTasksRepo.setTask(task: e).thenRight((right) {
-        return _baseLocalTasksRepo.deleteTask(id: e.id);
+        e.updateTask(remoteId: DateTime.now().toString());
+        return _baseLocalTasksRepo.setTask(task: e);
       });
     }));
   }
-
-// void syncDataFromRemoteToLocal() async{
-//   final tasksResult = await _baseFirestoreTasksRepo.getTasksList();
-//   if (tasksResult.isRight){
-//     Future.wait(tasksResult.right.map((e) {
-//       return _baseLocalTasksRepo.setTask(task: e);
-//     }));
-//   }
-// }
 }

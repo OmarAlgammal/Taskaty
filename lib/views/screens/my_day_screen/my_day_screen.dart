@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taskaty/utils/constance/dimens.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
-import 'package:taskaty/views/widgets/new_task_tile.dart';
+import 'package:taskaty/views/widgets/task/new_task_tile.dart';
 
 class MyDayPage extends StatelessWidget {
   const MyDayPage({Key? key}) : super(key: key);
