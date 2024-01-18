@@ -29,7 +29,9 @@ class FirebasePaymentViewModel {
 
   Future<void> isUserStillOnSubscriptionPeriod() async {
     final result = await _baseFirebasePaymentRepo.isUserStillOnSubscriptionPeriod();
-    _userOnSubscriptionPeriod = result.isRight;
+    if (result.isRight){
+      _userOnSubscriptionPeriod = result.right;
+    }
   }
 
   Stream<PaymentTransactionModel> getLastPaymentProcess(){

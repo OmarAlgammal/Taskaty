@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../utils/constance/dimens.dart';
-import '../../utils/constance/icons.dart';
-import '../../utils/constance/paths.dart';
+import '../../../utils/constance/dimens.dart';
+import '../../../utils/constance/icons.dart';
+import '../../../utils/constance/paths.dart';
 
 class AddNewTask extends StatelessWidget {
   AddNewTask({Key? key, this.addToMyDayState = false, this.listName})

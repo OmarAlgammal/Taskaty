@@ -5,7 +5,7 @@ import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/enums/main_tabs_enum.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/views/widgets/single_divider.dart';
-import 'package:taskaty/views/widgets/task_widget.dart';
+import 'package:taskaty/views/widgets/task/task_widget.dart';
 
 import '../../../../models/task_model/task_model.dart';
 import '../../../../utils/constance/icons.dart';

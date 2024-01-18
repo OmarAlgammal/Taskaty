@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:taskaty/utils/constance/border_radius.dart';
 
-import '../../utils/constance/dimens.dart';
+import '../../../../utils/constance/dimens.dart';
 
-class RegisterItemDesign extends StatelessWidget {
-  const RegisterItemDesign(
+class RegiserComp extends StatelessWidget {
+  const RegiserComp(
       {Key? key,
       required this.icon,
       required this.registrationText,

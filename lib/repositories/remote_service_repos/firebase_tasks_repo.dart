@@ -27,7 +27,7 @@ class FirestoreTasksRepo implements BaseFirestoreTasksRepo {
       {required TaskModel task, SetOptions? setOptions}) async {
     return _baseFireStoreService.setData(
       path: FirestorePathsConstants.singleTaskPath(
-          _baseAuthService.currentUser!.uid, task.id),
+          _baseAuthService.currentUser!.uid, task.localId),
       map: task.toJson(),
     );
   }

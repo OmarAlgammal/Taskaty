@@ -47,9 +47,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               PaymentTransactionModel.fromJson(params);
                           if (response.success &&
                               paymentScreenModel.payForSubscription) {
-                            await context.firebasePaymentViewModel
-                                .savePaymentDetails(
-                                    paymentTransactionModel: response);
+                            await Future.wait([
+                              context.firebasePaymentViewModel
+                                  .savePaymentDetails(
+                                  paymentTransactionModel: response),
+                              context.taskViewModel.syncDataFromLocalToRemote(),
+                            ]);
                           }
                           Navigator.pop(context);
                           alertDialogHelper(

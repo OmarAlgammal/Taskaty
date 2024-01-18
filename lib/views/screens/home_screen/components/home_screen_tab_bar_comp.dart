@@ -41,11 +41,14 @@ class HomeScreenTabViewComp extends StatelessWidget {
                 ? StreamBuilder(
                     stream: context.taskViewModel.getTasksSource().right,
                     builder: (context, snapshot) {
-                      if (snapshot.data == null) {
-                        return const Text('Error');
+                      if (snapshot.connectionState == ConnectionState.waiting){
+                        return const Center(child: Text('Loading'));
+                      }
+                      if (snapshot.connectionState == ConnectionState.none){
+                        return const Center(child: Text('Error'));
                       }
                       final tasks = snapshot.data!;
-                      //debugPrint('Home Screen tab bar : tasks is ${tasks.first.id}');
+                      //debugPrint('Home Screen tab bar : tasks is ${tasks.first.remoteId}');
                       final monthsTasks = getMonthsTasks(tasks);
                       return switch (tab) {
                         MainTabs.weekly => WeeklyComp(months: monthsTasks),
@@ -84,9 +87,11 @@ class HomeScreenTabViewComp extends StatelessWidget {
     );
   }
 
+  /// TODO: Transfer this method to a separate file
   List<TaskModel> getDailyTasks(Iterable<TaskModel> tasks) =>
       tasks.where((element) => element.isTodayTask).toList();
 
+  /// TODO: Transfer this method to a separate file
   Map<int, Map<int, List<TaskModel>>> getMonthsTasks(
       Iterable<TaskModel> tasks) {
     final tasksStructure = getTasksStructure();
@@ -94,7 +99,6 @@ class HomeScreenTabViewComp extends StatelessWidget {
         tasks.where((task) => task.creationDate.likeThisYear).toList();
     for (int i = 0; i < yearTasks.length; i++) {
       final task = yearTasks[i];
-      debugPrint('task $i id ${task.id}');
       if (task.dueDate != null) {
         final monthNumber = task.dueDate!.month;
         final weekNumber = task.dueDate!.getWeekNumberInMonth;
@@ -104,6 +108,7 @@ class HomeScreenTabViewComp extends StatelessWidget {
     return tasksStructure;
   }
 
+  /// TODO: Transfer this method to a separate file
   Map<int, Map<int, List<TaskModel>>> getTasksStructure() {
     return {
       for (int m = 1; m <= 12; m++) m: {for (int w = 1; w <= 5; w++) w: []}
