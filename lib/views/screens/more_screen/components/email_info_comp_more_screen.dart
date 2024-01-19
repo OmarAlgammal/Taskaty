@@ -40,8 +40,10 @@ class SettingsScreenEmailInfoCom extends StatelessWidget {
             const SingleDivider(),
             TextButton(
               onPressed: () {
-                locator<AuthRepo>().signOut();
-                locator<LocalTasksRepo>().clearData();
+                locator<AuthRepo>().signOut().then((value) {
+                  locator<LocalTasksRepo>().clearData();
+                  Navigator.pop(context);
+                });
               },
               child: Text(
                 'sign out'.tr(),

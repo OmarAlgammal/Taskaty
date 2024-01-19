@@ -6,7 +6,6 @@ import '../../theme/dark_theme/dartk_theme.dart';
 import '../../theme/light_theme/light_theme.dart';
 
 class ThemeViewModel extends ChangeNotifier {
-  bool _isLightTheme = true;
   ThemeData _myTheme = lightTheme;
 
   final BaseThemeRepo _baseThemeRepo;
@@ -18,15 +17,15 @@ class ThemeViewModel extends ChangeNotifier {
   ThemeData getTheme() {
     bool? isLightTheme = _baseThemeRepo.getLightThemeValue();
 
-    return isLightTheme != null
+    _myTheme = isLightTheme != null
         ? (isLightTheme ? lightTheme : darkTheme)
-        : _myTheme;
+        : lightTheme;
+    return _myTheme;
   }
 
   void changeTheme() {
-    _isLightTheme = !_isLightTheme;
-    _myTheme = _isLightTheme ? lightTheme : darkTheme;
-    _baseThemeRepo.setLightThemeValue(_isLightTheme);
+    _myTheme = _myTheme == lightTheme ? darkTheme : lightTheme;
+    _baseThemeRepo.setLightThemeValue(_myTheme == lightTheme);
     notifyListeners();
   }
 }

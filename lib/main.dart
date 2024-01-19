@@ -27,6 +27,7 @@ Future<void> main() async {
   );
   setup();
   Hive.registerAdapter(TaskModelAdapter());
+  ThemeViewModel(locator<ThemeRepo>());
   await Future.wait([
     FirebaseAppCheck.instance.activate(
       webRecaptchaSiteKey: 'recaptcha-v3-site-key',

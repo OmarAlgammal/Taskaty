@@ -7,9 +7,9 @@ import 'package:taskaty/utils/extensions/date_time_extension.dart';
 import 'package:taskaty/views/widgets/single_divider.dart';
 
 import '../../../repositories/remote_service_repos/auth_repo.dart';
-import 'components/more_screen_payment_comp.dart';
-import 'components/settings_screen_email_info_com.dart';
-import 'components/setttings_screen_theme_comp.dart';
+import 'components/payment_comp_more_screen.dart';
+import 'components/email_info_comp_more_screen.dart';
+import 'components/theme_comp_more_screen.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});
