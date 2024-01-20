@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
-import 'package:taskaty/utils/constance/icons.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/extensions/date_time_extension.dart';
 import 'package:taskaty/utils/extensions/int_extensions.dart';
@@ -10,7 +9,6 @@ import 'package:taskaty/views/widgets/task/task_widget.dart';
 import '../../../../models/task_model/task_model.dart';
 import '../../../../utils/constance/dimens.dart';
 import '../../../../utils/helper/my_date_utils_helper.dart';
-import '../../../widgets/buttons/my_elevated_button.dart';
 
 class WeeklyComp extends StatelessWidget {
   WeeklyComp({super.key, required this.months});
@@ -85,7 +83,6 @@ class WeeklyComp extends StatelessWidget {
     );
   }
 
-
   monthTitleWidget(BuildContext context, int monthNum, bool emptyMonth) {
     return Row(
       children: [
@@ -113,10 +110,13 @@ class WeeklyComp extends StatelessWidget {
                 padding: paddingH16,
                 child: Row(
                   children: [
-                    if (MyDateUtilsHelper.thisWeekOrLater(monthIndex, weekIndex))
-                      AddTaskButton(monthNum: monthIndex, weekNum: weekIndex, iconColor: thisWeek
-                          ? context.colorScheme.onPrimary
-                          : null),
+                    if (MyDateUtilsHelper.thisWeekOrLater(
+                        monthIndex, weekIndex))
+                      AddTaskButton(
+                          monthNum: monthIndex,
+                          weekNum: weekIndex,
+                          iconColor:
+                              thisWeek ? context.colorScheme.onPrimary : null),
                     Text(
                       'week $weekIndex',
                       style: thisWeek

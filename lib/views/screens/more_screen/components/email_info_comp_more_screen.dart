@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
+import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/extensions/string_extensions.dart';
 import 'package:taskaty/views/widgets/single_divider.dart';
 
@@ -20,7 +21,7 @@ class SettingsScreenEmailInfoCom extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CircleAvatar(
-          backgroundColor: Theme.of(context).colorScheme.onPrimary,
+          backgroundColor: context.colorScheme.primary,
           child: Text(
             locator<AuthRepo>().currentUser!.displayName ?? ''.firstChars(),
             style: TextStyle(color: Theme.of(context).colorScheme.background),

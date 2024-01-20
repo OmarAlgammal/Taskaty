@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:taskaty/utils/extensions/date_time_extension.dart';
 
 class MyDateUtilsHelper {
@@ -19,33 +20,19 @@ class MyDateUtilsHelper {
       inThisMonth(monthNum) || afterThisMonth(monthNum);
 
   static DateTime createCreationDate(int? monthNum, int? weekNum) {
-    final dateNow = DateTime.now();
-    final year = dateNow.year;
-    final month = dateNow.month;
-    final week = weekNumInMonth();
-    final day = dateNow.day;
     // Created in month
     if (monthNum != null && weekNum == null) {
-      if (monthNum > month) {
-        return DateTime(
-          year,
-          monthNum,
-        );
-      }
-      if (monthNum == month) {
-        return DateTime(year, month, day);
-      }
-      return dateNow;
+      return DateTime(DateTime.now().year, monthNum, 1);
     }
     // Created in week
     if (monthNum != null && weekNum != null) {
-      if (month == monthNum && week == weekNum) {
+      if (DateTime.now().month == monthNum && weekNumInMonth() == weekNum) {
         return DateTime.now();
       }
       final dayInMonth = weekNum * 7 > getMonthDays(monthNum)
           ? getMonthDays(monthNum)
           : weekNum * 7;
-      return DateTime(year, monthNum, dayInMonth);
+      return DateTime(DateTime.now().year, monthNum, dayInMonth);
     }
 
     return DateTime.now();

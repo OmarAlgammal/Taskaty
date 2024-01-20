@@ -6,6 +6,6 @@ class DateHelper {
   static Color dueDateColor(BuildContext context, DateTime dueDate) {
     return dueDate.isBeforeToday
         ? context.colorScheme.error
-        : context.colorScheme.onPrimary;
+        : context.colorScheme.primary;
   }
 }

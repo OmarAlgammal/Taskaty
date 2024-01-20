@@ -4,12 +4,12 @@ import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/extensions/int_extensions.dart';
 import 'package:taskaty/utils/helper/my_date_utils_helper.dart';
-import 'package:taskaty/views/screens/home_screen/components/add_task_button.dart';
 
 import '../../../../models/task_model/task_model.dart';
 import '../../../../utils/constance/border_radius.dart';
 import '../../../widgets/single_divider.dart';
 import '../../../widgets/task/task_widget.dart';
+import 'add_task_button.dart';
 
 class MonthlyComp extends StatelessWidget {
   const MonthlyComp({super.key, required this.monthTasks});
@@ -71,7 +71,7 @@ class MonthlyComp extends StatelessWidget {
         ),
         if (monthNum > DateTime.now().month)
           AddTaskButton(
-            monthNum: monthsNum,
+            monthNum: monthNum,
           ),
       ],
     );

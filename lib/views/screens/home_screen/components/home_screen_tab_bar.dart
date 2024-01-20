@@ -18,7 +18,7 @@ class HomeScreenTabBar extends StatelessWidget implements PreferredSizeWidget {
       leading: null,
       title: SvgPicture.asset(
         AppPaths.appLogo,
-        color: context.colorScheme.primary,
+        color: Theme.of(context).primaryColor,
       ),
       actions: [
         IconButton(

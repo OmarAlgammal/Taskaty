@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskaty/views/widgets/buttons/add_task_button_comp.dart';
+import 'package:taskaty/views/screens/home_screen/components/add_task_button_comp_home_screen.dart';
 
 import '../../../../utils/constance/border_radius.dart';
 import '../../../../utils/constance/icons.dart';
@@ -21,7 +21,7 @@ class AddTaskButton extends StatelessWidget {
             isScrollControlled: true,
             context: context,
             builder: (context) {
-              return AddTaskButtonComp(
+              return AddTaskButtonCompHomeScreen(
                 monthNum: monthNum,
                 weekNum: weekNum,
               );

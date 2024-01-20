@@ -4,10 +4,10 @@ import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/utils/enums/main_tabs_enum.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/extensions/date_time_extension.dart';
+import 'package:taskaty/views/screens/home_screen/components/add_task_button_comp_home_screen.dart';
 import 'package:taskaty/views/screens/home_screen/components/monthly_comp.dart';
 import 'package:taskaty/views/screens/home_screen/components/tasks_list_comp.dart';
 import 'package:taskaty/views/screens/home_screen/components/weekly_comp.dart';
-import 'package:taskaty/views/widgets/buttons/add_task_button_comp.dart';
 
 import '../../../../utils/constance/icons.dart';
 
@@ -27,13 +27,13 @@ class HomeScreenTabViewComp extends StatelessWidget {
             floatingActionButton: FloatingActionButton(
               child: Icon(
                 AppIcons.addIcon,
-                color: context.colorScheme.onPrimary,
+                color: context.colorScheme.background,
               ),
               onPressed: () {
                 showModalBottomSheet(
                   isScrollControlled: true,
                   context: context,
-                  builder: (context) => const AddTaskButtonComp(),
+                  builder: (context) => const AddTaskButtonCompHomeScreen(),
                 );
               },
             ),
@@ -41,10 +41,11 @@ class HomeScreenTabViewComp extends StatelessWidget {
                 ? StreamBuilder(
                     stream: context.taskViewModel.getTasksSource().right,
                     builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting){
+                      if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(child: Text('Loading'));
                       }
-                      if (snapshot.connectionState == ConnectionState.none && snapshot.data!.isNotEmpty){
+                      if (snapshot.connectionState == ConnectionState.none &&
+                          snapshot.data!.isNotEmpty) {
                         return const Center(child: Text('Error'));
                       }
                       final tasks = snapshot.data!;
