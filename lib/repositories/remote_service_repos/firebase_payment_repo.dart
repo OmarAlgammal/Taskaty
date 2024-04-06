@@ -41,8 +41,8 @@ class FirebasePaymentRepo implements BaseFirebasePaymentRepo {
       {required bool forRegistration}) async {
     return _baseFireStoreService.getDoc<int>(
         path:
-            FirestorePathsConstants.pricingPath(_baseAuthRepo.currentUser!.uid),
-        dataBuilder: (map) => map[forRegistration ? 'registration' : 'thanks']);
+            FirestorePathsConstants.pricingPath,
+        dataBuilder: (map) => map[forRegistration ? FirestorePathsConstants.registrationPath : FirestorePathsConstants.thanksPath]);
   }
 
   @override
