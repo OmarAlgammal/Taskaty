@@ -2,22 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>625438177962-0hl8qsoi15c9vph3m00ap86pljfhpumj.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.625438177962-0hl8qsoi15c9vph3m00ap86pljfhpumj</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDMM1PsBRM6BoScQeYWa2WHkPywV_Xuj3o</string>
+	<string>AIzaSyBiA01i1nir1cgeKjCS0f47BRhoQ3PpgwU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>625438177962</string>
+	<string>498083271722</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.omarprogramzone.taskaty.taskaty</string>
+	<string>com.example.taskaty</string>
 	<key>PROJECT_ID</key>
-	<string>taskaty-ce980</string>
+	<string>taskaty-89217</string>
 	<key>STORAGE_BUCKET</key>
-	<string>taskaty-ce980.appspot.com</string>
+	<string>taskaty-89217.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:625438177962:ios:c6bc736009e860588d6ed3</string>
+	<string>1:498083271722:ios:7574225b8003d3b5735f53</string>
 </dict>
 </plist>

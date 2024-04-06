@@ -50,21 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBuzzUedFutr7MZyH1hwCMTyYTw3rZZ_s8',
-    appId: '1:121579168221:android:e0847dc696215246585634',
-    messagingSenderId: '121579168221',
-    projectId: 'taskaty-f3808',
-    storageBucket: 'taskaty-f3808.appspot.com',
+    apiKey: 'AIzaSyBIZChgFIChM_zF5MZMAafl06BcWEOS-s8',
+    appId: '1:713217312380:android:05808b731f05a265ac6bf9',
+    messagingSenderId: '713217312380',
+    projectId: 'taksaty-4ca3c',
+    storageBucket: 'taksaty-4ca3c.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB0x9kAKczFp368XxV-yhzzwqYSXQSy3xg',
-    appId: '1:121579168221:ios:75a147ada462971a585634',
-    messagingSenderId: '121579168221',
-    projectId: 'taskaty-f3808',
-    storageBucket: 'taskaty-f3808.appspot.com',
-    androidClientId: '121579168221-dn5ric4fmjf5eviucb0fffjp05obbanm.apps.googleusercontent.com',
-    iosClientId: '121579168221-erimrahgq2b8454md4rc9sgngad5r9i7.apps.googleusercontent.com',
-    iosBundleId: 'com.omarprogramzone.taskaty.taskaty',
+    apiKey: 'AIzaSyBUsoVDWyY6991kmW0hAnzwnFwKnhoAHRE',
+    appId: '1:713217312380:ios:5b11484a38e98821ac6bf9',
+    messagingSenderId: '713217312380',
+    projectId: 'taksaty-4ca3c',
+    storageBucket: 'taksaty-4ca3c.appspot.com',
+    iosBundleId: 'com.example.taskaty',
   );
 }
