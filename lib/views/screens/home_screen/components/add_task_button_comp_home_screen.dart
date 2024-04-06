@@ -5,7 +5,7 @@ import 'package:taskaty/utils/helper/my_date_utils_helper.dart';
 
 import '../../../../models/task_model/task_model.dart';
 import '../../../../utils/constance/border_radius.dart';
-import '../../../../utils/constance/dimens.dart';
+import '../../../../utils/constance/my_padding.dart';
 import '../../../../utils/constance/gaps.dart';
 import '../../../../utils/constance/icons.dart';
 import '../../../../utils/helper/bottom_sheet_helper.dart';
@@ -46,7 +46,7 @@ class _AddTaskButtonCompHomeScreenState
     return Padding(
       padding: MediaQuery.of(context).viewInsets,
       child: Padding(
-        padding: padding8,
+        padding: MyPadding.padding8,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -54,7 +54,7 @@ class _AddTaskButtonCompHomeScreenState
             Row(
               children: [
                 calendarComp(),
-                gap8,
+                Gaps.gap8,
                 repeatDailyComp(),
                 const Spacer(),
                 addTaskButton(context),
@@ -97,7 +97,7 @@ class _AddTaskButtonCompHomeScreenState
                 },
               ),
             ),
-            gap8,
+            Gaps.gap8,
           ],
         ),
       );
@@ -124,7 +124,7 @@ class _AddTaskButtonCompHomeScreenState
               AppIcons.calendar,
               color: DateHelper.dueDateColor(context, _dueDate),
             ),
-            gap4,
+            Gaps.gap4,
             Text(
               _dueDate.dateZone,
               style: context.textTheme.bodyMedium!.copyWith(

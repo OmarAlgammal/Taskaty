@@ -8,7 +8,7 @@ import 'package:taskaty/utils/extensions/context_extension.dart';
 
 import '../../../repositories/remote_service_repos/auth_repo.dart';
 import '../../../service_locator/locator.dart';
-import '../../../utils/constance/dimens.dart';
+import '../../../utils/constance/my_padding.dart';
 import '../../../utils/constance/icons.dart';
 import 'comps/register_comp.dart';
 
@@ -21,7 +21,7 @@ class RegisterScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
         child: Padding(
-          padding: padding16,
+          padding: MyPadding.padding16,
           child: Column(
             children: [
               Flexible(
@@ -48,7 +48,7 @@ class RegisterScreen extends StatelessWidget {
                     descriptionItemDesign(
                         context: context,
                         title: 'Follow your complete tasks'.tr()),
-                    gap36,
+                    Gaps.gap36,
                     RegiserComp(
                       icon: AppIcons.googleIcon,
                       registrationText: 'signInWithGoogle'.tr(),
@@ -74,7 +74,7 @@ class RegisterScreen extends StatelessWidget {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       controlAffinity: ListTileControlAffinity.leading,
       checkboxShape: const CircleBorder(),
-      contentPadding: padding0,
+      contentPadding: MyPadding.padding0,
       dense: true,
       onChanged: (bool? value) {},
       title: Text(

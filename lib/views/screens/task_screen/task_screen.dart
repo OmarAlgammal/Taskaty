@@ -11,7 +11,7 @@ import 'package:taskaty/views/screens/task_screen/comps/title_and_checkbox_comp_
 
 import '../../../models/task_model/task_model.dart';
 import '../../../routing/routes.dart';
-import '../../../utils/constance/dimens.dart';
+import '../../../utils/constance/my_padding.dart';
 import '../../../utils/constance/gaps.dart';
 import '../../../utils/constance/icons.dart';
 import '../../widgets/calendar_widget.dart';
@@ -50,13 +50,13 @@ class _TaskPageState extends State<TaskPage> {
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBarCompTaskScreen(title: task.title),
         body: Padding(
-          padding: padding8,
+          padding: MyPadding.padding8,
           child: Column(
             children: [
               Expanded(
                 child: ListView(
                   children: [
-                    gap24,
+                    Gaps.gap24,
                     TitleAndCheckboxCompTaskScreen(
                       task: task,
                       titleController: _titleController,
@@ -64,7 +64,7 @@ class _TaskPageState extends State<TaskPage> {
                         task.updateTask(title: _titleController.text);
                       },
                     ),
-                    gap16,
+                    Gaps.gap16,
                     OptionsCompTaskScreen(
                       task: task,
                       onCalendarButtonClicked: () {
@@ -110,7 +110,7 @@ class _TaskPageState extends State<TaskPage> {
                         });
                       },
                     ),
-                    gap16,
+                    Gaps.gap16,
                     NoteCompTaskScreen(
                       task: task,
                       onNoteBackButtonPressed: () async {

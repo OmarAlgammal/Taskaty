@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../utils/constance/dimens.dart';
+import '../../../utils/constance/my_padding.dart';
 import '../../../utils/constance/icons.dart';
 import '../../../utils/constance/paths.dart';
 
@@ -37,7 +37,7 @@ class AddNewTask extends StatelessWidget {
               return Padding(
                 padding: MediaQuery.of(context).viewInsets,
                 child: Padding(
-                  padding: paddingH8,
+                  padding: MyPadding.paddingH8,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -72,8 +72,8 @@ class AddNewTask extends StatelessWidget {
                                   debugPrint('Add new task');
                                 }
                               },
-                              contentPadding: padding0,
-                              horizontalTitleGap: size0,
+                              contentPadding: MyPadding.padding0,
+                              horizontalTitleGap: 0,
                               /// TODO: Replace this icon with svg icon
                               leading: SvgPicture.asset(
                                 AppPaths.addTaskIcon,
@@ -96,8 +96,8 @@ class AddNewTask extends StatelessWidget {
                                   repeatDailyState = !repeatDailyState;
                                 });
                               },
-                              contentPadding: padding0,
-                              horizontalTitleGap: size0,
+                              contentPadding: MyPadding.padding0,
+                              horizontalTitleGap: 0,
                               leading: Icon(
                                 AppIcons.dailyRepetitionIcon,
                                 color: repeatDailyButtonColor,
@@ -120,10 +120,10 @@ class AddNewTask extends StatelessWidget {
           },
         );
       },
-      horizontalTitleGap: size0,
+      horizontalTitleGap: 0,
       leading: const Icon(
         AppIcons.addNewTaskIcon,
-        size: size28,
+        size: 28,
       ),
       title: Text(
         'newTask'.tr(),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../utils/constance/border_radius.dart';
-import '../../../utils/constance/dimens.dart';
+import '../../../utils/constance/my_padding.dart';
 import '../colors.dart';
 import '../colors.dart';
 

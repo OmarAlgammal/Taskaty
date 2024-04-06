@@ -27,7 +27,7 @@ class SettingsScreenEmailInfoCom extends StatelessWidget {
             style: TextStyle(color: Theme.of(context).colorScheme.background),
           ),
         ),
-        gap12,
+        Gaps.gap12,
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +36,7 @@ class SettingsScreenEmailInfoCom extends StatelessWidget {
               currentUser.displayName ?? '',
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            gap8,
+            Gaps.gap8,
             Text(currentUser.email ?? ''),
             const SingleDivider(),
             TextButton(

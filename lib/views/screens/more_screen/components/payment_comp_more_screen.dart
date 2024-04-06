@@ -3,7 +3,7 @@ import 'package:taskaty/models/navigation_models/payment_screen_model.dart';
 import 'package:taskaty/routing/routes.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 
-import '../../../../utils/constance/dimens.dart';
+import '../../../../utils/constance/my_padding.dart';
 import '../../../../utils/constance/icons.dart';
 
 class PaymentComp extends StatelessWidget {
@@ -22,7 +22,7 @@ class PaymentComp extends StatelessWidget {
                   payForSubscription: payForSubscription, amount: amount!));
         }
       },
-      contentPadding: padding0,
+      contentPadding: MyPadding.padding0,
       leading: payForSubscription
           ? null
           : Icon(

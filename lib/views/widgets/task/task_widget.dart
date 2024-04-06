@@ -6,7 +6,7 @@ import 'package:taskaty/utils/helper/date_helper.dart';
 
 import '../../../models/task_model/task_model.dart';
 import '../../../routing/routes.dart';
-import '../../../utils/constance/dimens.dart';
+import '../../../utils/constance/my_padding.dart';
 
 class TaskWidget extends StatelessWidget {
   TaskWidget(
@@ -26,7 +26,7 @@ class TaskWidget extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, AppRoutes.taskScreen, arguments: task);
       },
-      horizontalTitleGap: size0,
+      horizontalTitleGap: 0,
       shape: const RoundedRectangleBorder(
         borderRadius: Circular.circular8,
       ),
@@ -50,7 +50,7 @@ class TaskWidget extends StatelessWidget {
         ),
       ),
       title: Padding(
-        padding: paddingH8,
+        padding: MyPadding.paddingH8,
         child: Text(
           task.title,
         ),

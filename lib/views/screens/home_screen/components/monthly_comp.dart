@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskaty/utils/constance/dimens.dart';
+import 'package:taskaty/utils/constance/my_padding.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/extensions/int_extensions.dart';
@@ -20,10 +20,10 @@ class MonthlyComp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding16,
+      padding: MyPadding.padding16,
       child: ListView.separated(
         itemCount: monthsNum,
-        separatorBuilder: (contexts, index) => gap8,
+        separatorBuilder: (contexts, index) => Gaps.gap8,
         itemBuilder: (context, monthIndex) {
           monthIndex = monthIndex + 1;
           final tasksInMonth = getTasksInMonth(monthTasks[monthIndex]!);
@@ -43,7 +43,7 @@ class MonthlyComp extends StatelessWidget {
 
           // Current month or later
           return Padding(
-            padding: paddingV8,
+            padding: MyPadding.paddingV8,
             child: MonthlyPeriodComp(
               tasks: tasksInMonth,
               monthNum: monthIndex,
@@ -65,7 +65,7 @@ class MonthlyComp extends StatelessWidget {
           children: [
             Text(monthNum.getMonthAbbreviatedName,
                 style: context.textTheme.bodyMedium),
-            gap8,
+            Gaps.gap8,
             const Expanded(child: Divider(height: 2, thickness: 2)),
           ],
         ),
@@ -121,7 +121,7 @@ class MonthlyPeriodComp extends StatelessWidget {
                   AddTaskButton(monthNum: monthNum),
               ],
             ),
-            gap8,
+            Gaps.gap8,
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
@@ -152,7 +152,7 @@ class MonthlyPeriodComp extends StatelessWidget {
             )
           ],
         ),
-        gap12,
+        Gaps.gap12,
       ],
     );
   }

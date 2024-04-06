@@ -4,7 +4,7 @@ import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 
 import '../../../../utils/constance/border_radius.dart';
-import '../../../../utils/constance/dimens.dart';
+import '../../../../utils/constance/my_padding.dart';
 import '../../../../utils/constance/gaps.dart';
 import '../../../../utils/constance/icons.dart';
 import '../../../../utils/helper/file_helper.dart';
@@ -40,7 +40,7 @@ class FilesCompTaskScreen extends StatelessWidget {
           horizontalTitleGap: 0,
           onTap: onAddFilePressed,
         ),
-        gap8,
+        Gaps.gap8,
         task.files != null
             ? ListView.builder(
                 itemCount: task.files!.length,
@@ -95,15 +95,15 @@ class FileItemComp extends StatelessWidget {
     return GestureDetector(
       onTap: onFilePressed,
       child: Padding(
-        padding: paddingV4,
+        padding: MyPadding.paddingV4,
         child: SizedBox(
-          height: size56,
+          height: 56,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                width: size46,
-                height: size46,
+                width: 46,
+                height: 46,
                 decoration: BoxDecoration(
                   color: context.colorScheme.onPrimary,
                   borderRadius: Circular.circular5,
@@ -115,7 +115,7 @@ class FileItemComp extends StatelessWidget {
                   ),
                 ),
               ),
-              gap16,
+              Gaps.gap16,
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,

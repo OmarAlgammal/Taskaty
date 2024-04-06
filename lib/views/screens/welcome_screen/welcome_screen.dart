@@ -52,7 +52,7 @@ class WelcomeScreen extends StatelessWidget {
                     text: 'Your productivity journey starts now!',
                     textColor: context.colorScheme.onPrimary,
                   ),
-                  gap36,
+                  Gaps.gap36,
                   Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -61,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                           onPressed: () {
                         Navigator.pushNamed(context, AppRoutes.homeScreen);
                       }),
-                      gap16,
+                      Gaps.gap16,
                       registerButton(context,
                           text: 'Register',
                           icon: AppIcons.googleIcon, onPressed: () {

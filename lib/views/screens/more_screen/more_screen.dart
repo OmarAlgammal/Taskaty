@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taskaty/service_locator/locator.dart';
-import 'package:taskaty/utils/constance/dimens.dart';
+import 'package:taskaty/utils/constance/my_padding.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/extensions/date_time_extension.dart';
@@ -37,17 +37,17 @@ class _MoreScreenState extends State<MoreScreen> {
         ),
       ),
       body: Padding(
-        padding: padding16,
+        padding: MyPadding.padding16,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SettingsScreenEmailInfoCom(locator<AuthRepo>().currentUser!),
             const SettingsScreenThemeCom(),
-            gap24,
+            Gaps.gap24,
             const Text('Payment'),
             const SingleDivider(),
             Padding(padding:
-            paddingVV18,
+            MyPadding.paddingVV18,
               child: StreamBuilder(
                 stream: context.firebasePaymentViewModel.getLastPaymentProcess(),
                 builder: (context, snapshot){

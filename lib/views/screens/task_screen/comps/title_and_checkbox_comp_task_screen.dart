@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
 
-import '../../../../utils/constance/dimens.dart';
+import '../../../../utils/constance/my_padding.dart';
 import '../../../../utils/constance/gaps.dart';
 
 class TitleAndCheckboxCompTaskScreen extends StatelessWidget {
@@ -23,14 +23,14 @@ class TitleAndCheckboxCompTaskScreen extends StatelessWidget {
               task.updateTask(title: titleController.text);
             },
             style: const TextStyle(
-              fontSize: size24,
+              fontSize: 24,
             ),
             decoration: const InputDecoration(
               border: InputBorder.none,
             ),
           ),
         ),
-        gap16,
+        Gaps.gap16,
         SizedBox(
           height: 24,
           width: 24,

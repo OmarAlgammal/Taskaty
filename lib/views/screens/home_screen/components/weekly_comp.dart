@@ -7,7 +7,7 @@ import 'package:taskaty/views/screens/home_screen/components/add_task_button.dar
 import 'package:taskaty/views/widgets/task/task_widget.dart';
 
 import '../../../../models/task_model/task_model.dart';
-import '../../../../utils/constance/dimens.dart';
+import '../../../../utils/constance/my_padding.dart';
 import '../../../../utils/helper/my_date_utils_helper.dart';
 
 class WeeklyComp extends StatelessWidget {
@@ -23,7 +23,7 @@ class WeeklyComp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding16,
+      padding: MyPadding.padding16,
       child: ListView.separated(
         itemCount: monthsNum,
         itemBuilder: (context, monthIndex) {
@@ -37,9 +37,9 @@ class WeeklyComp extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              emptyMonth ? gap4 : gap8,
+              emptyMonth ? Gaps.gap4 : Gaps.gap8,
               monthTitleWidget(context, monthIndex, emptyMonth),
-              emptyMonth ? gap0 : gap8,
+              emptyMonth ? Gaps.gap0 : Gaps.gap8,
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -66,7 +66,7 @@ class WeeklyComp extends StatelessWidget {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: weeksTasks.length,
-                        separatorBuilder: (context, index) => gap8,
+                        separatorBuilder: (context, index) => Gaps.gap8,
                         itemBuilder: (context, index) {
                           return TaskWidget(task: weeksTasks[index]);
                         },
@@ -78,7 +78,7 @@ class WeeklyComp extends StatelessWidget {
             ],
           );
         },
-        separatorBuilder: (BuildContext context, int index) => gap16,
+        separatorBuilder: (BuildContext context, int index) => Gaps.gap16,
       ),
     );
   }
@@ -92,7 +92,7 @@ class WeeklyComp extends StatelessWidget {
               ? context.textTheme.bodyMedium
               : context.textTheme.headlineSmall,
         ),
-        gap8,
+        Gaps.gap8,
         if (emptyMonth) const Expanded(child: Divider(height: 2, thickness: 2)),
       ],
     );
@@ -105,9 +105,9 @@ class WeeklyComp extends StatelessWidget {
         : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              thisWeek ? gap8 : gap4,
+              thisWeek ? Gaps.gap8 : Gaps.gap4,
               Padding(
-                padding: paddingH16,
+                padding: MyPadding.paddingH16,
                 child: Row(
                   children: [
                     if (MyDateUtilsHelper.thisWeekOrLater(

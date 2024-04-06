@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskaty/utils/constance/dimens.dart';
+import 'package:taskaty/utils/constance/my_padding.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/views/widgets/task/new_task_tile.dart';
 
@@ -11,10 +11,10 @@ class MyDayPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
-        padding: padding8,
+        padding: MyPadding.padding8,
         child: Column(
           children: [
-            gap16,
+            Gaps.gap16,
 
             /// TODO: Change this widget name
             AddNewTask(addToMyDayState: true),

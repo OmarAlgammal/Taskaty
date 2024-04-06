@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:taskaty/utils/constance/dimens.dart';
+import 'package:taskaty/utils/constance/my_padding.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/enums/main_tabs_enum.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
@@ -17,22 +17,22 @@ class TasksListComp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding16,
+      padding: MyPadding.padding16,
       child: tasks.isEmpty ?  noTasksWidget:  SingleChildScrollView(
         child: Column(
           children: [
-            gap16,
+            Gaps.gap16,
             doneTasksWidget(context),
             tasksListWidget(unCompletedTasks),
             if (completedTasks.isNotEmpty)
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                gap16,
+                Gaps.gap16,
                 const SingleDivider(),
-                gap8,
+                Gaps.gap8,
                 Text('completed', style:  context.textTheme.titleMedium,),
-                gap8,
+                Gaps.gap8,
                 tasksListWidget(completedTasks),
               ],
             ),
@@ -47,12 +47,12 @@ class TasksListComp extends StatelessWidget {
     children: [
       if (tasks.isNotEmpty)
       Text('count : ${tasks.length}'),
-      gap4,
+      Gaps.gap4,
       ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => TaskWidget(task: tasks[index]),
-        separatorBuilder: (context, index) => gap4,
+        separatorBuilder: (context, index) => Gaps.gap4,
         itemCount: tasks.length,
       ),
     ],
@@ -66,7 +66,7 @@ class TasksListComp extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(AppIcons.listCheck, size:72),
-        gap8,
+        Gaps.gap8,
         Text('No Tasks yet'),
       ],
     ),
@@ -74,12 +74,12 @@ class TasksListComp extends StatelessWidget {
   
   Widget doneTasksWidget(BuildContext context) {
     return completedTasks.isNotEmpty && unCompletedTasks.isEmpty ? Padding(
-      padding: paddingV18,
+      padding: MyPadding.paddingV18,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Icon(AppIcons.dove),
-          gap8,
+          Gaps.gap8,
           Text('Good job, you have completed all the tasks', style: context.textTheme.bodyLarge,),
         ],
       ),

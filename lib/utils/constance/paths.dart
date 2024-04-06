@@ -1,4 +1,5 @@
 class AppPaths {
+  AppPaths._();
   static const appLogo = 'lib/utils/constance/assets/app_logo.svg';
   static const groupIcon = 'lib/utils/constance/assets/group_icon.svg';
   static const addTaskIcon = 'lib/utils/constance/assets/add_task_icon.svg';
