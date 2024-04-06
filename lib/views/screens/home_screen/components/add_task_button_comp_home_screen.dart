@@ -24,17 +24,19 @@ class AddTaskButtonCompHomeScreen extends StatefulWidget {
 
 class _AddTaskButtonCompHomeScreenState
     extends State<AddTaskButtonCompHomeScreen> {
+
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
-  late DateTime dueDate;
-  DateTime? selectedDate;
-  TaskModel? task;
+  late DateTime _dueDate;
 
-  bool repeatDaily = false;
+  String? _title;
+  String? _description;
+  DateTime? _selectedDate;
+  bool _repeatDaily = false;
 
   @override
   void initState() {
-    dueDate = MyDateUtilsHelper.createCreationDate(widget.monthNum, widget.weekNum);
+    _dueDate = MyDateUtilsHelper.createCreationDate(widget.monthNum, widget.weekNum);
     super.initState();
   }
 
@@ -55,7 +57,7 @@ class _AddTaskButtonCompHomeScreenState
                 gap8,
                 repeatDailyComp(),
                 const Spacer(),
-                addTaskButton(context, task),
+                addTaskButton(context),
               ],
             )
           ],
@@ -75,7 +77,9 @@ class _AddTaskButtonCompHomeScreenState
                 border: InputBorder.none,
               ),
               onChanged: (value) {
-                setState(() {});
+                setState(() {
+                  _title = value.isEmpty ? null : value;
+                });
               },
             ),
             SizedBox(
@@ -86,6 +90,11 @@ class _AddTaskButtonCompHomeScreenState
                   hintText: 'description',
                   border: InputBorder.none,
                 ),
+                onChanged: (value){
+                  setState(() {
+                    _description = value.isEmpty ? null : value;
+                  });
+                },
               ),
             ),
             gap8,
@@ -98,13 +107,13 @@ class _AddTaskButtonCompHomeScreenState
           bottomSheetHelper(
               context,
               CalendarWidget(
-                dueDate: dueDate,
+                dueDate: _dueDate,
                 onDoneButtonPressed: () {
-                  dueDate = selectedDate ?? dueDate;
+                  _dueDate = _selectedDate ?? _dueDate;
                   Navigator.pop(context);
                 },
                 onValueChanged: (value) {
-                  selectedDate = value.first;
+                  _selectedDate = value.first;
                 },
               ));
         },
@@ -113,13 +122,13 @@ class _AddTaskButtonCompHomeScreenState
           children: [
             Icon(
               AppIcons.calendar,
-              color: DateHelper.dueDateColor(context, dueDate),
+              color: DateHelper.dueDateColor(context, _dueDate),
             ),
             gap4,
             Text(
-              dueDate.dateZone,
+              _dueDate.dateZone,
               style: context.textTheme.bodyMedium!.copyWith(
-                color: DateHelper.dueDateColor(context, dueDate),
+                color: DateHelper.dueDateColor(context, _dueDate),
               ),
             ),
           ],
@@ -129,20 +138,20 @@ class _AddTaskButtonCompHomeScreenState
   Widget repeatDailyComp() => IconButton(
         onPressed: () {
           setState(() {
-            repeatDaily = !repeatDaily;
+            _repeatDaily = !_repeatDaily;
           });
         },
         icon: Icon(
           AppIcons.dailyRepetitionIcon,
-          color: repeatDaily ? context.colorScheme.primary : null,
+          color: _repeatDaily ? context.colorScheme.primary : null,
         ),
       );
 
-  Widget addTaskButton(BuildContext context, TaskModel? task) {
+  Widget addTaskButton(BuildContext context) {
     final containerColor =
-        context.colorScheme.primary.withOpacity(task == null ? .2 : 1);
+        context.colorScheme.primary.withOpacity(_title == null ? .2 : 1);
     final iconColor =
-        context.colorScheme.onPrimary.withOpacity(task == null ? .2 : 1);
+        context.colorScheme.onPrimary.withOpacity(_title == null ? .2 : 1);
     return Container(
       decoration: BoxDecoration(
           color: containerColor, borderRadius: Circular.circular100),
@@ -150,10 +159,15 @@ class _AddTaskButtonCompHomeScreenState
         disabledColor: Colors.red,
         icon: Icon(AppIcons.playArrow, color: iconColor),
         onPressed: () {
-          if (task != null) {
+          if (_title != null){
+            final task = TaskModel(_title!, _description, _dueDate, _repeatDaily);
             context.taskViewModel.setTask(task);
             Navigator.pop(context);
           }
+          // if (task != null) {
+          //   context.taskViewModel.setTask(task);
+          //   Navigator.pop(context);
+          // }
         },
       ),
     );
