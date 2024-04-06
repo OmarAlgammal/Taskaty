@@ -41,7 +41,7 @@ class TaskWidget extends StatelessWidget {
           child: Checkbox(
               value: task.completed,
               shape: const CircleBorder(),
-              activeColor: Theme.of(context).colorScheme.onPrimary,
+              activeColor: Theme.of(context).colorScheme.primary,
               onChanged: onCheckBoxClicked ??
                   (value) {
                     task.updateTask(completed: value);
@@ -49,8 +49,11 @@ class TaskWidget extends StatelessWidget {
                   }),
         ),
       ),
-      title: Text(
-        task.title,
+      title: Padding(
+        padding: paddingH8,
+        child: Text(
+          task.title,
+        ),
       ),
       trailing: Text(
         task.dueDate!.dateZone,
