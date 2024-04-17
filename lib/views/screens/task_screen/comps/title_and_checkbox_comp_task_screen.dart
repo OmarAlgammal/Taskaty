@@ -38,7 +38,7 @@ class TitleAndCheckboxCompTaskScreen extends StatelessWidget {
             scale: 1.3,
             child: Checkbox(
               value: task.completed,
-              activeColor: Theme.of(context).colorScheme.onPrimary,
+              activeColor: Theme.of(context).colorScheme.primary,
               shape: const CircleBorder(),
               onChanged: onCheckBoxChanged,
             ),

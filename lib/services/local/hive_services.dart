@@ -1,4 +1,5 @@
 import 'package:either_dart/src/either.dart';
+import 'package:flutter/src/foundation/change_notifier.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taskaty/core/errors/error.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
@@ -16,6 +17,7 @@ abstract class BaseHiveService<T> {
   Future<void> closeBox();
 
   Future<int> clearData();
+
 }
 
 class HiveServices<T> implements BaseHiveService<T> {

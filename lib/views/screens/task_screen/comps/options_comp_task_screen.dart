@@ -26,7 +26,7 @@ class OptionsCompTaskScreen extends StatelessWidget {
         ? DateHelper.dueDateColor(context, task.dueDate!)
         : null;
     final repeatDailyColor =
-        task.repeatDaily ? context.colorScheme.onPrimary : null;
+        task.repeatDaily ? context.colorScheme.primary : null;
     return Column(
       children: [
         if (task.dueDate != null)
@@ -62,7 +62,7 @@ class OptionsCompTaskScreen extends StatelessWidget {
               AppIcons.dailyRepetitionIcon,
               color: repeatDailyColor,
             ),
-            horizontalTitleGap: 0,
+            horizontalTitleGap: 8.0,
             onTap: onRepeatButtonClicked),
       ],
     );

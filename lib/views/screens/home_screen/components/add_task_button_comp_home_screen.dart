@@ -164,10 +164,6 @@ class _AddTaskButtonCompHomeScreenState
             context.taskViewModel.setTask(task);
             Navigator.pop(context);
           }
-          // if (task != null) {
-          //   context.taskViewModel.setTask(task);
-          //   Navigator.pop(context);
-          // }
         },
       ),
     );

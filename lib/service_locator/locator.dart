@@ -5,7 +5,7 @@ import 'package:taskaty/repositories/remote_service_repos/firebase_tasks_repo.da
 import 'package:taskaty/repositories/remote_service_repos/payment_repo.dart';
 import 'package:taskaty/services/api/api_service.dart';
 import 'package:taskaty/services/firebase/firebase_auth.dart';
-import 'package:taskaty/services/internet_connection.dart';
+import 'package:taskaty/view_model/internet_connection.dart';
 import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
 import 'package:taskaty/view_model/payment_view_model/payment_view_model.dart';
 

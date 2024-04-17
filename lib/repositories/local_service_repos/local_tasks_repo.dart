@@ -1,4 +1,5 @@
 import 'package:either_dart/src/either.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:taskaty/core/errors/error.dart';
 
@@ -14,6 +15,7 @@ abstract class BaseLocalTasksRepo<T> implements BaseTasksRepo {
   Stream<TaskModel> getTasksStream({
     required String key,
   });
+
 }
 
 class LocalTasksRepo implements BaseLocalTasksRepo {

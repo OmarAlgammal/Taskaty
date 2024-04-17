@@ -61,7 +61,9 @@ class _TaskPageState extends State<TaskPage> {
                       task: task,
                       titleController: _titleController,
                       onCheckBoxChanged: (value) {
-                        task.updateTask(title: _titleController.text);
+                        setState(() {
+                          task.updateTask(title: _titleController.text, completed: value);
+                        });
                       },
                     ),
                     Gaps.gap16,

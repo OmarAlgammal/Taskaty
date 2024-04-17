@@ -6,6 +6,7 @@ import 'package:hive/hive.dart';
 import 'package:paymob_payment/paymob_payment.dart';
 import 'package:provider/provider.dart';
 import 'package:taskaty/core/network/constants/payment_api_constants.dart';
+import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/repositories/local_service_repos/theme_repo.dart';
 
 import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
@@ -50,11 +51,10 @@ Future<void> main() async {
     EasyLocalization(
       supportedLocales: const [Locale('ar'), Locale('en')],
       path: 'assets/localization',
-      fallbackLocale: const Locale('ar'),
+      fallbackLocale: const Locale('en'),
       child: ChangeNotifierProvider<ThemeViewModel>(
         create: (context) => ThemeViewModel(locator<ThemeRepo>()),
         child: const MyApp(),
-        //child: const MyApp(),
       ),
     ),
   );
