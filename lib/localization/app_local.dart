@@ -1,3 +1,5 @@
+import 'package:flutter_localization/flutter_localization.dart';
+
 mixin AppLocal {
   static const String today = 'today';
   static const String weekly = 'weekly';
@@ -16,7 +18,7 @@ mixin AppLocal {
   static const String week  = 'week';
   static const String count  = 'count';
 
-  static const Map<String, String> EN = {
+  static const Map<String, dynamic> en = {
     today: 'Today',
     weekly: 'Weekly',
     monthly: 'Monthly',
@@ -35,7 +37,7 @@ mixin AppLocal {
     count: 'Count',
   };
 
-  static const Map<String, dynamic> AR = {
+  static const Map<String, dynamic> ar = {
     today: 'اليوم',
     weekly: 'سبوعي',
     monthly: 'شهري',

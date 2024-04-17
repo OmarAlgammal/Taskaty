@@ -11,8 +11,7 @@ import '../../../../models/task_model/task_model.dart';
 import '../../../../utils/constance/icons.dart';
 
 class TasksListComp extends StatelessWidget {
-  const TasksListComp({super.key, required this.tab, required this.tasks});
-  final MainTabs tab;
+  const TasksListComp({super.key, required this.tasks});
   final List<TaskModel> tasks;
   @override
   Widget build(BuildContext context) {

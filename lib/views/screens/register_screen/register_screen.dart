@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:paymob_payment/paymob_payment.dart';
@@ -44,14 +43,14 @@ class RegisterScreen extends StatelessWidget {
                   children: [
                     descriptionItemDesign(
                         context: context,
-                        title: 'Register and Complete your tasks easily'.tr()),
+                        title: 'Register and Complete your tasks easily'),
                     descriptionItemDesign(
                         context: context,
-                        title: 'Follow your complete tasks'.tr()),
+                        title: 'Follow your complete tasks'),
                     Gaps.gap36,
                     RegiserComp(
                       icon: AppIcons.googleIcon,
-                      registrationText: 'signInWithGoogle'.tr(),
+                      registrationText: 'signInWithGoogle',
                       onPressed: () {
                         locator<AuthRepo>().signInWithGoogle();
                       },

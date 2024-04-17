@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
@@ -47,7 +46,7 @@ class SettingsScreenEmailInfoCom extends StatelessWidget {
                 });
               },
               child: Text(
-                'sign out'.tr(),
+                'sign out',
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       color: Theme.of(context).colorScheme.error,
                     ),

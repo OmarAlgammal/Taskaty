@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskaty/models/main_tabs_values.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/utils/enums/main_tabs_enum.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
@@ -20,9 +21,9 @@ class HomeScreenTabViewComp extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBarView(
       children: List.generate(
-        MainTabs.values.length,
+        context.mainTabs.length,
         (index) {
-          final tab = MainTabs.values[index];
+          final tab = context.mainTabs[index];
           return Scaffold(
             floatingActionButton: FloatingActionButton(
               child: Icon(
@@ -50,16 +51,20 @@ class HomeScreenTabViewComp extends StatelessWidget {
                       }
                       final tasks = snapshot.data!;
                       final monthsTasks = getMonthsTasks(tasks);
-                      return switch (tab) {
-                        MainTabs.weekly => WeeklyComp(months: monthsTasks),
-                        MainTabs.monthly =>
-                          MonthlyComp(monthTasks: monthsTasks),
-                        _ => TasksListComp(
-                            tab: tab,
-                            tasks: tab == MainTabs.today
-                                ? getDailyTasks(tasks)
-                                : tasks),
-                      };
+                      if (tab == context.todayTab) return TasksListComp(tasks: getDailyTasks(tasks));
+                      if (tab == context.weeklyTab) return WeeklyComp(months: monthsTasks);
+                      if (tab == context.monthlyTab) return MonthlyComp(monthTasks: monthsTasks);
+                      return TasksListComp(tasks: tasks);
+                      // return switch (tab) {
+                      //   context.weeklyTab => WeeklyComp(months: monthsTasks),
+                      //   MainTabs.monthly =>
+                      //     MonthlyComp(monthTasks: monthsTasks),
+                      //   _ => TasksListComp(
+                      //       tab: tab,
+                      //       tasks: tab == MainTabs.today
+                      //           ? getDailyTasks(tasks)
+                      //           : tasks),
+                      // };
                     },
                   )
                 : ValueListenableBuilder<Box<TaskModel>>(
@@ -69,16 +74,19 @@ class HomeScreenTabViewComp extends StatelessWidget {
                         .listenable(),
                     builder: (context, box, _) {
                       final monthsTasks = getMonthsTasks(box.values.toList());
-                      return switch (tab) {
+                      if (tab == context.todayTab) return TasksListComp(tasks: getDailyTasks(box.values.toList()));
+                      if (tab == context.weeklyTab) return WeeklyComp(months: monthsTasks);
+                      if (tab == context.monthlyTab) return MonthlyComp(monthTasks: monthsTasks);
+                      return TasksListComp(tasks: box.values.toList());
+                      /*return switch (tab) {
                         MainTabs.weekly => WeeklyComp(months: monthsTasks),
                         MainTabs.monthly =>
                           MonthlyComp(monthTasks: monthsTasks),
                         _ => TasksListComp(
-                            tab: tab,
                             tasks: tab == MainTabs.today
                                 ? getDailyTasks(box.values.toList())
                                 : box.values.toList()),
-                      };
+                      };*/
                     },
                   ),
           );

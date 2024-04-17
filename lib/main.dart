@@ -1,7 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:hive/hive.dart';
 import 'package:paymob_payment/paymob_payment.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +35,6 @@ Future<void> main() async {
       androidProvider: AndroidProvider.debug,
       appleProvider: AppleProvider.appAttest,
     ),
-    EasyLocalization.ensureInitialized(),
     locator<HiveServices<TaskModel>>().init(),
     locator<MySharedPreferences>().init(),
     PaymobPayment.instance.initialize(
@@ -48,16 +47,11 @@ Future<void> main() async {
   ]);
 
   runApp(
-    EasyLocalization(
-      supportedLocales: const [Locale('ar'), Locale('en')],
-      path: 'assets/localization',
-      fallbackLocale: const Locale('en'),
-      child: ChangeNotifierProvider<ThemeViewModel>(
-        create: (context) => ThemeViewModel(locator<ThemeRepo>()),
-        child: const MyApp(),
-      ),
-    ),
-  );
+  ChangeNotifierProvider<ThemeViewModel>(
+    create: (context) => ThemeViewModel(locator<ThemeRepo>()),
+    child: const MyApp(),
+    //child: const MyApp(),
+  ));
 }
 
 @override
@@ -73,14 +67,32 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final FlutterLocalization _localization = FlutterLocalization.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    _localization.init(mapLocales: [
+      const MapLocale('en', AppLocal.en,),
+      const MapLocale('ar', AppLocal.ar,),
+    ], initLanguageCode: 'ar',);
+    _localization.onTranslatedLanguage = _onTranslatedLanguage;
+  }
+
+  void _onTranslatedLanguage(Locale? locale) {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeViewModel>(context).getTheme(),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
+      supportedLocales: _localization.supportedLocales,
+      localizationsDelegates: _localization.localizationsDelegates,
+      // localizationsDelegates: context.localizationDelegates,
+      // supportedLocales: context.supportedLocales,
+      //locale: context.locale,
       onGenerateRoute: onGenerate,
       initialRoute: AppRoutes.landingScreen,
     );

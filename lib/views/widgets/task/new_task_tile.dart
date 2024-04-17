@@ -1,9 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../utils/constance/my_padding.dart';
 import '../../../utils/constance/icons.dart';
+import '../../../utils/constance/my_padding.dart';
 import '../../../utils/constance/paths.dart';
 
 class AddNewTask extends StatelessWidget {
@@ -13,12 +12,10 @@ class AddNewTask extends StatelessWidget {
   final bool addToMyDayState;
   final String? listName;
 
-
   bool addedButtonEnabled = false;
   bool repeatDailyState = false;
 
   final controller = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +42,7 @@ class AddNewTask extends StatelessWidget {
                         controller: controller,
                         autofocus: true,
                         decoration: InputDecoration(
-                          hintText: 'newTask'.tr(),
+                          hintText: 'newTask',
                           border: InputBorder.none,
                         ),
                         onChanged: (text) {
@@ -74,6 +71,7 @@ class AddNewTask extends StatelessWidget {
                               },
                               contentPadding: MyPadding.padding0,
                               horizontalTitleGap: 0,
+
                               /// TODO: Replace this icon with svg icon
                               leading: SvgPicture.asset(
                                 AppPaths.addTaskIcon,
@@ -81,7 +79,7 @@ class AddNewTask extends StatelessWidget {
                                     fontSize: 24, currentColor: Colors.red),
                               ),
                               title: Text(
-                                'addition'.tr(),
+                                'addition',
                                 style: TextStyle(
                                   color: addedButtonColor,
                                 ),
@@ -103,7 +101,7 @@ class AddNewTask extends StatelessWidget {
                                 color: repeatDailyButtonColor,
                               ),
                               title: Text(
-                                'repeatDaily'.tr(),
+                                'repeatDaily',
                                 style: TextStyle(
                                   color: repeatDailyButtonColor,
                                 ),
@@ -126,7 +124,7 @@ class AddNewTask extends StatelessWidget {
         size: 28,
       ),
       title: Text(
-        'newTask'.tr(),
+        'newTask',
       ),
     );
   }
