@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:either_dart/either.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
+import 'package:taskaty/utils/helper/tasks_filtration_helper.dart';
 import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
 
 import '../../repositories/local_service_repos/local_tasks_repo.dart';
@@ -15,11 +16,16 @@ class TaskViewModel {
   TaskViewModel(this._baseFirestoreTasksRepo, this._baseLocalTasksRepo,
       this._firebasePaymentViewModel);
 
-  Stream<List<TaskModel>> getTasksSource() {
+  Stream<({List<TaskModel> allTasks, List<TaskModel> dailyTasks, Map<int, Map<int, List<TaskModel>>> monthlyTasks})> getTasksSource() {
+    final Stream<List<TaskModel>> tasksStream;
     if (_firebasePaymentViewModel.userOnSubscriptionPeriod) {
-      return _baseFirestoreTasksRepo.getTasksStream();
+      tasksStream = _baseFirestoreTasksRepo.getTasksStream();
+    }else{
+      tasksStream = _baseLocalTasksRepo.getTasksStream();
     }
-    return _baseLocalTasksRepo.getTasksStream();
+    return tasksStream.map((tasks){
+      return TasksFiltrationHelper.getFilteredTasks(tasks);
+    });
   }
 
   Future<void> setTask(TaskModel task) async {

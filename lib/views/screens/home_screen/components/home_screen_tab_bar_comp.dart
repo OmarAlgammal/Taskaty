@@ -8,10 +8,14 @@ import 'package:taskaty/views/screens/home_screen/components/weekly_comp.dart';
 
 class HomeScreenTabViewComp extends StatelessWidget {
   const HomeScreenTabViewComp(
-      {Key? key, required this.tasks})
+      {Key? key, required this.filteredTasks})
       : super(key: key);
 
-  final List<TaskModel> tasks;
+  final ({
+  List<TaskModel> allTasks,
+  List<TaskModel> dailyTasks,
+  Map<int, Map<int, List<TaskModel>>> monthlyTasks
+  }) filteredTasks;
 
   @override
   Widget build(BuildContext context) {
@@ -20,45 +24,16 @@ class HomeScreenTabViewComp extends StatelessWidget {
         context.mainTabs.length,
         (index) {
           final tab = context.mainTabs[index];
-          final monthsTasks = getMonthsTasks(tasks);
           if (tab == context.todayTab) {
-            return TasksListComp(tasks: getDailyTasks(tasks));
+            return TasksListComp(tasks: filteredTasks.dailyTasks);
           }
-          if (tab == context.weeklyTab) return WeeklyComp(months: monthsTasks);
+          if (tab == context.weeklyTab) return WeeklyComp(months: filteredTasks.monthlyTasks);
           if (tab == context.monthlyTab) {
-            return MonthlyComp(monthTasks: monthsTasks);
+            return MonthlyComp(monthTasks: filteredTasks.monthlyTasks);
           }
-          return TasksListComp(tasks: tasks);
+          return TasksListComp(tasks: filteredTasks.allTasks);
         },
       ),
     );
-  }
-
-  /// TODO: Transfer this method to a separate file
-  List<TaskModel> getDailyTasks(Iterable<TaskModel> tasks) =>
-      tasks.where((element) => element.isTodayTask).toList();
-
-  /// TODO: Transfer this method to a separate file
-  Map<int, Map<int, List<TaskModel>>> getMonthsTasks(
-      Iterable<TaskModel> tasks) {
-    final tasksStructure = getTasksStructure();
-    final yearTasks =
-        tasks.where((task) => task.creationDate.likeThisYear).toList();
-    for (int i = 0; i < yearTasks.length; i++) {
-      final task = yearTasks[i];
-      if (task.dueDate != null) {
-        final monthNumber = task.dueDate!.month;
-        final weekNumber = task.dueDate!.getWeekNumberInMonth;
-        tasksStructure[monthNumber]![weekNumber]!.add(task);
-      }
-    }
-    return tasksStructure;
-  }
-
-  /// TODO: Transfer this method to a separate file
-  Map<int, Map<int, List<TaskModel>>> getTasksStructure() {
-    return {
-      for (int m = 1; m <= 12; m++) m: {for (int w = 1; w <= 5; w++) w: []}
-    };
   }
 }

@@ -41,6 +41,7 @@ class TasksListComp extends StatelessWidget {
     );
   }
 
+  /// TODO: Transfer this method
   Widget tasksListWidget(List<TaskModel> tasks) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -57,7 +58,7 @@ class TasksListComp extends StatelessWidget {
     ],
   );
 
-
+  /// TODO: Transfer this method
   Widget get noTasksWidget => const Align(
     alignment: Alignment.center,
     child: Column(
@@ -70,7 +71,7 @@ class TasksListComp extends StatelessWidget {
       ],
     ),
   );
-  
+  /// TODO: Transfer this method
   Widget doneTasksWidget(BuildContext context) {
     return completedTasks.isNotEmpty && unCompletedTasks.isEmpty ? Padding(
       padding: MyPadding.paddingV18,
@@ -85,8 +86,9 @@ class TasksListComp extends StatelessWidget {
     ) : const SizedBox();
   }
 
-
+  /// TODO: Transfer this method
   List<TaskModel> get completedTasks => tasks.where((element) => element.completed).toList();
 
+  /// TODO: Transfer this method
   List<TaskModel> get unCompletedTasks => tasks.where((element) => ! element.completed).toList();
 }

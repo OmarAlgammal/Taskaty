@@ -43,11 +43,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Center(child: Text(AppLocal.error.getString(context)));
                 }
                 if (snapshot.connectionState == ConnectionState.none &&
-                    snapshot.data!.isNotEmpty) {
+                    snapshot.data == null) {
                   return Center(child: Text(AppLocal.error.getString(context)));
                 }
 
-                return HomeScreenTabViewComp(tasks: snapshot.data!);
+                return HomeScreenTabViewComp(filteredTasks: snapshot.data!);
               }),
         ),
       ),
