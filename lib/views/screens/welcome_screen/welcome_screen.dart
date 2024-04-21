@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/routing/routes.dart';
 import 'package:taskaty/service_locator/locator.dart';
 import 'package:taskaty/utils/constance/border_radius.dart';
@@ -36,20 +38,20 @@ class WelcomeScreen extends StatelessWidget {
                 children: [
                   descriptionWidget(
                     context,
-                    text: 'welcome to Taskaty!',
+                    text: AppLocal.welcome.getString(context),
                   ),
                   descriptionWidget(
                     context,
-                    text: 'Effortlessly manage tasks with local data security.',
+                    text: AppLocal.featureDescription1.getString(context),
                   ),
                   descriptionWidget(
                     context,
-                    text: 'Upgrade for cloud sync and premium features',
+                    text: AppLocal.featureDescription2.getString(context),
                     textColor: Colors.yellow.shade800,
                   ),
                   descriptionWidget(
                     context,
-                    text: 'Your productivity journey starts now!',
+                    text: AppLocal.featureDescription3.getString(context),
                     textColor: context.colorScheme.onPrimary,
                   ),
                   Gaps.gap36,
@@ -57,13 +59,13 @@ class WelcomeScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      registerButton(context, primary: false, text: 'Skip',
+                      registerButton(context, primary: false, text: AppLocal.skip.getString(context),
                           onPressed: () {
                         Navigator.pushNamed(context, AppRoutes.homeScreen);
                       }),
                       Gaps.gap16,
                       registerButton(context,
-                          text: 'Register',
+                          text: AppLocal.register.getString(context),
                           icon: AppIcons.googleIcon, onPressed: () {
                         locator<AuthRepo>().signInWithGoogle().then((value) {
                           Navigator.popAndPushNamed(

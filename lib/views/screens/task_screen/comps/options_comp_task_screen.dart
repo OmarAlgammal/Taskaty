@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/extensions/date_time_extension.dart';
@@ -55,7 +57,7 @@ class OptionsCompTaskScreen extends StatelessWidget {
           ),
         ListTile(
             title: Text(
-              'Repeat daily',
+              AppLocal.repeatDaily.getString(context),
               style: TextStyle(color: repeatDailyColor),
             ),
             leading: Icon(

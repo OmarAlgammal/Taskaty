@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:paymob_payment/paymob_payment.dart';
+import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/constance/paths.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 
 import '../../../repositories/remote_service_repos/auth_repo.dart';
 import '../../../service_locator/locator.dart';
-import '../../../utils/constance/my_padding.dart';
 import '../../../utils/constance/icons.dart';
+import '../../../utils/constance/my_padding.dart';
 import 'comps/register_comp.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -43,14 +44,15 @@ class RegisterScreen extends StatelessWidget {
                   children: [
                     descriptionItemDesign(
                         context: context,
-                        title: 'Register and Complete your tasks easily'),
+                        title: AppLocal.register.getString(context)),
                     descriptionItemDesign(
                         context: context,
-                        title: 'Follow your complete tasks'),
+                        title: AppLocal.followCompleteTasks.getString(context)),
                     Gaps.gap36,
                     RegiserComp(
                       icon: AppIcons.googleIcon,
-                      registrationText: 'signInWithGoogle',
+                      registrationText:
+                          AppLocal.signInWithGoogle.getString(context),
                       onPressed: () {
                         locator<AuthRepo>().signInWithGoogle();
                       },

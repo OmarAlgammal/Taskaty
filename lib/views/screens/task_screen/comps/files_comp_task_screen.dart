@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:open_file/open_file.dart';
+import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 
@@ -33,7 +35,7 @@ class FilesCompTaskScreen extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          title: Text('Add file'),
+          title: Text(AppLocal.addFile.getString(context)),
           leading: Icon(
             AppIcons.attachIcon,
           ),

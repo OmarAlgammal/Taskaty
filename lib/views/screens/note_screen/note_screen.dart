@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 
 import '../../../models/task_model/task_model.dart';
-import '../../../service_locator/locator.dart';
-import '../../../view_model/tasks_view_model/tasks_view_model_deprecated.dart';
 
 class NotePage extends StatefulWidget {
   NotePage({Key? key}) : super(key: key);
@@ -22,7 +20,6 @@ class _NotePageState extends State<NotePage> {
     super.didChangeDependencies();
     task = ModalRoute.of(context)!.settings.arguments as TaskModel;
   }
-
 
   @override
   Widget build(BuildContext context) {

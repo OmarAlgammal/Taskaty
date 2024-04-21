@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/models/navigation_models/payment_screen_model.dart';
 import 'package:taskaty/routing/routes.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
@@ -29,19 +31,19 @@ class PaymentComp extends StatelessWidget {
               AppIcons.heart,
               color: context.colorScheme.primary,
             ),
-      title: Text(payForSubscription ? 'Subscribe' : 'Say thanks'),
+      title: Text(payForSubscription ? AppLocal.subscribe.getString(context) : AppLocal.sayThanks.getString(context)),
       trailing: FutureBuilder(
         future: context.firebasePaymentViewModel
             .getPaymentPrice(payForSubscription),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text('Loading');
+            return Text(AppLocal.loading.getString(context));
           }
           if (snapshot.data != null && snapshot.data!.isRight) {
             amount = snapshot.data!.right;
             return Text('${snapshot.data!.right} EGP');
           }
-          return Text('error');
+          return Text(AppLocal.error.getString(context));
         },
       ),
     );

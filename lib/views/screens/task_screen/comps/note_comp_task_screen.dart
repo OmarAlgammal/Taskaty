@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:taskaty/localization/app_local.dart';
 
 import '../../../../models/task_model/task_model.dart';
 import '../../../../utils/constance/icons.dart';
@@ -15,7 +17,7 @@ class NoteCompTaskScreen extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-            title: const Text('Add a note'),
+            title: Text(AppLocal.addNote.getString(context)),
             leading: const Icon(AppIcons.addIcon),
             horizontalTitleGap: 0,
             onTap: onNoteBackButtonPressed),

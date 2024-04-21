@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
       localizationsDelegates: _localization.localizationsDelegates,
       // localizationsDelegates: context.localizationDelegates,
       // supportedLocales: context.supportedLocales,
-      //locale: context.locale,
+      // locale: context.locale,
       onGenerateRoute: onGenerate,
       initialRoute: AppRoutes.landingScreen,
     );

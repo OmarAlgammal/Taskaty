@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:taskaty/core/network/constants/payment_api_constants.dart';
+import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/models/navigation_models/payment_screen_model.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/helper/alert_dailog_helper.dart';
@@ -22,8 +24,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(paymentScreenModel.payForSubscription
-            ? 'pay for subscription'
-            : 'Say thanks'),
+            ? AppLocal.payment.getString(context)
+            : AppLocal.sayThanks.getString(context)),
       ),
       body: Center(
         child: FutureBuilder(
@@ -41,7 +43,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     NavigationDelegate(
                       onUrlChange: (url) {},
                       onNavigationRequest: (NavigationRequest request) async {
-                        if (request.url.contains('success')) {
+                        if (request.url.contains(AppLocal.success.getString(context))) {
                           final params = Uri.parse(request.url).queryParameters;
                           final response =
                               PaymentTransactionModel.fromJson(params);
@@ -66,7 +68,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ),
               );
             }
-            return const Text('Loading..');
+            return Text(AppLocal.loading.getString(context));
           },
         ),
       ),

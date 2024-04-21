@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/service_locator/locator.dart';
 import 'package:taskaty/utils/constance/my_padding.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
@@ -32,7 +34,7 @@ class _MoreScreenState extends State<MoreScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'More',
+          AppLocal.more.getString(context),
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
@@ -44,7 +46,7 @@ class _MoreScreenState extends State<MoreScreen> {
             SettingsScreenEmailInfoCom(locator<AuthRepo>().currentUser!),
             const SettingsScreenThemeCom(),
             Gaps.gap24,
-            const Text('Payment'),
+            Text(AppLocal.payment.getString(context)),
             const SingleDivider(),
             Padding(padding:
             MyPadding.paddingVV18,

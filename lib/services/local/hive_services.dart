@@ -1,8 +1,6 @@
 import 'package:either_dart/src/either.dart';
-import 'package:flutter/src/foundation/change_notifier.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taskaty/core/errors/error.dart';
-import 'package:taskaty/models/task_model/task_model.dart';
 import 'package:taskaty/utils/typedefs/typedef.dart';
 
 abstract class BaseHiveService<T> {
@@ -10,14 +8,11 @@ abstract class BaseHiveService<T> {
 
   Future<Either<MyError, void>> deleteData({required String key});
 
-  Stream<T> getStream(String key, HiveQueryBuilder<T> hiveQueryBuilder);
-
   Box<T> getBox();
 
   Future<void> closeBox();
 
   Future<int> clearData();
-
 }
 
 class HiveServices<T> implements BaseHiveService<T> {
@@ -63,11 +58,6 @@ class HiveServices<T> implements BaseHiveService<T> {
     } catch (error) {
       return Left(ServerError(message: 'Failed to set Data: $error'));
     }
-  }
-
-  @override
-  Stream<T> getStream(String key, HiveQueryBuilder<T> hiveQueryBuilder) {
-    return _box.watch(key: key).map((event) => hiveQueryBuilder(event));
   }
 
   @override

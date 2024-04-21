@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:taskaty/localization/app_local.dart';
 
 import '../../../utils/constance/icons.dart';
 import '../../../utils/constance/my_padding.dart';
@@ -42,7 +44,7 @@ class AddNewTask extends StatelessWidget {
                         controller: controller,
                         autofocus: true,
                         decoration: InputDecoration(
-                          hintText: 'newTask',
+                          hintText: AppLocal.newTask.getString(context),
                           border: InputBorder.none,
                         ),
                         onChanged: (text) {
@@ -64,9 +66,8 @@ class AddNewTask extends StatelessWidget {
                             flex: 1,
                             child: ListTile(
                               onTap: () {
-                                debugPrint('Add new task');
                                 if (controller.text.isNotEmpty) {
-                                  debugPrint('Add new task');
+                                  /// TODO: Complete this action
                                 }
                               },
                               contentPadding: MyPadding.padding0,
@@ -79,7 +80,7 @@ class AddNewTask extends StatelessWidget {
                                     fontSize: 24, currentColor: Colors.red),
                               ),
                               title: Text(
-                                'addition',
+                              AppLocal.addition.getString(context),
                                 style: TextStyle(
                                   color: addedButtonColor,
                                 ),
@@ -101,7 +102,7 @@ class AddNewTask extends StatelessWidget {
                                 color: repeatDailyButtonColor,
                               ),
                               title: Text(
-                                'repeatDaily',
+                              AppLocal.repeatDaily.getString(context),
                                 style: TextStyle(
                                   color: repeatDailyButtonColor,
                                 ),
@@ -124,7 +125,7 @@ class AddNewTask extends StatelessWidget {
         size: 28,
       ),
       title: Text(
-        'newTask',
+        AppLocal.newTask.getString(context),
       ),
     );
   }

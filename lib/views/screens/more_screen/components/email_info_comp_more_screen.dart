@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/extensions/string_extensions.dart';
@@ -46,7 +48,7 @@ class SettingsScreenEmailInfoCom extends StatelessWidget {
                 });
               },
               child: Text(
-                'sign out',
+                AppLocal.signOut.getString(context),
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       color: Theme.of(context).colorScheme.error,
                     ),
