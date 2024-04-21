@@ -15,6 +15,20 @@ class TasksFiltrationHelper {
     );
   }
 
+  static List<TaskModel> completedTasks(List<TaskModel> tasks) =>
+      tasks.where((element) => element.completed).toList();
+
+  static List<TaskModel> unCompletedTasks(List<TaskModel> tasks) =>
+      tasks.where((element) => !element.completed).toList();
+
+  static List<TaskModel> flattenTasksByWeekInMonth(Map<int, List<TaskModel>> month) {
+    List<TaskModel> list = [];
+    for (int w = 1; w <= 5; w++) {
+      list.addAll(month[w]!);
+    }
+    return list;
+  }
+
   static Map<int, Map<int, List<TaskModel>>> _getFilteredMonthlyTasks(
       Iterable<TaskModel> tasks) {
     final tasksStructure = _getTasksStructure();

@@ -36,6 +36,7 @@ mixin AppLocal {
   static const String success = 'success';
 
   static const String skip = 'Skip';
+  static const String completed = 'completed';
 
   static const String featureDescription1 = 'feature1';
   static const String featureDescription2 = 'feature2';
@@ -78,6 +79,7 @@ mixin AppLocal {
     success: 'Success',
 
     skip: 'Skip',
+    completed: 'Completed',
 
     featureDescription1: 'You can manage your data easily.',
     featureDescription2: 'Upgrade for cloud sync and premium features',
@@ -122,6 +124,7 @@ mixin AppLocal {
     success: 'تم بنجاح',
 
     skip: 'تخطي',
+    completed: 'المكتملة',
 
     featureDescription1: 'يمكنك إدارة بياناتك بسولة',
     featureDescription2: 'قم بالترقية للمزامنة السحابية والميزات المتميزة',

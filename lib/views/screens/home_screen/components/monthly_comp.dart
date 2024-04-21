@@ -4,6 +4,7 @@ import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/utils/extensions/int_extensions.dart';
 import 'package:taskaty/utils/helper/my_date_utils_helper.dart';
+import 'package:taskaty/utils/helper/tasks_filtration_helper.dart';
 
 import '../../../../models/task_model/task_model.dart';
 import '../../../../utils/constance/border_radius.dart';
@@ -26,7 +27,7 @@ class MonthlyComp extends StatelessWidget {
         separatorBuilder: (contexts, index) => Gaps.gap8,
         itemBuilder: (context, monthIndex) {
           monthIndex = monthIndex + 1;
-          final tasksInMonth = getTasksInMonth(monthTasks[monthIndex]!);
+          final tasksInMonth = TasksFiltrationHelper.flattenTasksByWeekInMonth(monthTasks[monthIndex]!);
           final fromThePastMonths =
               MyDateUtilsHelper.fromThePastMonths(monthIndex);
           final fromTheNextMonths =
@@ -56,7 +57,6 @@ class MonthlyComp extends StatelessWidget {
     );
   }
 
-  /// TODO: Transfer this method to a new layer
   Widget emptyMonthWidget(BuildContext context, int monthNum) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,14 +77,6 @@ class MonthlyComp extends StatelessWidget {
     );
   }
 
-  /// TODO: Transfer this method to a new layer
-  List<TaskModel> getTasksInMonth(Map<int, List<TaskModel>> month) {
-    List<TaskModel> list = [];
-    for (int w = 1; w <= 5; w++) {
-      list.addAll(month[w]!);
-    }
-    return list;
-  }
 }
 
 class MonthlyPeriodComp extends StatelessWidget {
