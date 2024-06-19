@@ -32,7 +32,7 @@ class RegisterWithGoogleComp extends StatelessWidget {
               ),
               Gaps.gap16,
               Text(AppLocal.signInWithGoogle.getString(context),
-                  style: Theme.of(context).textTheme.bodyLarge),
+                  style: Theme.of(context).textTheme.titleLarge),
             ],
           ),
         ),

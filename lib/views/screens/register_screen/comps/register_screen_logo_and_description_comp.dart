@@ -19,10 +19,11 @@ class RegisterScreenLogoAndDescriptionComp extends StatelessWidget {
           AppPaths.appLogo,
           fit: BoxFit.fill,
           height: context.height * .04,
+          color: context.colorScheme.primary,
         ),
         Gaps.gap24,
         Expanded(child: Text(AppLocal.appDescription.getString(context), style:
-        context.textTheme.titleMedium,
+        context.textTheme.bodyLarge,
           textAlign: TextAlign.center,)),
       ],
     );
