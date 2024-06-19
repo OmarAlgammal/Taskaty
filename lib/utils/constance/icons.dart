@@ -35,5 +35,6 @@ class AppIcons{
   static const settings = Icons.settings;
   static const error = Icons.error;
   static const heart = FontAwesomeIcons.solidHeart;
+  static const arrowForward = Icons.arrow_forward_ios_outlined;
 }
 

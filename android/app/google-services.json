@@ -12,7 +12,20 @@
           "package_name": "com.example.taskaty"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "713217312380-4cdba8j3n0tdtsgqh02usl7hji445icj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.taskaty",
+            "certificate_hash": "331c9ae7ee945d1feb75411e782dcafc48abe2ea"
+          }
+        },
+        {
+          "client_id": "713217312380-8tm7lsc1u2k2oigclg3rrttckl9olqrs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBIZChgFIChM_zF5MZMAafl06BcWEOS-s8"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713217312380-8tm7lsc1u2k2oigclg3rrttckl9olqrs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "713217312380-2f8702p9un0sh0c23cpbupcv6hatvpq2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.taskaty"
+              }
+            }
+          ]
         }
       }
     }

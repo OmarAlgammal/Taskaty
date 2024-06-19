@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -63,6 +54,40 @@ class DefaultFirebaseOptions {
     messagingSenderId: '713217312380',
     projectId: 'taksaty-4ca3c',
     storageBucket: 'taksaty-4ca3c.appspot.com',
+    androidClientId: '713217312380-4cdba8j3n0tdtsgqh02usl7hji445icj.apps.googleusercontent.com',
+    iosClientId: '713217312380-2f8702p9un0sh0c23cpbupcv6hatvpq2.apps.googleusercontent.com',
     iosBundleId: 'com.example.taskaty',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCQaLfvpRo8imhOvZh2oYVPadV6qWTILvw',
+    appId: '1:713217312380:web:2e94e86a77d1e3ffac6bf9',
+    messagingSenderId: '713217312380',
+    projectId: 'taksaty-4ca3c',
+    authDomain: 'taksaty-4ca3c.firebaseapp.com',
+    storageBucket: 'taksaty-4ca3c.appspot.com',
+    measurementId: 'G-SQW15R512N',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBUsoVDWyY6991kmW0hAnzwnFwKnhoAHRE',
+    appId: '1:713217312380:ios:6c5d96722ef9971cac6bf9',
+    messagingSenderId: '713217312380',
+    projectId: 'taksaty-4ca3c',
+    storageBucket: 'taksaty-4ca3c.appspot.com',
+    androidClientId: '713217312380-4cdba8j3n0tdtsgqh02usl7hji445icj.apps.googleusercontent.com',
+    iosClientId: '713217312380-nd94hd2bf0087q443mg5elau7j8ud47e.apps.googleusercontent.com',
+    iosBundleId: 'com.omarprogramzone.taskaty.taskaty',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyCQaLfvpRo8imhOvZh2oYVPadV6qWTILvw',
+    appId: '1:713217312380:web:c5541f72c6b80838ac6bf9',
+    messagingSenderId: '713217312380',
+    projectId: 'taksaty-4ca3c',
+    authDomain: 'taksaty-4ca3c.firebaseapp.com',
+    storageBucket: 'taksaty-4ca3c.appspot.com',
+    measurementId: 'G-D2BTDHSBTJ',
+  );
+
 }

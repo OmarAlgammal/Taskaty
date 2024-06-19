@@ -4,7 +4,6 @@ import 'package:taskaty/routing/routes.dart';
 import 'package:taskaty/utils/constance/icons.dart';
 import 'package:taskaty/utils/constance/my_padding.dart';
 import 'package:taskaty/utils/constance/paths.dart';
-import 'package:taskaty/utils/enums/main_tabs_enum.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 
 class HomeScreenTabBar extends StatelessWidget implements PreferredSizeWidget {
@@ -30,20 +29,18 @@ class HomeScreenTabBar extends StatelessWidget implements PreferredSizeWidget {
           preferredSize: const Size.fromHeight(0),
           child: TabBar(
             physics: const NeverScrollableScrollPhysics(),
-            padding: MyPadding.padding4,
-            indicatorPadding: MyPadding.padding0,
+            indicator: UnderlineTabIndicator(borderSide: BorderSide(color: context.colorScheme.onSurface, width: 4)),
+            indicatorWeight: 2,
             tabs: context.mainTabs
-                .map((e) => Container(
-                      child: Padding(
-                        padding: MyPadding.padding6,
-                        child: Text(e),
-                      ),
-                    ))
+                .map((e) => Padding(
+                  padding: MyPadding.padding6,
+                  child: Text(e, style: context.textTheme.titleMedium,),
+                ))
                 .toList(),
           )),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(96);
+  Size get preferredSize => const Size.fromHeight(110);
 }

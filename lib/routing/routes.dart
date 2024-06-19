@@ -11,4 +11,5 @@ class AppRoutes{
   static const noteScreen = 'note-screen';
   static const paymentWebViewScreen = 'payment-web-view-screen';
   static const moreScreen = 'more-screen';
+  static const subscription = 'subscription-screen';
 }

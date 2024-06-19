@@ -1,7 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
-import 'package:taskaty/utils/extensions/date_time_extension.dart';
 import 'package:taskaty/utils/helper/bottom_sheet_helper.dart';
 import 'package:taskaty/views/screens/task_screen/comps/app_bar_comp_task_screen.dart';
 import 'package:taskaty/views/screens/task_screen/comps/files_comp_task_screen.dart';
@@ -11,9 +10,8 @@ import 'package:taskaty/views/screens/task_screen/comps/title_and_checkbox_comp_
 
 import '../../../models/task_model/task_model.dart';
 import '../../../routing/routes.dart';
-import '../../../utils/constance/my_padding.dart';
 import '../../../utils/constance/gaps.dart';
-import '../../../utils/constance/icons.dart';
+import '../../../utils/constance/my_padding.dart';
 import '../../widgets/calendar_widget.dart';
 import 'comps/delete_comp_task_screen.dart';
 
@@ -62,7 +60,8 @@ class _TaskPageState extends State<TaskPage> {
                       titleController: _titleController,
                       onCheckBoxChanged: (value) {
                         setState(() {
-                          task.updateTask(title: _titleController.text, completed: value);
+                          task.updateTask(
+                              title: _titleController.text, completed: value);
                         });
                       },
                     ),

@@ -8,7 +8,7 @@ import '../../services/firebase/firestore_sevrvice.dart';
 import 'auth_repo.dart';
 
 abstract class BaseFirebasePaymentRepo {
-  Future<Either<MyError, int>> getPaymentPrice({required bool forRegistration});
+  Future<Either<MyError, ({int sayThanks, int subscription})>> getPaymentPrice();
 
   Future<Either<MyError, void>> savePaymentDetails(
       {required PaymentTransactionModel paymentTransactionModel});
@@ -37,12 +37,11 @@ class FirebasePaymentRepo implements BaseFirebasePaymentRepo {
   }
 
   @override
-  Future<Either<MyError, int>> getPaymentPrice(
-      {required bool forRegistration}) async {
-    return _baseFireStoreService.getDoc<int>(
+  Future<Either<MyError, ({int sayThanks, int subscription})>> getPaymentPrice() async {
+    return _baseFireStoreService.getDoc<({int sayThanks, int subscription})>(
         path:
             FirestorePathsConstants.pricingPath,
-        dataBuilder: (map) => map[forRegistration ? FirestorePathsConstants.registrationPath : FirestorePathsConstants.thanksPath]);
+        dataBuilder: (map) => (sayThanks: map[FirestorePathsConstants.thanksPath] as int, subscription: map[FirestorePathsConstants.registrationPath] as int));
   }
 
   @override

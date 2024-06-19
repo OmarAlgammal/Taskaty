@@ -1,11 +1,10 @@
-import 'package:flutter_localization/flutter_localization.dart';
 
 mixin AppLocal {
   static const String today = 'today';
   static const String weekly = 'weekly';
   static const String monthly = 'monthly';
   static const String all = 'all';
-  static const String more = 'more';
+  static const String settings = 'Settings';
 
   static const String signOut = 'sign out';
   static const String appearance = 'appearance';
@@ -25,8 +24,8 @@ mixin AppLocal {
   static const String newTask = 'newTask';
   static const String addition = 'addition';
   static const String repeatDaily = 'repeatDaily';
-  static const String addFile = 'addFile';
-  static const String addNote = 'addNote';
+  static const String addFile = 'File';
+  static const String addNote = 'Note';
 
   static const String welcome = 'welcome';
   static const String register = 'register';
@@ -38,9 +37,16 @@ mixin AppLocal {
   static const String skip = 'Skip';
   static const String completed = 'completed';
 
-  static const String featureDescription1 = 'feature1';
-  static const String featureDescription2 = 'feature2';
-  static const String featureDescription3 = 'feature3';
+  static const String appDescription = 'feature1';
+
+  static const String email = 'Email';
+  static const String userName = 'User name';
+
+  static const subscriptionPlan = 'Subscription plan';
+  static const annual = 'Annual';
+  static const billedAnnual = 'Billed annual';
+  static const supportAsYouWish = 'Support as you wish';
+
 
 
   static const Map<String, dynamic> en = {
@@ -48,7 +54,7 @@ mixin AppLocal {
     weekly: 'Weekly',
     monthly: 'Monthly',
     all: 'All',
-    more: 'More',
+    settings: 'Settings',
 
     signOut: 'Sign out',
     appearance: 'Appearance',
@@ -71,7 +77,7 @@ mixin AppLocal {
     addFile: 'Add a file',
     addNote: 'Add a note',
 
-    welcome: 'Welcom to Taskaty',
+    welcome: 'Welcome to Taskaty',
     register: 'Register and complete your tasks easily',
     followCompleteTasks: 'Follow your complete tasks',
     signInWithGoogle: 'Sign in with Google',
@@ -81,9 +87,14 @@ mixin AppLocal {
     skip: 'Skip',
     completed: 'Completed',
 
-    featureDescription1: 'You can manage your data easily.',
-    featureDescription2: 'Upgrade for cloud sync and premium features',
-    featureDescription3: 'Your productivity journey starts now!',
+    appDescription: 'It helps you organize your tasks throughout the day, week, and month in an easy way and perform your tasks much faster.',
+
+    email : 'Email',
+    userName: 'User name',
+    subscriptionPlan: 'Subscription plan',
+    annual: 'Annual',
+    billedAnnual: 'Billed annual',
+    supportAsYouWish: 'Support as you wish',
 
   };
 
@@ -92,7 +103,7 @@ mixin AppLocal {
     weekly: 'سبوعي',
     monthly: 'شهري',
     all: 'الكل',
-    more: 'المزيد',
+    settings: 'الاعدادات',
 
     signOut: 'تسجيل الخروج',
     appearance: 'الظهور',
@@ -100,7 +111,7 @@ mixin AppLocal {
     dark: 'معتم',
     payment: 'الدفع',
     sayThanks: 'شكرا',
-    subscribe: 'المشاركة',
+    subscribe: 'الاشتراك',
 
     week: 'الاسبوع رقم',
     count: 'العدد',
@@ -112,8 +123,8 @@ mixin AppLocal {
     newTask: 'مهمة جديدة',
     addition: 'إضافة',
     repeatDaily: 'تكرار يومي',
-    addFile: 'أضف ملف',
-    addNote: 'أضف ملحوظة',
+    addFile: 'ملف',
+    addNote: 'ملحوظة',
 
     welcome: 'Taskaty أهلا بك في',
 
@@ -126,9 +137,15 @@ mixin AppLocal {
     skip: 'تخطي',
     completed: 'المكتملة',
 
-    featureDescription1: 'يمكنك إدارة بياناتك بسولة',
-    featureDescription2: 'قم بالترقية للمزامنة السحابية والميزات المتميزة',
-    featureDescription3: 'رحلتك الإنتاجية تبدأ الآن!',
+    appDescription: 'يساعدك على تنظيم مهامك \n على مدار اليوم والأسبوع والشهر \n بطريقة سهلة وأداء مهامك بشكل أسرع ',
+
+    email : 'الحساب',
+    userName: 'اسم المستخدم',
+    subscriptionPlan: 'خطة الاشتراك',
+    annual: 'سنوي',
+    billedAnnual: 'اشتراك سنوي',
+    supportAsYouWish: 'ادفع كما تشاء',
+
   };
 
 }

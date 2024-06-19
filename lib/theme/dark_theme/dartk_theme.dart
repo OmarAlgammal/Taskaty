@@ -9,10 +9,10 @@ final darkTheme = ThemeData.dark().copyWith(
   primaryColor: AppColors.whiteColor,
   colorScheme: ThemeData.dark().colorScheme.copyWith(
       background: AppColors.blackColor,
-      primary: AppColors.greenColor,
+      primary: AppColors.greyColor,
       onPrimary: AppColors.whiteColor),
   tabBarTheme: const TabBarTheme(
-    labelColor: AppColors.greenColor,
+    labelColor: AppColors.greyColor,
     unselectedLabelColor: AppColors.greyColor,
     indicator: BoxDecoration(
       color: AppColors.whiteColor,

@@ -116,12 +116,12 @@ class WeeklyComp extends StatelessWidget {
                           monthNum: monthIndex,
                           weekNum: weekIndex,
                           iconColor:
-                              thisWeek ? context.colorScheme.onPrimary : null),
+                              thisWeek ? context.colorScheme.onSurface : null),
                     Text(
                       'week $weekIndex',
                       style: thisWeek
                           ? context.textTheme.titleLarge!
-                              .copyWith(color: context.colorScheme.onPrimary)
+                              .copyWith(color: context.colorScheme.onSurface)
                           : null,
                     ),
                   ],
@@ -131,12 +131,4 @@ class WeeklyComp extends StatelessWidget {
           );
   }
 
-  void _scrollToIndex() {
-    // Use the animateTo method of the inner ScrollController to smoothly scroll to the specified index
-    _weekScrollController.animateTo(
-      3 * 50.0, // Adjust the multiplier based on the height of each item
-      duration: const Duration(seconds: 1),
-      curve: Curves.easeInOut,
-    );
-  }
 }

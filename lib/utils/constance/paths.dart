@@ -5,4 +5,5 @@ class AppPaths {
   static const addTaskIcon = 'lib/utils/constance/assets/add_task_icon.svg';
   static const dailyRepetitionIcon =
       'lib/utils/constance/assets/daily_repetition_icon.svg';
+  static const backgroundImage = 'lib/utils/constance/assets/background_image.svg';
 }

@@ -7,23 +7,23 @@ import '../colors.dart';
 import '../colors.dart';
 
 final lightTheme = ThemeData.light().copyWith(
-  primaryColor: AppColors.greenColor,
+  primaryColor: AppColors.greyColor,
   tabBarTheme: const TabBarTheme(
     labelColor: AppColors.whiteColor,
     unselectedLabelColor: AppColors.greyColor,
     indicator: BoxDecoration(
-      color: AppColors.greenColor,
+      color: AppColors.greyColor,
       borderRadius: Circular.circular16,
     ),
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    backgroundColor: AppColors.greenColor,
+    backgroundColor: AppColors.greyColor,
   ),
   appBarTheme: const AppBarTheme(
-    titleTextStyle: TextStyle(color: AppColors.greenColor),
+    titleTextStyle: TextStyle(color: AppColors.greyColor),
     iconTheme: IconThemeData(color: AppColors.blackColor),
     actionsIconTheme: IconThemeData(
-      color: AppColors.greenColor
+      color: AppColors.greyColor
     ),
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -35,7 +35,7 @@ final lightTheme = ThemeData.light().copyWith(
   ),
   colorScheme: ThemeData.light().colorScheme.copyWith(
     background: AppColors.whiteColor,
-    primary: AppColors.greenColor,
+    primary: AppColors.greyColor,
     onPrimary: AppColors.whiteColor,
   ),
 

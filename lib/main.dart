@@ -50,7 +50,6 @@ Future<void> main() async {
   ChangeNotifierProvider<ThemeViewModel>(
     create: (context) => ThemeViewModel(locator<ThemeRepo>()),
     child: const MyApp(),
-    //child: const MyApp(),
   ));
 }
 

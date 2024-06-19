@@ -15,9 +15,8 @@ class FirebasePaymentViewModel {
 
   FirebasePaymentViewModel(this._baseFirebasePaymentRepo);
 
-  Future<Either<MyError, int>> getPaymentPrice(bool forRegistration) {
-    return _baseFirebasePaymentRepo.getPaymentPrice(
-        forRegistration: forRegistration);
+  Future<Either<MyError, ({int sayThanks, int subscription})>> getPaymentPrice() {
+    return _baseFirebasePaymentRepo.getPaymentPrice();
   }
 
   Future<Either<MyError, void>> savePaymentDetails(

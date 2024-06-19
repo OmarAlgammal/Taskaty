@@ -72,9 +72,9 @@ class FireStoreService implements BaseFireStoreService {
     } on FirebaseException catch (error) {
       /// TODO: Refactor error exception
       return Left(
-          ServerError(message: 'Failed to set Data to server : $error'));
+          ServerError(message: 'Failed to set Data to server : ${error.message}'));
     } catch (error) {
-      return Left(ServerError(message: 'Failed to set Data: $error'));
+      return Left(ServerError(message: 'Failed to set Data: ${error.toString()}'));
     }
   }
 
