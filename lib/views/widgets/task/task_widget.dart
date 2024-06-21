@@ -56,7 +56,7 @@ class TaskWidget extends StatelessWidget {
         ),
       ),
       trailing: Text(
-        task.dueDate!.dateZone,
+        task.dueDate!.dateZone(context),
         style: context.textTheme.bodySmall!.copyWith(
           color: task.dueDate != null
               ? DateHelper.dueDateColor(context, task.dueDate!)

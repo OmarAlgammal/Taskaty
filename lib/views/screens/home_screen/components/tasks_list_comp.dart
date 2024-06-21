@@ -23,12 +23,12 @@ class TasksListComp extends StatelessWidget {
     return Padding(
       padding: MyPadding.padding16,
       child: tasks.isEmpty
-          ? noTasksWidget
+          ? noTasksWidget(context)
           : SingleChildScrollView(
               child: Column(
                 children: [
                   Gaps.gap16,
-                  doneTasksWidget(context, completedTasks, unCompletedTasks),
+                  goodJobWidget(context, completedTasks, unCompletedTasks),
                   tasksListWidget(context, unCompletedTasks),
                   if (completedTasks.isNotEmpty)
                     Column(
@@ -68,7 +68,7 @@ class TasksListComp extends StatelessWidget {
         ],
       );
 
-  Widget get noTasksWidget => const Align(
+  Widget noTasksWidget (BuildContext context) => Align(
         alignment: Alignment.center,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,12 +76,12 @@ class TasksListComp extends StatelessWidget {
           children: [
             Icon(AppIcons.listCheck, size: 72),
             Gaps.gap8,
-            Text('No Tasks yet'),
+            Text(AppLocal.noTasksYet.getString(context)),
           ],
         ),
       );
 
-  Widget doneTasksWidget(BuildContext context, List<TaskModel> completedTasks, unCompletedTasks) {
+  Widget goodJobWidget(BuildContext context, List<TaskModel> completedTasks, unCompletedTasks) {
     return completedTasks.isNotEmpty && unCompletedTasks.isEmpty
         ? Padding(
             padding: MyPadding.paddingV18,
@@ -91,7 +91,7 @@ class TasksListComp extends StatelessWidget {
                 const Icon(AppIcons.dove),
                 Gaps.gap8,
                 Text(
-                  'Good job, you have completed all the tasks',
+                  AppLocal.goodJob.getString(context),
                   style: context.textTheme.bodyLarge,
                 ),
               ],

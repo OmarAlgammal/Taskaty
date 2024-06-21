@@ -24,7 +24,7 @@ class DeleteCompTaskScreen extends StatelessWidget {
         },
         leading: const Icon(AppIcons.deleteIcon),
         title: Text(
-          task.creationDate.dateZone,
+          task.creationDate.dateZone(context),
         ),
       ),
     );

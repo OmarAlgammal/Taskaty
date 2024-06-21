@@ -68,22 +68,6 @@ class _TaskPageState extends State<TaskPage> {
                     Gaps.gap16,
                     OptionsCompTaskScreen(
                       task: task,
-                      onCalendarButtonClicked: () {
-                        bottomSheetHelper(
-                          context,
-                          CalendarWidget(
-                              dueDate: _dueDate,
-                              onValueChanged: (value) {
-                                _dueDate = value.first;
-                              },
-                              onDoneButtonPressed: () {
-                                setState(() {
-                                  task.updateTask(dueDate: _dueDate);
-                                  Navigator.pop(context);
-                                });
-                              }),
-                        );
-                      },
                       onRepeatButtonClicked: () {
                         setState(() {
                           task.updateTask(repeatDaily: !task.repeatDaily);

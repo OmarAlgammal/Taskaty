@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:taskaty/models/task_model/task_model.dart';
 
-import '../../../../utils/constance/my_padding.dart';
 import '../../../../utils/constance/gaps.dart';
 
 class TitleAndCheckboxCompTaskScreen extends StatelessWidget {
-  const TitleAndCheckboxCompTaskScreen({super.key, required this.task, required this.titleController, required this.onCheckBoxChanged});
+  const TitleAndCheckboxCompTaskScreen(
+      {super.key,
+      required this.task,
+      required this.titleController,
+      required this.onCheckBoxChanged});
 
   final TextEditingController titleController;
   final TaskModel task;
@@ -14,6 +17,7 @@ class TitleAndCheckboxCompTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
           child: TextFormField(

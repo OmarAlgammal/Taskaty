@@ -3,7 +3,7 @@
 // import 'package:taskaty/databases/auth_repo.dart';
 // import 'package:taskaty/databases/firestore_database.dart';
 // import 'package:taskaty/databases/local_databases/local_tasks_repo.dart';
-// import 'package:taskaty/databases/local_databases/theme_repo.dart';
+// import 'package:taskaty/databases/local_databases/settings_repo.dart';
 // import 'package:taskaty/databases/notion_database.dart';
 // import 'package:taskaty/models/task_model/task_model.dart';
 //

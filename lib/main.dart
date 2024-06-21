@@ -7,11 +7,12 @@ import 'package:paymob_payment/paymob_payment.dart';
 import 'package:provider/provider.dart';
 import 'package:taskaty/core/network/constants/payment_api_constants.dart';
 import 'package:taskaty/localization/app_local.dart';
-import 'package:taskaty/repositories/local_service_repos/theme_repo.dart';
-
+import 'package:taskaty/repositories/local_service_repos/settings_repo.dart';
+import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
+import 'package:taskaty/view_model/settings_view_model/language_view_model.dart';
+import 'package:taskaty/view_model/settings_view_model/theme_view_model.dart';
 import 'package:taskaty/view_model/tasks_view_model/task_view_model.dart';
-import 'package:taskaty/view_model/theme_view_model/theme_view_model.dart';
 
 import 'firebase_options.dart';
 import 'models/task_model/task_model.dart';
@@ -28,7 +29,7 @@ Future<void> main() async {
   );
   setup();
   Hive.registerAdapter(TaskModelAdapter());
-  ThemeViewModel(locator<ThemeRepo>());
+  ThemeViewModel(locator<ThemeSettingRepo>());
   await Future.wait([
     FirebaseAppCheck.instance.activate(
       webRecaptchaSiteKey: 'recaptcha-v3-site-key',
@@ -46,11 +47,11 @@ Future<void> main() async {
     locator<TaskViewModel>().syncDataFromLocalToRemote(),
   ]);
 
-  runApp(
-  ChangeNotifierProvider<ThemeViewModel>(
-    create: (context) => ThemeViewModel(locator<ThemeRepo>()),
-    child: const MyApp(),
-  ));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => ThemeViewModel(locator<ThemeSettingRepo>())),
+    ChangeNotifierProvider(create: (_) => LanguageViewModel(locator<LanguageSettingRepo>())),
+  ], child: const MyApp(),));
+
 }
 
 @override
@@ -71,10 +72,19 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _localization.init(mapLocales: [
-      const MapLocale('en', AppLocal.en,),
-      const MapLocale('ar', AppLocal.ar,),
-    ], initLanguageCode: 'ar',);
+    _localization.init(
+      mapLocales: [
+        const MapLocale(
+          'en',
+          AppLocal.en,
+        ),
+        const MapLocale(
+          'ar',
+          AppLocal.ar,
+        ),
+      ],
+      initLanguageCode: 'en',
+    );
     _localization.onTranslatedLanguage = _onTranslatedLanguage;
   }
 

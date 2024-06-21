@@ -23,7 +23,7 @@ class RegisterScreenLogoAndDescriptionComp extends StatelessWidget {
         ),
         Gaps.gap24,
         Expanded(child: Text(AppLocal.appDescription.getString(context), style:
-        context.textTheme.bodyLarge,
+        context.textTheme.titleLarge,
           textAlign: TextAlign.center,)),
       ],
     );

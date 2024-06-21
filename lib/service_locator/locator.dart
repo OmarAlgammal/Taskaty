@@ -10,7 +10,7 @@ import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_mode
 import 'package:taskaty/view_model/payment_view_model/payment_view_model.dart';
 
 import '../repositories/local_service_repos/local_tasks_repo.dart';
-import '../repositories/local_service_repos/theme_repo.dart';
+import '../repositories/local_service_repos/settings_repo.dart';
 import '../repositories/remote_service_repos/auth_repo.dart';
 import '../services/firebase/firestore_sevrvice.dart';
 import '../services/local/hive_services.dart';
@@ -34,7 +34,8 @@ void setup() {
   locator.registerSingleton(
     LocalTasksRepo(locator<HiveServices<TaskModel>>()),
   );
-  locator.registerSingleton(ThemeRepo(locator<MySharedPreferences>()));
+  locator.registerSingleton(ThemeSettingRepo(locator<MySharedPreferences>()));
+  locator.registerSingleton(LanguageSettingRepo(locator<MySharedPreferences>()));
   locator.registerSingleton(
       FirestoreTasksRepo(locator<FireStoreService>(), locator<AuthServices>()));
 

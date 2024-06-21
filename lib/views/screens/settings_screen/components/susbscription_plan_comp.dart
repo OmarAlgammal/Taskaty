@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/routing/routes.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
@@ -23,7 +24,7 @@ class SubscriptionPlanComp extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.active) {
               if (snapshot.data != null) {
                 return Text(
-                  'You have subscribed until ${snapshot.data!.expiryDate.myDateFormat}',
+                  '${AppLocal.youHaveSubscribedUntil.getString(context)} ${snapshot.data!.expiryDate.myDateFormat}',
                   style: context.textTheme.titleLarge,
                 );
               }
@@ -36,7 +37,7 @@ class SubscriptionPlanComp extends StatelessWidget {
             Navigator.pushNamed(context, AppRoutes.subscription);
           },
           title: Text(
-            AppLocal.subscriptionPlan,
+            AppLocal.subscriptionPlan.getString(context),
             style: context.textTheme.bodyLarge,
           ),
           trailing: const Icon(AppIcons.arrowForward),

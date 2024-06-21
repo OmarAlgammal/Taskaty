@@ -10,6 +10,7 @@ final darkTheme = ThemeData.dark().copyWith(
   colorScheme: ThemeData.dark().colorScheme.copyWith(
       background: AppColors.blackColor,
       primary: AppColors.greyColor,
+      primaryContainer: AppColors.brightGreyColor,
       onPrimary: AppColors.whiteColor),
   tabBarTheme: const TabBarTheme(
     labelColor: AppColors.greyColor,

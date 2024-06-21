@@ -4,6 +4,10 @@ import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/theme/light_theme/light_theme.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 
+import '../../../../repositories/remote_service_repos/auth_repo.dart';
+import '../../../../service_locator/locator.dart';
+import '../../../widgets/single_divider.dart';
+
 class AppearanceComp extends StatefulWidget {
   const AppearanceComp({super.key});
 
@@ -12,25 +16,30 @@ class AppearanceComp extends StatefulWidget {
 }
 
 class _AppearanceCompState extends State<AppearanceComp> {
-  late bool _themeResult;
-
-  bool getThemeResult() {
-    _themeResult = context.themeViewModel.getTheme() == lightTheme;
-    return _themeResult;
-  }
 
   @override
   Widget build(BuildContext context) {
-    getThemeResult();
-    return SwitchListTile(
-      value: _themeResult,
-      onChanged: (bool value) {
-        context.themeViewModel.changeTheme();
-        setState(() {
-          _themeResult = value;
-        });
-      },
-      title: Text(AppLocal.light.getString(context)),
+    return Column(
+      children: [
+        SwitchListTile(
+          value: context.themeViewModel.isLightTheme(),
+          onChanged: (bool value) {
+            context.themeViewModel.changeTheme();
+            setState(() {});
+          },
+          title: Text(AppLocal.light.getString(context)),
+        ),
+        const SingleDivider(),
+        SwitchListTile(
+          value: context.languageViewModel.languageIsEnglish(),
+          onChanged: (bool value) {
+            context.languageViewModel.setLanguageValue(value);
+            FlutterLocalization.instance.translate(context.languageViewModel.getInitialLanguageCode());
+            setState(() {});
+          },
+          title: Text(AppLocal.english.getString(context)),
+        ),
+      ],
     );
   }
 }

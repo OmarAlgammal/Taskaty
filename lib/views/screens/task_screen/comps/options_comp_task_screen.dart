@@ -12,14 +12,10 @@ import '../../../widgets/calendar_widget.dart';
 
 class OptionsCompTaskScreen extends StatelessWidget {
   OptionsCompTaskScreen(
-      {super.key,
-      required this.task,
-      required this.onCalendarButtonClicked,
-      required this.onRepeatButtonClicked});
+      {super.key, required this.task, required this.onRepeatButtonClicked});
 
   final TaskModel task;
   DateTime? _dueDate;
-  final void Function() onCalendarButtonClicked;
   final void Function() onRepeatButtonClicked;
 
   @override
@@ -27,15 +23,16 @@ class OptionsCompTaskScreen extends StatelessWidget {
     final dueDateColor = task.dueDate != null
         ? DateHelper.dueDateColor(context, task.dueDate!)
         : null;
-    final repeatDailyColor =
-        task.repeatDaily ? context.colorScheme.primary : null;
+    final repeatDailyColor = task.repeatDaily
+        ? context.colorScheme.primary
+        : context.colorScheme.primaryContainer;
     return Column(
       children: [
         if (task.dueDate != null)
           ListTile(
             title: Text(
-              task.dueDate != null ? task.dueDate!.dateZone : '',
-              style: TextStyle(color: dueDateColor),
+              task.dueDate != null ? task.dueDate!.dateZone(context) : '',
+              style: context.textTheme.bodyLarge!.copyWith(color: dueDateColor),
             ),
             leading: Icon(
               AppIcons.calendar,
@@ -50,7 +47,10 @@ class OptionsCompTaskScreen extends StatelessWidget {
                   onValueChanged: (value) {
                     _dueDate = value.first;
                   },
-                  onDoneButtonPressed: onCalendarButtonClicked,
+                  onDoneButtonPressed: () {
+                    task.updateTask(dueDate: _dueDate);
+                    Navigator.pop(context);
+                  },
                 ),
               );
             },
@@ -58,7 +58,8 @@ class OptionsCompTaskScreen extends StatelessWidget {
         ListTile(
             title: Text(
               AppLocal.repeatDaily.getString(context),
-              style: TextStyle(color: repeatDailyColor),
+              style: context.textTheme.bodyLarge!.copyWith(
+                  color: repeatDailyColor, fontWeight: FontWeight.bold),
             ),
             leading: Icon(
               AppIcons.dailyRepetitionIcon,

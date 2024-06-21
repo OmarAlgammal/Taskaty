@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
+import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/utils/constance/gaps.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/view_model/selected_subscription_view_model/payment_type_view_model.dart';
@@ -17,7 +19,7 @@ class SubscriptionScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Subscribe to Taskaty', style: context.textTheme.headlineMedium,),
+          Text(AppLocal.subscribeToTaskaty.getString(context), style: context.textTheme.headlineMedium,),
           Gaps.gap16,
           ChangeNotifierProvider(
             create: (context) => PaymentTypeViewModel(),

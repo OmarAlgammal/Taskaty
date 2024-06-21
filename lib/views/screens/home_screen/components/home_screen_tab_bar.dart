@@ -32,10 +32,7 @@ class HomeScreenTabBar extends StatelessWidget implements PreferredSizeWidget {
             indicator: UnderlineTabIndicator(borderSide: BorderSide(color: context.colorScheme.onSurface, width: 4)),
             indicatorWeight: 2,
             tabs: context.mainTabs
-                .map((e) => Padding(
-                  padding: MyPadding.padding6,
-                  child: Text(e, style: context.textTheme.titleMedium,),
-                ))
+                .map((e) => Text(e, style: context.textTheme.titleMedium,))
                 .toList(),
           )),
     );

@@ -35,7 +35,7 @@ class FilesCompTaskScreen extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          title: Text(AppLocal.addFile.getString(context)),
+          title: Text(AppLocal.addFile.getString(context), style: context.textTheme.bodyLarge,),
           leading: Icon(
             AppIcons.attachIcon,
           ),

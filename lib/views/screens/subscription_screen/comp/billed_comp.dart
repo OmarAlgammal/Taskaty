@@ -78,7 +78,7 @@ class BilledComp extends StatelessWidget {
                 borderRadius: Circular.circular12,
                 border: Border.all(
                     color: borderColor ?? AppColors.transparentColor, width: 3),
-                color: context.colorScheme.primaryContainer,
+                color: context.colorScheme.surface,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),

@@ -1,5 +1,8 @@
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:intl/intl.dart';
+import 'package:taskaty/localization/app_local.dart';
 
 extension DateTimeExtension on DateTime {
   bool get likeToday {
@@ -36,7 +39,7 @@ extension DateTimeExtension on DateTime {
   bool get isBeforeToday => isBefore(
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
 
-  String get dateZone {
+  String dateZone (BuildContext context) {
     final year = DateTime.now().year;
     final month = DateTime.now().month;
     final day = DateTime.now().day;
@@ -50,19 +53,19 @@ extension DateTimeExtension on DateTime {
     final afterTwoDaysDate = DateTime(year, month, day + 2);
 
     if (thisDate.isAtSameMomentAs(beforeTwoDaysDate)) {
-      return '2 days ago';
+      return '2 ${AppLocal.daysAgo.getString(context)}';
     }
     if (thisDate.isAtSameMomentAs(yesterdayDate)) {
-      return 'yesterday';
+      return AppLocal.yesterday.getString(context);
     }
     if (thisDate.isAtSameMomentAs(todayDate)) {
-      return 'today';
+      return AppLocal.today.getString(context);
     }
     if (thisDate.isAtSameMomentAs(tomorrowDate)) {
-      return 'tomorrow';
+      return AppLocal.tomorrow.getString(context);
     }
     if (thisDate.isAtSameMomentAs(afterTwoDaysDate)) {
-      return 'After 2 days';
+      return '${AppLocal.after.getString(context)} 2 ${AppLocal.days.getString(context)}';
     }
 
     return DateFormat('MMM d').format(this);
