@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:intl/intl.dart';
@@ -12,7 +11,6 @@ extension DateTimeExtension on DateTime {
     }
     return false;
   }
-
 
   bool get isAfterNow => isAfter(DateTime.now());
 
@@ -28,18 +26,19 @@ extension DateTimeExtension on DateTime {
 
     // Subtract one day to get the last day of the current month
     DateTime lastDayOfCurrentMonth =
-        firstDayOfNextMonth.subtract(Duration(days: 1));
+        firstDayOfNextMonth.subtract(const Duration(days: 1));
 
     // Extract and return the day component of the last day of the month
     return lastDayOfCurrentMonth.day;
   }
 
-  String get myDateFormatWithHours => DateFormat('dd/MM/yyyy HH:mm').format(this);
+  String get myDateFormatWithHours =>
+      DateFormat('dd/MM/yyyy HH:mm').format(this);
 
   bool get isBeforeToday => isBefore(
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
 
-  String dateZone (BuildContext context) {
+  String dateZone(BuildContext context) {
     final year = DateTime.now().year;
     final month = DateTime.now().month;
     final day = DateTime.now().day;

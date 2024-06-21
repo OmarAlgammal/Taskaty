@@ -12,7 +12,7 @@ part of 'error.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MyError {
@@ -20,6 +20,7 @@ mixin _$MyError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverError,
+    required TResult Function(String message) badRequest,
     required TResult Function(String message) internetConnectionError,
     required TResult Function(String message) timeoutError,
     required TResult Function(String message) badeResponseError,
@@ -28,6 +29,7 @@ mixin _$MyError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverError,
+    TResult? Function(String message)? badRequest,
     TResult? Function(String message)? internetConnectionError,
     TResult? Function(String message)? timeoutError,
     TResult? Function(String message)? badeResponseError,
@@ -36,6 +38,7 @@ mixin _$MyError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverError,
+    TResult Function(String message)? badRequest,
     TResult Function(String message)? internetConnectionError,
     TResult Function(String message)? timeoutError,
     TResult Function(String message)? badeResponseError,
@@ -45,6 +48,7 @@ mixin _$MyError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerError value) serverError,
+    required TResult Function(BadRequest value) badRequest,
     required TResult Function(InternetConnectionError value)
         internetConnectionError,
     required TResult Function(TimeoutError value) timeoutError,
@@ -54,6 +58,7 @@ mixin _$MyError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerError value)? serverError,
+    TResult? Function(BadRequest value)? badRequest,
     TResult? Function(InternetConnectionError value)? internetConnectionError,
     TResult? Function(TimeoutError value)? timeoutError,
     TResult? Function(BadResponseError value)? badeResponseError,
@@ -62,6 +67,7 @@ mixin _$MyError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerError value)? serverError,
+    TResult Function(BadRequest value)? badRequest,
     TResult Function(InternetConnectionError value)? internetConnectionError,
     TResult Function(TimeoutError value)? timeoutError,
     TResult Function(BadResponseError value)? badeResponseError,
@@ -152,7 +158,7 @@ class _$ServerErrorImpl implements ServerError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerErrorImpl &&
@@ -172,6 +178,7 @@ class _$ServerErrorImpl implements ServerError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverError,
+    required TResult Function(String message) badRequest,
     required TResult Function(String message) internetConnectionError,
     required TResult Function(String message) timeoutError,
     required TResult Function(String message) badeResponseError,
@@ -183,6 +190,7 @@ class _$ServerErrorImpl implements ServerError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverError,
+    TResult? Function(String message)? badRequest,
     TResult? Function(String message)? internetConnectionError,
     TResult? Function(String message)? timeoutError,
     TResult? Function(String message)? badeResponseError,
@@ -194,6 +202,7 @@ class _$ServerErrorImpl implements ServerError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverError,
+    TResult Function(String message)? badRequest,
     TResult Function(String message)? internetConnectionError,
     TResult Function(String message)? timeoutError,
     TResult Function(String message)? badeResponseError,
@@ -209,6 +218,7 @@ class _$ServerErrorImpl implements ServerError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerError value) serverError,
+    required TResult Function(BadRequest value) badRequest,
     required TResult Function(InternetConnectionError value)
         internetConnectionError,
     required TResult Function(TimeoutError value) timeoutError,
@@ -221,6 +231,7 @@ class _$ServerErrorImpl implements ServerError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerError value)? serverError,
+    TResult? Function(BadRequest value)? badRequest,
     TResult? Function(InternetConnectionError value)? internetConnectionError,
     TResult? Function(TimeoutError value)? timeoutError,
     TResult? Function(BadResponseError value)? badeResponseError,
@@ -232,6 +243,7 @@ class _$ServerErrorImpl implements ServerError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerError value)? serverError,
+    TResult Function(BadRequest value)? badRequest,
     TResult Function(InternetConnectionError value)? internetConnectionError,
     TResult Function(TimeoutError value)? timeoutError,
     TResult Function(BadResponseError value)? badeResponseError,
@@ -252,6 +264,162 @@ abstract class ServerError implements MyError {
   @override
   @JsonKey(ignore: true)
   _$$ServerErrorImplCopyWith<_$ServerErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$BadRequestImplCopyWith<$Res>
+    implements $MyErrorCopyWith<$Res> {
+  factory _$$BadRequestImplCopyWith(
+          _$BadRequestImpl value, $Res Function(_$BadRequestImpl) then) =
+      __$$BadRequestImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$BadRequestImplCopyWithImpl<$Res>
+    extends _$MyErrorCopyWithImpl<$Res, _$BadRequestImpl>
+    implements _$$BadRequestImplCopyWith<$Res> {
+  __$$BadRequestImplCopyWithImpl(
+      _$BadRequestImpl _value, $Res Function(_$BadRequestImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$BadRequestImpl(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$BadRequestImpl implements BadRequest {
+  _$BadRequestImpl({required this.message});
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'MyError.badRequest(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BadRequestImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BadRequestImplCopyWith<_$BadRequestImpl> get copyWith =>
+      __$$BadRequestImplCopyWithImpl<_$BadRequestImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message) serverError,
+    required TResult Function(String message) badRequest,
+    required TResult Function(String message) internetConnectionError,
+    required TResult Function(String message) timeoutError,
+    required TResult Function(String message) badeResponseError,
+  }) {
+    return badRequest(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message)? serverError,
+    TResult? Function(String message)? badRequest,
+    TResult? Function(String message)? internetConnectionError,
+    TResult? Function(String message)? timeoutError,
+    TResult? Function(String message)? badeResponseError,
+  }) {
+    return badRequest?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? serverError,
+    TResult Function(String message)? badRequest,
+    TResult Function(String message)? internetConnectionError,
+    TResult Function(String message)? timeoutError,
+    TResult Function(String message)? badeResponseError,
+    required TResult orElse(),
+  }) {
+    if (badRequest != null) {
+      return badRequest(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(BadRequest value) badRequest,
+    required TResult Function(InternetConnectionError value)
+        internetConnectionError,
+    required TResult Function(TimeoutError value) timeoutError,
+    required TResult Function(BadResponseError value) badeResponseError,
+  }) {
+    return badRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(InternetConnectionError value)? internetConnectionError,
+    TResult? Function(TimeoutError value)? timeoutError,
+    TResult? Function(BadResponseError value)? badeResponseError,
+  }) {
+    return badRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerError value)? serverError,
+    TResult Function(BadRequest value)? badRequest,
+    TResult Function(InternetConnectionError value)? internetConnectionError,
+    TResult Function(TimeoutError value)? timeoutError,
+    TResult Function(BadResponseError value)? badeResponseError,
+    required TResult orElse(),
+  }) {
+    if (badRequest != null) {
+      return badRequest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BadRequest implements MyError {
+  factory BadRequest({required final String message}) = _$BadRequestImpl;
+
+  @override
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$BadRequestImplCopyWith<_$BadRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -304,7 +472,7 @@ class _$InternetConnectionErrorImpl implements InternetConnectionError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InternetConnectionErrorImpl &&
@@ -325,6 +493,7 @@ class _$InternetConnectionErrorImpl implements InternetConnectionError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverError,
+    required TResult Function(String message) badRequest,
     required TResult Function(String message) internetConnectionError,
     required TResult Function(String message) timeoutError,
     required TResult Function(String message) badeResponseError,
@@ -336,6 +505,7 @@ class _$InternetConnectionErrorImpl implements InternetConnectionError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverError,
+    TResult? Function(String message)? badRequest,
     TResult? Function(String message)? internetConnectionError,
     TResult? Function(String message)? timeoutError,
     TResult? Function(String message)? badeResponseError,
@@ -347,6 +517,7 @@ class _$InternetConnectionErrorImpl implements InternetConnectionError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverError,
+    TResult Function(String message)? badRequest,
     TResult Function(String message)? internetConnectionError,
     TResult Function(String message)? timeoutError,
     TResult Function(String message)? badeResponseError,
@@ -362,6 +533,7 @@ class _$InternetConnectionErrorImpl implements InternetConnectionError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerError value) serverError,
+    required TResult Function(BadRequest value) badRequest,
     required TResult Function(InternetConnectionError value)
         internetConnectionError,
     required TResult Function(TimeoutError value) timeoutError,
@@ -374,6 +546,7 @@ class _$InternetConnectionErrorImpl implements InternetConnectionError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerError value)? serverError,
+    TResult? Function(BadRequest value)? badRequest,
     TResult? Function(InternetConnectionError value)? internetConnectionError,
     TResult? Function(TimeoutError value)? timeoutError,
     TResult? Function(BadResponseError value)? badeResponseError,
@@ -385,6 +558,7 @@ class _$InternetConnectionErrorImpl implements InternetConnectionError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerError value)? serverError,
+    TResult Function(BadRequest value)? badRequest,
     TResult Function(InternetConnectionError value)? internetConnectionError,
     TResult Function(TimeoutError value)? timeoutError,
     TResult Function(BadResponseError value)? badeResponseError,
@@ -456,7 +630,7 @@ class _$TimeoutErrorImpl implements TimeoutError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TimeoutErrorImpl &&
@@ -476,6 +650,7 @@ class _$TimeoutErrorImpl implements TimeoutError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverError,
+    required TResult Function(String message) badRequest,
     required TResult Function(String message) internetConnectionError,
     required TResult Function(String message) timeoutError,
     required TResult Function(String message) badeResponseError,
@@ -487,6 +662,7 @@ class _$TimeoutErrorImpl implements TimeoutError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverError,
+    TResult? Function(String message)? badRequest,
     TResult? Function(String message)? internetConnectionError,
     TResult? Function(String message)? timeoutError,
     TResult? Function(String message)? badeResponseError,
@@ -498,6 +674,7 @@ class _$TimeoutErrorImpl implements TimeoutError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverError,
+    TResult Function(String message)? badRequest,
     TResult Function(String message)? internetConnectionError,
     TResult Function(String message)? timeoutError,
     TResult Function(String message)? badeResponseError,
@@ -513,6 +690,7 @@ class _$TimeoutErrorImpl implements TimeoutError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerError value) serverError,
+    required TResult Function(BadRequest value) badRequest,
     required TResult Function(InternetConnectionError value)
         internetConnectionError,
     required TResult Function(TimeoutError value) timeoutError,
@@ -525,6 +703,7 @@ class _$TimeoutErrorImpl implements TimeoutError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerError value)? serverError,
+    TResult? Function(BadRequest value)? badRequest,
     TResult? Function(InternetConnectionError value)? internetConnectionError,
     TResult? Function(TimeoutError value)? timeoutError,
     TResult? Function(BadResponseError value)? badeResponseError,
@@ -536,6 +715,7 @@ class _$TimeoutErrorImpl implements TimeoutError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerError value)? serverError,
+    TResult Function(BadRequest value)? badRequest,
     TResult Function(InternetConnectionError value)? internetConnectionError,
     TResult Function(TimeoutError value)? timeoutError,
     TResult Function(BadResponseError value)? badeResponseError,
@@ -606,7 +786,7 @@ class _$BadResponseErrorImpl implements BadResponseError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BadResponseErrorImpl &&
@@ -627,6 +807,7 @@ class _$BadResponseErrorImpl implements BadResponseError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverError,
+    required TResult Function(String message) badRequest,
     required TResult Function(String message) internetConnectionError,
     required TResult Function(String message) timeoutError,
     required TResult Function(String message) badeResponseError,
@@ -638,6 +819,7 @@ class _$BadResponseErrorImpl implements BadResponseError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverError,
+    TResult? Function(String message)? badRequest,
     TResult? Function(String message)? internetConnectionError,
     TResult? Function(String message)? timeoutError,
     TResult? Function(String message)? badeResponseError,
@@ -649,6 +831,7 @@ class _$BadResponseErrorImpl implements BadResponseError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverError,
+    TResult Function(String message)? badRequest,
     TResult Function(String message)? internetConnectionError,
     TResult Function(String message)? timeoutError,
     TResult Function(String message)? badeResponseError,
@@ -664,6 +847,7 @@ class _$BadResponseErrorImpl implements BadResponseError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerError value) serverError,
+    required TResult Function(BadRequest value) badRequest,
     required TResult Function(InternetConnectionError value)
         internetConnectionError,
     required TResult Function(TimeoutError value) timeoutError,
@@ -676,6 +860,7 @@ class _$BadResponseErrorImpl implements BadResponseError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerError value)? serverError,
+    TResult? Function(BadRequest value)? badRequest,
     TResult? Function(InternetConnectionError value)? internetConnectionError,
     TResult? Function(TimeoutError value)? timeoutError,
     TResult? Function(BadResponseError value)? badeResponseError,
@@ -687,6 +872,7 @@ class _$BadResponseErrorImpl implements BadResponseError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerError value)? serverError,
+    TResult Function(BadRequest value)? badRequest,
     TResult Function(InternetConnectionError value)? internetConnectionError,
     TResult Function(TimeoutError value)? timeoutError,
     TResult Function(BadResponseError value)? badeResponseError,

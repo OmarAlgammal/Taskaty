@@ -1,5 +1,4 @@
-
-class AppRoutes{
+class AppRoutes {
   static const landingScreen = 'landing-screen';
   static const registerScreen = 'register-screen';
   static const paymentScreen = 'payment-screen';

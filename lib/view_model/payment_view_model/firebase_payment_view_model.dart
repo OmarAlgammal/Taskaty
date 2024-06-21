@@ -1,5 +1,4 @@
 import 'package:either_dart/either.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:taskaty/utils/extensions/date_time_extension.dart';
 
 import '../../core/errors/error.dart';
@@ -15,7 +14,8 @@ class FirebasePaymentViewModel {
 
   FirebasePaymentViewModel(this._baseFirebasePaymentRepo);
 
-  Future<Either<MyError, ({int sayThanks, int subscription})>> getPaymentPrice() {
+  Future<Either<MyError, ({int sayThanks, int subscription})>>
+      getPaymentPrice() {
     return _baseFirebasePaymentRepo.getPaymentPrice();
   }
 
@@ -27,13 +27,14 @@ class FirebasePaymentViewModel {
   }
 
   Future<void> isUserStillOnSubscriptionPeriod() async {
-    final result = await _baseFirebasePaymentRepo.isUserStillOnSubscriptionPeriod();
-    if (result.isRight){
+    final result =
+        await _baseFirebasePaymentRepo.isUserStillOnSubscriptionPeriod();
+    if (result.isRight) {
       _userOnSubscriptionPeriod = result.right;
     }
   }
 
-  Stream<PaymentTransactionModel> getLastPaymentProcess(){
+  Stream<PaymentTransactionModel> getLastPaymentProcess() {
     return _baseFirebasePaymentRepo.getLastPaymentProcess();
   }
 }

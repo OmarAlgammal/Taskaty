@@ -1,4 +1,0 @@
-enum FilterGroup{
-  and,
-  or,
-}

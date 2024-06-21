@@ -8,9 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:taskaty/core/network/constants/payment_api_constants.dart';
 import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/repositories/local_service_repos/settings_repo.dart';
-import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
-import 'package:taskaty/view_model/settings_view_model/language_view_model.dart';
 import 'package:taskaty/view_model/settings_view_model/theme_view_model.dart';
 import 'package:taskaty/view_model/tasks_view_model/task_view_model.dart';
 
@@ -47,11 +45,10 @@ Future<void> main() async {
     locator<TaskViewModel>().syncDataFromLocalToRemote(),
   ]);
 
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => ThemeViewModel(locator<ThemeSettingRepo>())),
-    ChangeNotifierProvider(create: (_) => LanguageViewModel(locator<LanguageSettingRepo>())),
-  ], child: const MyApp(),));
-
+  runApp(ChangeNotifierProvider(
+    create: (_) => ThemeViewModel(locator<ThemeSettingRepo>()),
+    child: const MyApp(),
+  ));
 }
 
 @override

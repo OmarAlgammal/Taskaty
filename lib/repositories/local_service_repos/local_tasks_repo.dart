@@ -1,5 +1,4 @@
 import 'package:either_dart/src/either.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:taskaty/core/errors/error.dart';
 
@@ -26,7 +25,7 @@ class LocalTasksRepo implements BaseLocalTasksRepo {
   }
 
   @override
-  Stream<List<TaskModel>> getTasksStream() async*{
+  Stream<List<TaskModel>> getTasksStream() async* {
     /// Because hive doesn't provide a direct Stream
     /// so this line to get list of data then yield any changing in box using second line
     yield _baseHiveService.getBox().values.toList();

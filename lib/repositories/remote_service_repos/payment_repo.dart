@@ -13,7 +13,7 @@ abstract class BasePaymentRepo {
               ({RetrievePaymentModel retrievePaymentModel, String token})>>
       getPaymentKeyRequest({required int amount});
 
-  /// TODO: Complete this method
+  /// TODO: ِِAdd this method
 // Future<Either<ServerError, PaymentTransactionModel>> retrievePaymentTransaction();
 }
 

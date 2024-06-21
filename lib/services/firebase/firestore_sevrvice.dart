@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:either_dart/either.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:taskaty/core/errors/error.dart';
+import 'package:taskaty/core/exceptions/dio_exceptions.dart';
 import 'package:taskaty/utils/typedefs/typedef.dart';
 
 abstract class BaseFireStoreService {
@@ -11,12 +11,14 @@ abstract class BaseFireStoreService {
   Future<Either<MyError, void>> deleteData({required String path});
 
   Future<Either<MyError, T>> getCollection<T>(
-      {required String path, required QuerySnapshotBuilder<T> querySnapshotBuilder, QueryBuilder? queryBuilder});
-
-  Future<Either<MyError, T>> getDoc<T>(
       {required String path,
-      required DataBuilder<T> dataBuilder,
-      });
+      required QuerySnapshotBuilder<T> querySnapshotBuilder,
+      QueryBuilder? queryBuilder});
+
+  Future<Either<MyError, T>> getDoc<T>({
+    required String path,
+    required DataBuilder<T> dataBuilder,
+  });
 
   Stream<T> getStreamCollection<T>(
       {required String path,
@@ -30,17 +32,18 @@ class FireStoreService implements BaseFireStoreService {
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
   @override
-  Future<Either<MyError, T>> getCollection<T>(
-      {required String path, required QuerySnapshotBuilder<T> querySnapshotBuilder, QueryBuilder? queryBuilder,}) async {
+  Future<Either<MyError, T>> getCollection<T>({
+    required String path,
+    required QuerySnapshotBuilder<T> querySnapshotBuilder,
+    QueryBuilder? queryBuilder,
+  }) async {
     try {
       Query collection = _fireStore.collection(path);
       collection = queryBuilder != null ? queryBuilder(collection) : collection;
       final querySnapshot = await collection.get();
       return Right(querySnapshotBuilder(querySnapshot.docs));
     } on FirebaseException catch (error) {
-      /// TODO: Refactor error exception
-      return Left(
-          ServerError(message: 'Failed to get data from server : $error'));
+      return Left(HandlingDioExceptions.handleFirebaseException(error));
     } catch (error) {
       return Left(ServerError(message: 'Failed to get Data : $error'));
     }
@@ -53,28 +56,24 @@ class FireStoreService implements BaseFireStoreService {
       final setDataResult = await _fireStore.doc(path).set(map);
       return Right(setDataResult);
     } on FirebaseException catch (error) {
-      /// TODO: Refactor error exception
-      return Left(
-          ServerError(message: 'Failed to set Data to server : $error'));
+      return Left(HandlingDioExceptions.handleFirebaseException(error));
     } catch (error) {
-      return Left(ServerError(message: 'Failed to set Data: $error'));
+      return Left(ServerError(message: 'Failed to get Data : $error'));
     }
   }
 
   @override
-  Future<Either<MyError, T>> getDoc<T>(
-      {required String path,
-      required DataBuilder<T> dataBuilder,
-      }) async {
+  Future<Either<MyError, T>> getDoc<T>({
+    required String path,
+    required DataBuilder<T> dataBuilder,
+  }) async {
     try {
       final snapshot = await _fireStore.doc(path).get();
       return Right(dataBuilder(snapshot.data()));
     } on FirebaseException catch (error) {
-      /// TODO: Refactor error exception
-      return Left(
-          ServerError(message: 'Failed to set Data to server : ${error.message}'));
+      return Left(HandlingDioExceptions.handleFirebaseException(error));
     } catch (error) {
-      return Left(ServerError(message: 'Failed to set Data: ${error.toString()}'));
+      return Left(ServerError(message: 'Failed to get Data : $error'));
     }
   }
 
@@ -96,11 +95,9 @@ class FireStoreService implements BaseFireStoreService {
       final deletingResult = await _fireStore.doc(path).delete();
       return Right(deletingResult);
     } on FirebaseException catch (error) {
-      /// TODO: Refactor error exception
-      return Left(
-          ServerError(message: 'Failed to set Data to server : $error'));
+      return Left(HandlingDioExceptions.handleFirebaseException(error));
     } catch (error) {
-      return Left(ServerError(message: 'Failed to set Data: $error'));
+      return Left(ServerError(message: 'Failed to get Data : $error'));
     }
   }
 }

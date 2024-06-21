@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 
 import '../errors/error.dart';
 
@@ -20,4 +22,14 @@ class HandlingDioExceptions {
         return BadResponseError(message: 'Bad response');
     }
   }
+
+  static MyError handleFirebaseException(FirebaseException error) {
+    switch (error.code) {
+      case 'network-request-failed':
+        return InternetConnectionError(message: error.code);
+      default:
+        return BadResponseError(message: 'Bad response - ${error.message}');
+    }
+  }
+
 }

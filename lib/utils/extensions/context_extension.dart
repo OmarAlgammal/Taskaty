@@ -26,17 +26,11 @@ extension ScreenSize on BuildContext {
   FirebasePaymentViewModel get firebasePaymentViewModel =>
       locator<FirebasePaymentViewModel>();
 
-  /// TODO: Remove all comments here
-  //TasksRepo get tasksService => locator<TasksRepo>();
-
-  //PaymentRepo get paymentRepo => locator<PaymentRepo>();
-
-  //FirebasePaymentRepo get firebasePaymentRepo => locator<FirebasePaymentRepo>();
-
   AuthRepo get authRepo => locator<AuthRepo>();
 
   ThemeViewModel get themeViewModel => ThemeViewModel.instance(this);
-  LanguageViewModel get languageViewModel => LanguageViewModel.instance(this);
+
+  LanguageViewModel get languageViewModel => locator<LanguageViewModel>();
 
   List<String> get mainTabs => MainTabsValues.mainValues(this);
 
