@@ -4,10 +4,10 @@ import 'package:taskaty/core/network/constants/payment_api_constants.dart';
 import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/models/navigation_models/payment_screen_model.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
-import 'package:taskaty/utils/helper/alert_dailog_helper.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../models/payment_models/payment_transaction_model.dart';
+import '../../../utils/helper/alert_dailog_helper.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -22,11 +22,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     final paymentScreenModel =
         ModalRoute.of(context)!.settings.arguments as PaymentScreenModel;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(paymentScreenModel.payForSubscription
-            ? AppLocal.payment.getString(context)
-            : AppLocal.sayThanks.getString(context)),
-      ),
+      appBar: AppBar(),
       body: Center(
         child: FutureBuilder(
           future: context.paymentViewModel
@@ -43,24 +39,27 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     NavigationDelegate(
                       onUrlChange: (url) {},
                       onNavigationRequest: (NavigationRequest request) async {
-                        if (request.url.contains(AppLocal.success.getString(context))) {
+                        if (request.url.contains('accept')) {
                           final params = Uri.parse(request.url).queryParameters;
                           final response =
                               PaymentTransactionModel.fromJson(params);
+                          debugPrint('########## Payment screen : response is ${response.success} and full url is ${response.toJson()}');
+                          debugPrint('########## Second : response is ${Uri.parse(request.url).queryParameters.toString()}');
+
                           if (response.success &&
                               paymentScreenModel.payForSubscription) {
                             await Future.wait([
                               context.firebasePaymentViewModel
                                   .savePaymentDetails(
-                                  paymentTransactionModel: response),
+                                      paymentTransactionModel: response),
                               context.taskViewModel.syncDataFromLocalToRemote(),
                             ]);
                           }
-                          Navigator.pop(context);
-                          alertDialogHelper(
-                              context: context,
-                              paidSuccessfully: response.success);
-                          return NavigationDecision.prevent;
+                          // Navigator.pop(context);
+                          // alertDialogHelper(
+                          //     context: context,
+                          //     paidSuccessfully: response.accept);
+                          return NavigationDecision.navigate;
                         }
                         return NavigationDecision.navigate;
                       },

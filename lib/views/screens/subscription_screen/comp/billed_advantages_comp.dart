@@ -5,16 +5,13 @@ import 'package:taskaty/utils/constance/icons.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 
 class BilledAdvantagesComp extends StatelessWidget {
-  const BilledAdvantagesComp({super.key, required this.sayThanksSelected});
+  const BilledAdvantagesComp({super.key, required this.payForSubscription});
 
-  final bool sayThanksSelected;
+  final bool payForSubscription;
 
   @override
   Widget build(BuildContext context) {
-    return sayThanksSelected ? ListTile(
-      leading: Icon(AppIcons.heart, color: context.colorScheme.error,),
-      title: Text(AppLocal.financialSupport.getString(context)),
-    ) : Column(
+    return payForSubscription ? Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
@@ -30,6 +27,9 @@ class BilledAdvantagesComp extends StatelessWidget {
           title: Text(AppLocal.preserveYourData.getString(context)),
         ),
       ],
+    ) : ListTile(
+      leading: Icon(AppIcons.heart, color: context.colorScheme.error,),
+      title: Text(AppLocal.financialSupport.getString(context)),
     );
   }
 }

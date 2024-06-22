@@ -12,6 +12,7 @@ mixin AppLocal {
   static const String payment = 'payment';
   static const String sayThanks = 'sayThanks';
   static const String subscribe = 'subscribe';
+  static const String support = 'Support';
 
   static const String week = 'week';
   static const String count = 'count';
@@ -63,6 +64,7 @@ mixin AppLocal {
   static const youHaveSubscribedUntil = 'you have subscribed until';
   static const noTasksYet = 'no tasks yet';
   static const goodJob = 'god job';
+  static const youAlreadySubscribed = 'you already subscribed';
 
   static const Map<String, dynamic> en = {
     today: 'Today',
@@ -77,6 +79,7 @@ mixin AppLocal {
     payment: 'Payment',
     sayThanks: 'Say thanks',
     subscribe: 'Subscribe',
+    support: 'Support',
     week: 'Week',
     count: 'Count',
     error: 'Error',
@@ -107,7 +110,7 @@ mixin AppLocal {
     annual: 'Annual',
     billedAnnual: 'Billed annual',
     supportAsYouWish: 'Support as you wish',
-    english: 'English',
+    english: 'اللفة العربية',
     financialSupport: 'Financial support',
     syncYourData : 'Sync your data via the cloud',
     accessYourData :'Access your data via any device',
@@ -117,6 +120,7 @@ mixin AppLocal {
     youHaveSubscribedUntil: 'You have subscribed until',
     noTasksYet : 'No tasks yet',
     goodJob : 'Good job, you have completed all the tasks',
+    youAlreadySubscribed : 'You already subscribed',
   };
 
   static const Map<String, dynamic> ar = {
@@ -132,6 +136,7 @@ mixin AppLocal {
     payment: 'الدفع',
     sayThanks: 'شكرا',
     subscribe: 'الاشتراك',
+    support: 'الدعم',
     week: 'الاسبوع رقم',
     count: 'العدد',
     error: 'حدث خطأ',
@@ -162,7 +167,7 @@ mixin AppLocal {
     tomorrow: 'غدا',
     after: 'بعد',
     days: 'أيام',
-    english: 'اللفة الانجليزية',
+    english: 'English',
     financialSupport: 'الدعم المالي',
     syncYourData : 'مزامنة بياناتك عبر السحابة',
     accessYourData :'الوصول إلي بياناتك عبر أي جهاز',
@@ -171,6 +176,7 @@ mixin AppLocal {
     youHaveSubscribedUntil: 'أنت مشترك حتي',
     noTasksYet : 'لا توجد مهام',
     goodJob : 'عمل رائع لقد أنجزت جميع المهام',
+  youAlreadySubscribed : 'أنت مشترك بالفعل',
 
   };
 }

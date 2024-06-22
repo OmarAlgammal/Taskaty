@@ -8,6 +8,8 @@ import 'package:taskaty/services/firebase/firebase_auth.dart';
 import 'package:taskaty/view_model/internet_connection.dart';
 import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
 import 'package:taskaty/view_model/payment_view_model/payment_view_model.dart';
+import 'package:taskaty/view_model/settings_view_model/language_view_model.dart';
+import 'package:taskaty/view_model/settings_view_model/theme_view_model.dart';
 
 import '../repositories/local_service_repos/local_tasks_repo.dart';
 import '../repositories/local_service_repos/settings_repo.dart';
@@ -41,6 +43,9 @@ void setup() {
 
   locator.registerSingleton(
       FirebasePaymentViewModel(locator<FirebasePaymentRepo>()));
+  
+  locator.registerSingleton(ThemeViewModel(locator<ThemeSettingRepo>()));
+  locator.registerSingleton(LanguageViewModel(locator<LanguageSettingRepo>()));
 
   locator.registerSingleton(InternetConnection());
 

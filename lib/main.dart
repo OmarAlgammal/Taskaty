@@ -7,6 +7,7 @@ import 'package:paymob_payment/paymob_payment.dart';
 import 'package:provider/provider.dart';
 import 'package:taskaty/core/network/constants/payment_api_constants.dart';
 import 'package:taskaty/localization/app_local.dart';
+import 'package:taskaty/models/payment_models/payment_transaction_model.dart';
 import 'package:taskaty/repositories/local_service_repos/settings_repo.dart';
 import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
 import 'package:taskaty/view_model/settings_view_model/theme_view_model.dart';

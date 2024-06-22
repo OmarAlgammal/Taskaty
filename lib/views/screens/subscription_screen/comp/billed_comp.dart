@@ -10,9 +10,9 @@ import 'package:taskaty/view_model/selected_subscription_view_model/payment_type
 import '../../../../theme/colors.dart';
 
 class BilledComp extends StatelessWidget {
-  const BilledComp({super.key, required this.sayThanksSelected});
+  const BilledComp({super.key, required this.payForSubscription});
 
-  final bool sayThanksSelected;
+  final bool payForSubscription;
 
     @override
     Widget build(BuildContext context) {
@@ -30,33 +30,28 @@ class BilledComp extends StatelessWidget {
             subscriptionValue: '${snapshot.data!.right.subscription} LE'
             );
           } else {
-            debugPrint(
-                'error is ${snapshot.error.toString()} and ${snapshot.data?.isRight}');
             value = (sayThanksValue: 'Error', subscriptionValue: 'Error');
           }
-          return Padding(
-            padding: MyPadding.padding16,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                billedItem(context,
-                    title: AppLocal.sayThanks.getString(context),
-                    value: value.sayThanksValue,
-                    description: AppLocal.supportAsYouWish.getString(context),
-                    borderColor: sayThanksSelected
-                        ? context.colorScheme.primary
-                        : AppColors.transparentColor,),
-                Gaps.gap16,
-                billedItem(context,
-                    title: AppLocal.annual.getString(context),
-                    value: value.subscriptionValue,
-                    description: AppLocal.billedAnnual.getString(context),
-                    borderColor: sayThanksSelected
-                        ? AppColors.transparentColor
-                        : context.colorScheme.primary,
-                    ),
-              ],
-            ),
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              billedItem(context,
+                  title: AppLocal.sayThanks.getString(context),
+                  value: value.sayThanksValue,
+                  description: AppLocal.supportAsYouWish.getString(context),
+                  borderColor: payForSubscription
+                      ? AppColors.transparentColor
+                      : context.colorScheme.primary,),
+              Gaps.gap16,
+              billedItem(context,
+                  title: AppLocal.annual.getString(context),
+                  value: value.subscriptionValue,
+                  description: AppLocal.billedAnnual.getString(context),
+                  borderColor: payForSubscription
+                      ? context.colorScheme.primary
+                      : AppColors.transparentColor,
+                  ),
+            ],
           );
         },
       );

@@ -19,6 +19,7 @@ class FirebasePaymentViewModel {
     return _baseFirebasePaymentRepo.getPaymentPrice();
   }
 
+
   Future<Either<MyError, void>> savePaymentDetails(
       {required PaymentTransactionModel paymentTransactionModel}) {
     _userOnSubscriptionPeriod = paymentTransactionModel.expiryDate.isAfterNow;
