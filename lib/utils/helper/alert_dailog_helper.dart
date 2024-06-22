@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/utils/constance/border_radius.dart';
 import 'package:taskaty/utils/constance/icons.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
@@ -9,11 +11,13 @@ void alertDialogHelper(
     context: context,
     builder: (context) => AlertDialog(
       shape: const RoundedRectangleBorder(
-        borderRadius: Circular.circular16,
+        borderRadius: Circular.circular8,
       ),
-      content: Text(paidSuccessfully
-          ? 'Payment completed successfully'
-          : 'An error occurred, please check the card data'),
+      content: Text(
+        paidSuccessfully
+            ? 'Payment completed successfully'
+            : 'An error occurred, please check the card data',
+      ),
       icon: Icon(
         paidSuccessfully ? AppIcons.checkCircle : AppIcons.error,
         color: paidSuccessfully
@@ -25,7 +29,7 @@ void alertDialogHelper(
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Cancel'),
+          child: Text(AppLocal.ok.getString(context)),
         ),
       ],
     ),

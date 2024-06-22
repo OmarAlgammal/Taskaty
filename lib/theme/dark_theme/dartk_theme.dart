@@ -7,6 +7,7 @@ final darkTheme = ThemeData.dark().copyWith(
   floatingActionButtonTheme:
       FloatingActionButtonThemeData(backgroundColor: AppColors.greyColor),
   primaryColor: AppColors.whiteColor,
+
   colorScheme: ThemeData.dark().colorScheme.copyWith(
       background: AppColors.blackColor,
       primary: AppColors.greyColor,
@@ -19,5 +20,6 @@ final darkTheme = ThemeData.dark().copyWith(
       color: AppColors.whiteColor,
       borderRadius: Circular.circular16,
     ),
+
   ),
 );

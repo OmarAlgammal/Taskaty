@@ -65,6 +65,7 @@ mixin AppLocal {
   static const noTasksYet = 'no tasks yet';
   static const goodJob = 'god job';
   static const youAlreadySubscribed = 'you already subscribed';
+  static const ok = 'ok';
 
   static const Map<String, dynamic> en = {
     today: 'Today',
@@ -121,6 +122,7 @@ mixin AppLocal {
     noTasksYet : 'No tasks yet',
     goodJob : 'Good job, you have completed all the tasks',
     youAlreadySubscribed : 'You already subscribed',
+    ok : 'ok',
   };
 
   static const Map<String, dynamic> ar = {
@@ -177,6 +179,7 @@ mixin AppLocal {
     noTasksYet : 'لا توجد مهام',
     goodJob : 'عمل رائع لقد أنجزت جميع المهام',
   youAlreadySubscribed : 'أنت مشترك بالفعل',
+    ok : 'موافق',
 
   };
 }

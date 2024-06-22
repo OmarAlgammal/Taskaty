@@ -43,9 +43,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           final params = Uri.parse(request.url).queryParameters;
                           final response =
                               PaymentTransactionModel.fromJson(params);
-                          debugPrint('########## Payment screen : response is ${response.success} and full url is ${response.toJson()}');
-                          debugPrint('########## Second : response is ${Uri.parse(request.url).queryParameters.toString()}');
-
                           if (response.success &&
                               paymentScreenModel.payForSubscription) {
                             await Future.wait([
@@ -55,10 +52,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               context.taskViewModel.syncDataFromLocalToRemote(),
                             ]);
                           }
-                          // Navigator.pop(context);
-                          // alertDialogHelper(
-                          //     context: context,
-                          //     paidSuccessfully: response.accept);
+                          Navigator.pop(context);
+                          alertDialogHelper(
+                              context: context,
+                              paidSuccessfully: response.success);
                           return NavigationDecision.navigate;
                         }
                         return NavigationDecision.navigate;

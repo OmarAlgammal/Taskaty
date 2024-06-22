@@ -7,6 +7,7 @@ import '../colors.dart';
 import '../colors.dart';
 
 final lightTheme = ThemeData.light().copyWith(
+
   primaryColor: AppColors.greyColor,
   tabBarTheme: const TabBarTheme(
     labelColor: AppColors.whiteColor,
@@ -25,13 +26,6 @@ final lightTheme = ThemeData.light().copyWith(
     actionsIconTheme: IconThemeData(
       color: AppColors.greyColor
     ),
-    systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.light,
-    ),
-    color: AppColors.transparentColor,
-    elevation: 0.0,
   ),
   colorScheme: ThemeData.light().colorScheme.copyWith(
     background: AppColors.whiteColor,
