@@ -85,16 +85,18 @@ class TasksListComp extends StatelessWidget {
     return completedTasks.isNotEmpty && unCompletedTasks.isEmpty
         ? Padding(
             padding: MyPadding.paddingV18,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(AppIcons.dove),
-                Gaps.gap8,
-                Text(
-                  AppLocal.goodJob.getString(context),
-                  style: context.textTheme.bodyLarge,
-                ),
-              ],
+            child: FittedBox(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(AppIcons.dove),
+                  Gaps.gap8,
+                  Text(
+                    AppLocal.goodJob.getString(context),
+                    style: context.textTheme.bodyLarge,
+                  ),
+                ],
+              ),
             ),
           )
         : const SizedBox();

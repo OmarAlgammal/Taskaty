@@ -29,10 +29,10 @@ class HomeScreenTabBar extends StatelessWidget implements PreferredSizeWidget {
           preferredSize: const Size.fromHeight(0),
           child: TabBar(
             physics: const NeverScrollableScrollPhysics(),
-            indicator: UnderlineTabIndicator(borderSide: BorderSide(color: context.colorScheme.onSurface, width: 4)),
+            //indicator: UnderlineTabIndicator(borderSide: BorderSide(color: context.colorScheme.onSurface, width: 4)),
             indicatorWeight: 2,
             tabs: context.mainTabs
-                .map((e) => Text(e, style: context.textTheme.titleMedium,))
+                .map((e) => FittedBox(child: Text(e, style: context.textTheme.titleMedium,)))
                 .toList(),
           )),
     );

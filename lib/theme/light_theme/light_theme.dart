@@ -7,31 +7,54 @@ import '../colors.dart';
 import '../colors.dart';
 
 final lightTheme = ThemeData.light().copyWith(
-
-  primaryColor: AppColors.greyColor,
-  tabBarTheme: const TabBarTheme(
-    labelColor: AppColors.whiteColor,
-    unselectedLabelColor: AppColors.greyColor,
-    indicator: BoxDecoration(
-      color: AppColors.greyColor,
-      borderRadius: Circular.circular16,
+  appBarTheme: AppBarTheme(
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: ThemeData.light().scaffoldBackgroundColor,
+      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark,
     ),
-  ),
-  floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    backgroundColor: AppColors.greyColor,
-  ),
-  appBarTheme: const AppBarTheme(
     titleTextStyle: TextStyle(color: AppColors.greyColor),
     iconTheme: IconThemeData(color: AppColors.blackColor),
     actionsIconTheme: IconThemeData(
-      color: AppColors.greyColor
+        color: AppColors.greyColor
     ),
   ),
+  tabBarTheme: const TabBarTheme(
+    labelColor: AppColors.redColor,
+    unselectedLabelColor: Colors.green,
+    dividerColor: AppColors.brightGreyColor,
+    indicatorColor: AppColors.greyColor,
+  ),
+  primaryColor: AppColors.greyColor,
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: AppColors.greyColor,
+  ),
   colorScheme: ThemeData.light().colorScheme.copyWith(
-    background: AppColors.whiteColor,
     primary: AppColors.greyColor,
     primaryContainer: AppColors.brightGreyColor,
     onPrimary: AppColors.whiteColor,
   ),
 
 );
+
+// final darkTheme = ThemeData.dark().copyWith(
+//   floatingActionButtonTheme:
+//   FloatingActionButtonThemeData(backgroundColor: AppColors.greyColor),
+//   primaryColor: AppColors.whiteColor,
+//
+//   colorScheme: ThemeData.dark().colorScheme.copyWith(
+//       background: AppColors.blackColor,
+//       primary: AppColors.greyColor,
+//       primaryContainer: AppColors.brightGreyColor,
+//       onPrimary: AppColors.whiteColor),
+//   tabBarTheme: const TabBarTheme(
+//     labelColor: AppColors.greyColor,
+//     unselectedLabelColor: AppColors.greyColor,
+//     indicator: BoxDecoration(
+//       color: AppColors.whiteColor,
+//       borderRadius: Circular.circular16,
+//     ),
+//
+//   ),
+// );
+

@@ -90,7 +90,7 @@ class WeeklyComp extends StatelessWidget {
           monthNum.getMonthAbbreviatedName,
           style: emptyMonth
               ? context.textTheme.bodyMedium
-              : context.textTheme.headlineSmall,
+              : context.textTheme.headlineMedium,
         ),
         Gaps.gap8,
         if (emptyMonth) const Expanded(child: Divider(height: 2, thickness: 2)),

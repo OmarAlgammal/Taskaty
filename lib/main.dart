@@ -10,6 +10,7 @@ import 'package:taskaty/core/network/constants/payment_api_constants.dart';
 import 'package:taskaty/localization/app_local.dart';
 import 'package:taskaty/models/payment_models/payment_transaction_model.dart';
 import 'package:taskaty/repositories/local_service_repos/settings_repo.dart';
+import 'package:taskaty/utils/extensions/context_extension.dart';
 import 'package:taskaty/view_model/payment_view_model/firebase_payment_view_model.dart';
 import 'package:taskaty/view_model/settings_view_model/theme_view_model.dart';
 import 'package:taskaty/view_model/tasks_view_model/task_view_model.dart';
@@ -93,12 +94,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.white, // navigation bar color
-      statusBarColor: Colors.white, // status bar color
-      statusBarIconBrightness: Brightness.dark, // status bar icons' color
-      systemNavigationBarIconBrightness: Brightness.dark, //navigation bar icons' color
-    ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeViewModel>(context).getTheme(),
