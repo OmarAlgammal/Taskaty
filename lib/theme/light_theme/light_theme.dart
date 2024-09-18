@@ -13,28 +13,25 @@ final lightTheme = ThemeData.light().copyWith(
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.dark,
     ),
-    titleTextStyle: TextStyle(color: AppColors.greyColor),
+    titleTextStyle: TextStyle(color: AppColors.blueColor),
     iconTheme: IconThemeData(color: AppColors.blackColor),
-    actionsIconTheme: IconThemeData(
-        color: AppColors.greyColor
-    ),
+    actionsIconTheme: IconThemeData(color: AppColors.blueColor),
   ),
   tabBarTheme: const TabBarTheme(
     labelColor: AppColors.redColor,
     unselectedLabelColor: Colors.green,
     dividerColor: AppColors.brightGreyColor,
-    indicatorColor: AppColors.greyColor,
+    indicatorColor: AppColors.blueColor,
   ),
-  primaryColor: AppColors.greyColor,
+  primaryColor: AppColors.blueColor,
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    backgroundColor: AppColors.greyColor,
+    backgroundColor: AppColors.blueColor,
   ),
   colorScheme: ThemeData.light().colorScheme.copyWith(
-    primary: AppColors.greyColor,
-    primaryContainer: AppColors.brightGreyColor,
-    onPrimary: AppColors.whiteColor,
-  ),
-
+        primary: AppColors.blueColor,
+        primaryContainer: AppColors.brightGreyColor,
+        onPrimary: AppColors.whiteColor,
+      ),
 );
 
 // final darkTheme = ThemeData.dark().copyWith(

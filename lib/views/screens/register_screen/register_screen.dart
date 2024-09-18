@@ -12,17 +12,21 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: Padding(
           padding: MyPadding.padding16,
           child: Stack(
             children: [
-              SvgPicture.asset(AppPaths.backgroundImage, fit: BoxFit.fill,),
+              SvgPicture.asset(
+                AppPaths.backgroundImage,
+                fit: BoxFit.fill,
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Flexible(flex: 2, child: RegisterScreenLogoAndDescriptionComp()),
+                  Flexible(
+                      flex: 2, child: RegisterScreenLogoAndDescriptionComp()),
                   Flexible(flex: 1, child: RegisterWithGoogleComp())
                 ],
               ),

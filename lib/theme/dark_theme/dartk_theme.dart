@@ -15,12 +15,12 @@ final darkTheme = ThemeData.dark().copyWith(
     ),
   ),
   floatingActionButtonTheme:
-      FloatingActionButtonThemeData(backgroundColor: AppColors.greyColor),
+      FloatingActionButtonThemeData(backgroundColor: AppColors.blueColor),
   primaryColor: AppColors.whiteColor,
 
   colorScheme: ThemeData.dark().colorScheme.copyWith(
       surface: AppColors.blackColor,
-      primary: AppColors.greyColor,
+      primary: AppColors.blueColor,
       primaryContainer: AppColors.brightGreyColor,
       onPrimary: AppColors.whiteColor),
   // tabBarTheme: const TabBarTheme(

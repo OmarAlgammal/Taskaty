@@ -15,7 +15,8 @@ class HomeScreenTabBar extends StatelessWidget implements PreferredSizeWidget {
       leading: null,
       title: SvgPicture.asset(
         AppPaths.appLogo,
-        color: Theme.of(context).primaryColor,
+        color: context.colorScheme.primary,
+        // colorFilter: ColorFilter.mode(Colors.red, BlendMode.clear),
       ),
       actions: [
         IconButton(
@@ -32,7 +33,11 @@ class HomeScreenTabBar extends StatelessWidget implements PreferredSizeWidget {
             //indicator: UnderlineTabIndicator(borderSide: BorderSide(color: context.colorScheme.onSurface, width: 4)),
             indicatorWeight: 2,
             tabs: context.mainTabs
-                .map((e) => FittedBox(child: Text(e, style: context.textTheme.titleMedium,)))
+                .map((e) => FittedBox(
+                        child: Text(
+                      e,
+                      style: context.textTheme.titleMedium,
+                    )))
                 .toList(),
           )),
     );
