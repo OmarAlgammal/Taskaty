@@ -51,8 +51,8 @@ dependencies:
   flutter_localization: ^0.2.0
   marquee: ^2.2.3
   flutter_native_splash: ^2.4.1
-  flutter_launcher_icons: ^0.13.1
   url_launcher: ^6.3.1
+  flutter_launcher_icons: ^0.14.1
 
 dev_dependencies:
   #flutter_launcher_icons: "^0.13.1"
