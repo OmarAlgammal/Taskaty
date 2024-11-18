@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../utils/constance/border_radius.dart';
-import '../../../utils/constance/my_padding.dart';
-import '../colors.dart';
 import '../colors.dart';
 
 final lightTheme = ThemeData.light().copyWith(
@@ -15,7 +12,9 @@ final lightTheme = ThemeData.light().copyWith(
     ),
     titleTextStyle: TextStyle(color: AppColors.blueColor),
     iconTheme: IconThemeData(color: AppColors.blackColor),
-    actionsIconTheme: IconThemeData(color: AppColors.blueColor),
+    actionsIconTheme: IconThemeData(
+      color: AppColors.blueColor,
+    ),
   ),
   tabBarTheme: const TabBarTheme(
     labelColor: AppColors.redColor,
@@ -34,24 +33,23 @@ final lightTheme = ThemeData.light().copyWith(
       ),
 );
 
-// final darkTheme = ThemeData.dark().copyWith(
-//   floatingActionButtonTheme:
-//   FloatingActionButtonThemeData(backgroundColor: AppColors.greyColor),
-//   primaryColor: AppColors.whiteColor,
-//
-//   colorScheme: ThemeData.dark().colorScheme.copyWith(
-//       background: AppColors.blackColor,
-//       primary: AppColors.greyColor,
-//       primaryContainer: AppColors.brightGreyColor,
-//       onPrimary: AppColors.whiteColor),
-//   tabBarTheme: const TabBarTheme(
-//     labelColor: AppColors.greyColor,
-//     unselectedLabelColor: AppColors.greyColor,
-//     indicator: BoxDecoration(
-//       color: AppColors.whiteColor,
-//       borderRadius: Circular.circular16,
-//     ),
-//
-//   ),
-// );
+final darkTheme = ThemeData.dark().copyWith(
+  appBarTheme: AppBarTheme(
+    backgroundColor: ThemeData.dark().scaffoldBackgroundColor,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: AppColors.blackColor,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.light,
+    ),
+  ),
+  floatingActionButtonTheme:
+  FloatingActionButtonThemeData(backgroundColor: AppColors.blueColor),
+  primaryColor: AppColors.whiteColor,
+  colorScheme: ThemeData.dark().colorScheme.copyWith(
+    surface: AppColors.blackColor,
+    primary: AppColors.blueColor,
+    primaryContainer: AppColors.brightGreyColor,
+    onPrimary: AppColors.whiteColor,
+  ),
 
+);

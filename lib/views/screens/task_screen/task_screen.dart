@@ -1,18 +1,16 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
-import 'package:taskaty/utils/helper/bottom_sheet_helper.dart';
-import 'package:taskaty/views/screens/task_screen/comps/app_bar_comp_task_screen.dart';
 import 'package:taskaty/views/screens/task_screen/comps/files_comp_task_screen.dart';
 import 'package:taskaty/views/screens/task_screen/comps/note_comp_task_screen.dart';
 import 'package:taskaty/views/screens/task_screen/comps/options_comp_task_screen.dart';
 import 'package:taskaty/views/screens/task_screen/comps/title_and_checkbox_comp_task_screen.dart';
+import 'package:taskaty/views/widgets/interactive_text.dart';
 
 import '../../../models/task_model/task_model.dart';
 import '../../../routing/routes.dart';
 import '../../../utils/constance/gaps.dart';
 import '../../../utils/constance/my_padding.dart';
-import '../../widgets/calendar_widget.dart';
 import 'comps/delete_comp_task_screen.dart';
 
 class TaskPage extends StatefulWidget {
@@ -46,7 +44,9 @@ class _TaskPageState extends State<TaskPage> {
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: AppBarCompTaskScreen(title: task.title),
+        appBar: AppBar(
+          toolbarHeight: kToolbarHeight,
+        ),
         body: Padding(
           padding: MyPadding.padding8,
           child: Column(
@@ -96,6 +96,7 @@ class _TaskPageState extends State<TaskPage> {
                       },
                     ),
                     Gaps.gap16,
+                    InteractiveText(task.note ?? ''),
                     NoteCompTaskScreen(
                       task: task,
                       onNoteBackButtonPressed: () async {

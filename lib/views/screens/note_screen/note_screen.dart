@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:taskaty/utils/extensions/context_extension.dart';
 
 import '../../../models/task_model/task_model.dart';
@@ -31,10 +32,10 @@ class _NotePageState extends State<NotePage> {
       child: Scaffold(
         appBar: AppBar(
             title: SingleChildScrollView(
-          child: Text(
-            task.title,
-          ),
-        )),
+              child: Text(
+                task.title,
+              ),
+            )),
         body: TextFormField(
           controller: _controller..text = task.note ?? '',
           autofocus: true,

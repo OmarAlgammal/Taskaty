@@ -22,7 +22,7 @@ class NoteCompTaskScreen extends StatelessWidget {
             leading: const Icon(AppIcons.addIcon),
             horizontalTitleGap: 0,
             onTap: onNoteBackButtonPressed),
-        Text(task.note ?? ''),
+        SelectableText(task.note ?? ''),
       ],
     );
   }

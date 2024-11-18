@@ -111,7 +111,7 @@ mixin AppLocal {
     annual: 'Annual',
     billedAnnual: 'Billed annual',
     supportAsYouWish: 'Support as you wish',
-    english: 'اللفة العربية',
+    english: 'English',
     financialSupport: 'Financial support',
     syncYourData: 'Sync your data via the cloud',
     accessYourData: 'Access your data via any device',
@@ -119,7 +119,7 @@ mixin AppLocal {
     subscribeToTaskaty: 'Subscribe to Taskaty',
     youHaveSubscribedUntil: 'You have subscribed until',
     noTasksYet: 'No tasks yet',
-    goodJob: 'Good job, you have completed all the tasks',
+    goodJob: 'Good job, you have completed all the tasks today',
     youAlreadySubscribed: 'You already subscribed',
     ok: 'ok',
   };
@@ -176,7 +176,7 @@ mixin AppLocal {
     subscribeToTaskaty: 'Taskaty الاشتراك في',
     youHaveSubscribedUntil: 'أنت مشترك حتي',
     noTasksYet: 'لا توجد مهام',
-    goodJob: 'عمل رائع لقد أنجزت جميع المهام',
+    goodJob: 'عمل رائع لقد أنجزت جميع المهام اليوم',
     youAlreadySubscribed: 'أنت مشترك بالفعل',
     ok: 'موافق',
   };

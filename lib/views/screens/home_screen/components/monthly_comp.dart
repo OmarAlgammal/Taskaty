@@ -129,14 +129,11 @@ class MonthlyPeriodComp extends StatelessWidget {
                   separatorBuilder: (context, index) => SingleDivider(
                     color: context.colorScheme.background,
                   ),
-                  itemBuilder: (context, index) => SizedBox(
-                    height: 48,
-                    child: ListTileTheme(
-                      horizontalTitleGap: 0,
-                      child: TaskWidget(
-                        task: tasks[index],
-                        showTileColor: false,
-                      ),
+                  itemBuilder: (context, index) => ListTileTheme(
+                    horizontalTitleGap: 0,
+                    child: TaskWidget(
+                      task: tasks[index],
+                      showTileColor: false,
                     ),
                   ),
                 ),

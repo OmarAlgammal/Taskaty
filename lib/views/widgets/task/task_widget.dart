@@ -53,6 +53,8 @@ class TaskWidget extends StatelessWidget {
         padding: MyPadding.paddingH8,
         child: Text(
           task.title,
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
         ),
       ),
       trailing: Text(
